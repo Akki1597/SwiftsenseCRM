@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1585
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvoiceMIcroServices", "InvoiceMIcroServices\InvoiceMIcroServices.csproj", "{F258B8B0-8E4C-4651-9A71-994327B0F108}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A9A8805C-8A94-47AF-BE75-E76805140924}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{419A4959-AAA6-401F-B562-AA844ECA6160}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebMVC", "WebMVC", "{80146BE2-89FD-40BE-8423-D8D715E7548C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdminDashboard", "src\WebMVC\AdminDashboard\AdminDashboard.csproj", "{A86180B0-D2B0-47FC-AC3D-93491FACFA1F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F258B8B0-8E4C-4651-9A71-994327B0F108}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F258B8B0-8E4C-4651-9A71-994327B0F108}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F258B8B0-8E4C-4651-9A71-994327B0F108}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F258B8B0-8E4C-4651-9A71-994327B0F108}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A86180B0-D2B0-47FC-AC3D-93491FACFA1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A86180B0-D2B0-47FC-AC3D-93491FACFA1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A86180B0-D2B0-47FC-AC3D-93491FACFA1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A86180B0-D2B0-47FC-AC3D-93491FACFA1F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F258B8B0-8E4C-4651-9A71-994327B0F108} = {419A4959-AAA6-401F-B562-AA844ECA6160}
+		{419A4959-AAA6-401F-B562-AA844ECA6160} = {A9A8805C-8A94-47AF-BE75-E76805140924}
+		{80146BE2-89FD-40BE-8423-D8D715E7548C} = {A9A8805C-8A94-47AF-BE75-E76805140924}
+		{A86180B0-D2B0-47FC-AC3D-93491FACFA1F} = {80146BE2-89FD-40BE-8423-D8D715E7548C}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5124433E-64E6-4B66-98ED-84C297271BB5}
+	EndGlobalSection
+EndGlobal
