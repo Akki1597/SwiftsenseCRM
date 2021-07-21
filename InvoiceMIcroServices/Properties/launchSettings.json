@@ -3,7 +3,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:23011/",
+      "applicationUrl": "http://localhost:23000/",
       "sslPort": 0
     }
   },
@@ -19,11 +19,12 @@
     "InvoiceMIcroServices": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "api/values",
+      "launchUrl": "api/CompanyInfo",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      },
-      "applicationUrl": "http://localhost:23010/"
+        }
+          //,
+        //"applicationUrl": "http://localhost:23010/"
     }
   }
 }

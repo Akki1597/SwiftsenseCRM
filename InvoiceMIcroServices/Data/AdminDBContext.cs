@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using InvoiceMIcroServices.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,8 @@ namespace InvoiceMIcroServices.Data
     {
         public AdminDBContext(DbContextOptions options) : base(options)
         {
-
+         
         }
+        public DbSet<CompanyInfo> CompanyInfo { get; set; }
     }
 }

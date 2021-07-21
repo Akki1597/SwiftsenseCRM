@@ -8,6 +8,6 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.Services
 {
    public interface ICompanyInfo
     {
-        Task<CompanyInfo> GetCompanyInfo();
+        Task<Company> GetCompanyInfo(int? id);
     }
 }

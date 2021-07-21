@@ -9,10 +9,12 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.GatewayToMicroServices
     {
         public static class CompanyInfo
         {
-            public static string GetAllCompanyInfo(string baseuri)
+            public static string GetCompanyInfo(string baseuri,int? id)
             {
-                return $"{baseuri}companyInfo";
+                return $"{baseuri}GetCompanyInfo?companyId="+id;
             }
+
+            
         }
        
     }

@@ -2,13 +2,25 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using InvoiceMIcroServices.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 
 namespace InvoiceMIcroServices.Controllers
 {
+    
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
+        private readonly AdminDBContext _context;
+        private readonly IOptionsSnapshot<UrlSettings> _settings;
+
+        public ValuesController(IOptionsSnapshot<UrlSettings> settings,AdminDBContext context)
+        {
+            _settings = settings;
+            _context = context;
+            string url = settings.Value.ExternalServiceBaseUrl;
+        }
         // GET api/values
         [HttpGet]
         public IEnumerable<string> Get()

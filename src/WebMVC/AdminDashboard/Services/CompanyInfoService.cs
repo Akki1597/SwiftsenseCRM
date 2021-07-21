@@ -2,6 +2,7 @@
 using InvoiceMicroServices.WebMVC.AdminDashboard.Models;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,12 +22,15 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.Services
             _appsettings = appsettings;
             _logger = logger;
             _apiclient = httpClient;
-            _remoteServiceBaseUri = $"{_appsettings.Value.CompanyinfoURl}/api/companyinfo/";
+            _remoteServiceBaseUri = $"{_appsettings.Value.CompanyinfoURl}/api/CompanyInfo/";
         }
 
-        public Task<CompanyInfo> GetCompanyInfo()
+        public async Task<Company> GetCompanyInfo(int? id)
         {
-            throw new NotImplementedException();
+            var allinfourl = APIGateway.CompanyInfo.GetCompanyInfo(_remoteServiceBaseUri,id);
+            var datastring = await _apiclient.GetStringAsync(allinfourl);
+            var response = JsonConvert.DeserializeObject<Company>(datastring);
+            return response;
         }
     }
 }
