@@ -8,7 +8,8 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.ViewModels
 {
     public class CompanyIndexViewModel
     {
-        public IEnumerable<CompanyInfo> companyInfos { get; set; }
+        public CompanyInfo companyInfos { get; set; }
+        
         public PaginationInfo paginationInfo { get; set; }
     }
 }

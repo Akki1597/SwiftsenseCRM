@@ -57,6 +57,13 @@ namespace InvoiceMIcroServices
                 c.SwaggerEndpoint($"/swagger/v1/swagger.json", "AdminDashboardAPI V1");
             });
 
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=CompanyInfo}/{action=GetCompanyInfo}/{id?}");
+            });
+
         }
     }
 }

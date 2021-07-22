@@ -10,6 +10,6 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.Models
         public int pageIndex { get; set; }
         public int pageSize { get; set; }
         public int count { get; set; }
-        public List<CompanyInfo> data { get; set; }
+        public CompanyInfo data { get; set; }
     }
 }

@@ -21,11 +21,12 @@ namespace AdminDashboard.Controllers
         public async Task<IActionResult> Index(int? id)  /*int? page*/
         {
             //int itemsPage = 10;
-
-            var info = await  _companyInfosvc.GetCompanyInfo(id);
+            
+            var info = await  _companyInfosvc.GetCompanyInfo("sw751");
             var vm = new CompanyIndexViewModel()
             {
-                companyInfos = info.data,
+                companyInfos = info,
+
                 //paginationInfo = new PaginationInfo()
                 //{
                 //    actualPage = page??0,
