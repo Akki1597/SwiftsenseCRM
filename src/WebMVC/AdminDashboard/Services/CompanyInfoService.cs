@@ -24,10 +24,10 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.Services
             _apiclient = httpClient;
             _remoteServiceBaseUri = $"{_appsettings.Value.CompanyinfoURl}/api/CompanyInfo/";
         }
-
+        
         public async Task<CompanyInfo> GetCompanyInfo(string id)
         {
-            var allinfourl = APIGateway.CompanyInfo.GetCompanyInfo(_remoteServiceBaseUri,id);
+            var allinfourl = APIGateway.CompanyInfo.GetCompanyInfo(_remoteServiceBaseUri, id);
             var datastring = await _apiclient.GetStringAsync(allinfourl);
             var response = JsonConvert.DeserializeObject<CompanyInfo>(datastring);
             return response;
