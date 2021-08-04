@@ -1,0 +1,51 @@
+﻿@model InvoiceMicroServices.WebMVC.AdminDashboard.Models.BillingInvoice
+
+@{
+    ViewData["Title"] = "Billing";
+    Layout = "~/Views/Shared/PartialDashboardLayout.cshtml";
+}
+<link href="~/StyleSheet/DashboardPanel.css" rel="stylesheet" />
+<div class="container-fluid">
+    <div class="row">
+        @{
+            Html.RenderPartial("PartialLeftMenu");
+        }
+        <div class="col-md-10 menuMargin" style="margin-top:30px;">
+            <form role="form" class="needs-validation" method="post" novalidate>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="card" style="min-height:220px;margin-top:10px">
+                            <h4 style="padding:20px 0px 20px 20px;color:gray">View Invoice List</h4>
+                            <div class="form-row" style="padding-left:20px;">
+                                <div class="col-sm-9">
+                                    <div class="form-group">
+                                        <label asp-for="invoice" class="control-label"></label>
+                                        <select asp-for="invoice" asp-items="@Model.invoiceList" class="form-control"></select>
+                                    </div>
+                                </div>
+                            </div>
+                            <center>
+                                <button type="submit" class="btn btnColor">View</button>
+                            </center>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="card" style="min-height:220px;margin-top:10px">
+                            <h4 style="padding:20px 0px 20px 20px;color:gray">Generate Invoice</h4>
+
+                            <div class="form-row" style="padding-left:80px;">
+                                <div class="col-sm-9">
+                                    <h5 style="font-size:21px;padding-bottom:10px">54 Hours are yet be billed</h5>
+                                    <h6 style="font-size:11px;padding-bottom:20px">Click on generate button to generate invoice for the current month.</h6>
+                                </div>
+                            </div>
+                            <center>
+                                <button type="submit" class="btn btnColor">Generate</button>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

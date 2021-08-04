@@ -1,0 +1,120 @@
+﻿@model InvoiceMicroServices.WebMVC.AdminDashboard.ViewModels.Common
+
+@{
+
+    ViewData["Title"] = "CRMDetails";
+    Layout = "~/Views/Shared/PartialDashboardLayout.cshtml";
+}
+
+<link href="~/StyleSheet/DashboardPanel.css" rel="stylesheet" />
+<div class="container-fluid">
+    <div class="row">
+        @{
+            Html.RenderPartial("PartialLeftMenu");
+        }
+        <div class="col-md-10 menuMargin" style="margin-top:30px;">
+            <form role="form" class="needs-validation" method="post" enctype="multipart/form-data" novalidate>
+                <div class="card" style="margin-top:10px">
+                    <h4 style="margin:20px 0px 20px 20px;color:gray">Client Management</h4>
+                    <div class="form-row" style="padding-left:20px">
+                        <div class="col-sm-5">
+                            <div class="form-group">
+                                <label asp-for="client.ClientId" class="control-label"></label>
+                                <select asp-for="client.ClientId" asp-items="@Model.clientList" class="form-control"></select>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <button type="submit" class="btn btnColor" style="margin-top:30px">Add</button>
+                        </div>
+                        <div class="offset-4"></div>
+
+                        </div>
+                    <div class="form-row" style="padding-left:20px">
+                        <div class="col-sm-5">
+                            <div class="form-group">
+                                <label asp-for="client.ClientId" class="control-label"></label>
+                                <select asp-for="client.ClientId" asp-items="@Model.clientList" method="post" class="form-control"></select>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <button type="submit" class="btn btnColor" style="margin-top:30px">View</button>
+                        </div>
+                        <div class="offset-4"></div>
+                    </div>
+                    </div>
+
+                <div class="card" style="margin-top:20px;">
+                    <h4 style="margin:20px 0px 20px 20px;color:gray">Project Management</h4>
+                    <div class="form-row" style="padding-left:20px">
+                        <div class="col-sm-5">
+                            <div class="form-group">
+                                <label asp-for="project.projectId" class="control-label"></label>
+                                <select asp-for="project.projectId" asp-items="@Model.projectList" class="form-control"></select>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <button type="submit" class="btn btnColor" style="margin-top:30px">Add</button>
+                        </div>
+                        <div class="offset-4"></div>
+                    </div>
+                    <div class="form-row" style="padding-left:20px">
+                        <div class="col-sm-5">
+                            <div class="form-group">
+                                <label asp-for="project.projectId" class="control-label"></label>
+                                <select asp-for="project.projectId" asp-items="@Model.projectList" method="post" class="form-control"></select>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <button type="submit" class="btn btnColor" style="margin-top:30px">View</button>
+                        </div>
+                        <div class="offset-4"></div>
+                    </div>
+                </div>
+                <div class="card" style="margin-top:20px;">
+                    <h4 style="margin:20px 0px 20px 20px;color:gray">Employee Time Sheet</h4>
+                    <div class="form-row" style="padding-left:20px">
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="employee.projectClient" class="control-label"></label>
+                                <select asp-for="employee.projectClient" asp-items="@Model.clientList" class="form-control"></select>
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="employee.empProject" class="control-label"></label>
+                                <select asp-for="employee.empProject" asp-items="@Model.projectList" class="form-control"></select>
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="employee.employeeId" class="control-label"></label>
+                                <select asp-for="employee.employeeId" asp-items="@Model.employeeList" class="form-control"></select>
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.employee.year, new { @for = "year" })
+                                @Html.TextBoxFor(m => m.employee.year, new { @class = "form-control", @placeholder = "Enter Year" })
+                                @Html.ValidationMessageFor(m => m.employee.year, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.employee.month, new { @for = "month" })
+                                @Html.TextBoxFor(m => m.employee.month, new { @class = "form-control", @placeholder = "enter month" })
+                                @Html.ValidationMessageFor(m => m.employee.month, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="padding-left:20px;padding-bottom:15px">
+                        <div class="col-sm-3">
+                            <button type="submit" class="btn btnColor">Update</button>
+                        </div>
+                        <div class="col-sm-9">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

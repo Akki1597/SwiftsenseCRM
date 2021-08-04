@@ -1,6 +1,7 @@
 ﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+    /*padding-top: 50px;*/
+    /*padding-bottom: 20px;*/
+    margin-left: -30px;
 }
 
 /* Wrapping element */
@@ -37,8 +38,7 @@
 /*Dashboard panel css*/
 
 .sidebar-container {
-    position: fixed;
-    width: 220px;
+    position: relative;
     height: 100%;
     left: 0;
     overflow-x: hidden;
@@ -58,8 +58,10 @@
 
 .sidebar-logo {
     padding: 10px 15px 10px 30px;
-    font-size: 20px;
-    background-color: #2574A9;
+    font-size: 25px;
+    background-color: none;
+    color: darkblue;
+    font-weight:bold;
 }
 
 .sidebar-navigation {
@@ -91,6 +93,7 @@
         .sidebar-navigation li a:hover,
         .sidebar-navigation li a:focus {
             text-decoration: none;
+            background-color:lightblue;
             outline: none;
         }
 
@@ -121,5 +124,11 @@
         .sidebar-navigation .header::before {
             background-color: transparent;
         }
-
+.btnColor {
+    background-color: darkblue;
+    color:white;
+}
+.btnColor:hover{
+    color:white;
+}
 

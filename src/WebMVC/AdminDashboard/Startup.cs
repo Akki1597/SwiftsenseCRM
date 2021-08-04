@@ -88,7 +88,7 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=CompanyInfo}/{action=Index}/{id?}");
+                    template: "{controller=Home}/{action=HomePage}/{id?}");
             });
         }
     }
