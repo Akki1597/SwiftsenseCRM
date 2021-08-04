@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc;
 using AdminDashboard.Models;
 using InvoiceMicroServices.WebMVC.AdminDashboard.Services;
 using InvoiceMicroServices.WebMVC.AdminDashboard.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AdminDashboard.Controllers
 {
+    [Authorize]
     public class CompanyInfoController : Controller
     {
         private readonly ICompanyInfo _companyInfosvc;
@@ -41,6 +43,7 @@ namespace AdminDashboard.Controllers
             return View(vm);
         }
 
+      
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
