@@ -24,10 +24,10 @@ namespace AdminDashboard.Controllers
         {
             //int itemsPage = 10;
             
-            var info = await  _companyInfosvc.GetCompanyInfo("sw751");
+           // var info = await  _companyInfosvc.GetCompanyInfo("sw751");
             var vm = new CompanyIndexViewModel()
             {
-                companyInfos = info,
+                //companyInfos = info,
 
                 //paginationInfo = new PaginationInfo()
                 //{

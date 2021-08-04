@@ -1,9 +1,14 @@
-﻿<!DOCTYPE html>
+﻿
+@{
+    ViewData["Title"] = "PartialDashboardLayout";
+}
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - AdminDashboard</title>
+    <title>@ViewData["Title"] - Admin Dashboard</title>
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -18,19 +23,17 @@
     </environment>
 </head>
 <body>
-    <div class="navbar" style="background-color:#061c34;height:80px">
+    <div class="navbar" style="background-color:#061c34;">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-left" href="~/">
-                    <img class="logo" alt="" />CompanyLogo
+                <a class="navbar-left" href="~/" style="font:300;font-style:oblique">
+                    <img class="menulogo" alt="" />CompanyLogo
                 </a>
             </div>
             <div class="navbar-right">
-             <a asp-controller="EmployeeHomePage" asp-action="EmployeeHomePage" style="padding:20px;color:white">Home</a>
-                <a href="#contact" style="padding:20px;color:white">Service Offered</a>
-                <a href="#about" style="padding:20px;color:white">About Us</a>
-                <a href="#contact" style="padding:20px;color:white">Contact</a>
-                <a href="#about" style="padding:20px;color:white">Our Team</a>
+                <button class="btn btnColor dropdown-toggle" style="margin-top:11px;margin-bottom:11px;border-color: transparent;" type="button" data-toggle="dropdown">
+                    Logout
+                </button>
             </div>
         </div>
     </div>
@@ -64,3 +67,4 @@
     @RenderSection("Scripts", required: false)
 </body>
 </html>
+

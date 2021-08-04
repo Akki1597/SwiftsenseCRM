@@ -31,7 +31,7 @@ namespace AuthrizationMicroservice
                     var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
                     // var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
 
-                    IdentityDbInit.Initialize(context, userManager);
+                    //IdentityDbInit.Initialize(context, userManager);
                 }
                 catch (Exception ex)
                 {

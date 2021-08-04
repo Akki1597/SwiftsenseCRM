@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewData["Title"] = "PartialLeftMenu";
+}
+<div class="col-md-2">
+    <div class="sidebar-container">
+        <div class="sidebar-logo">
+            SWIFTSENSE
+            <hr />
+        </div>
+        <ul class="sidebar-navigation">
+            <li>
+                <a asp-controller="EmployeeHomePage" asp-action="EmployeeHomePage">
+                    <i class="fa fa-home iconColor" aria-hidden="true"></i> Home 
+                </a>
+            </li>
+            <li>
+                <a asp-controller="CompanyInfo" asp-action="Index">
+                    <i class="fa fa-paper-plane iconColor" aria-hidden="true"></i> Company Info
+                </a>
+            </li>
+            <li>
+                <a asp-controller="CRMDetails" asp-action="CRMDetails">
+                    <i class="fa fa-500px iconColor" aria-hidden="true"></i> CRM Details
+                </a>
+            </li>
+            <li>
+                <a asp-controller="Billing" asp-action="Billing">
+                    <i class="fa fa-file iconColor" aria-hidden="true"></i> Billing
+                </a>
+            </li>
+            <li>
+                <a asp-controller="UserManagement" asp-action="UserManagement">
+                    <i class="fa fa-user iconColor" aria-hidden="true"></i> User Management
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+

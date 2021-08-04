@@ -148,7 +148,7 @@ namespace InvoiceMIcroServices
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=CompanyInfo}/{action=GetCompanyInfo}/{id?}");
+                    template: "{controller=Home}/{action=Get}/{id?}");
             });
 
         }
