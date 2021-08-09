@@ -22,7 +22,7 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.Services
             _appsettings = appsettings;
             _logger = logger;
             _apiclient = httpClient;
-            _remoteServiceBaseUri = $"{_appsettings.Value.CompanyinfoURl}/api/CompanyInfo/";
+            _remoteServiceBaseUri = $"{_appsettings.Value.ServiceBaseURl}/api/CompanyInfo/";
         }
         
         public async Task<CompanyInfo> GetCompanyInfo(string id)

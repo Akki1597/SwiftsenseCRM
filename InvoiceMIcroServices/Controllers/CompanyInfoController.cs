@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using InvoiceMIcroServices.Data;
 using InvoiceMIcroServices.Models;
@@ -26,8 +27,7 @@ namespace InvoiceMIcroServices.Controllers
             string url = settings.Value.ExternalServiceBaseUrl;
         }
 
-        [HttpGet]
-        [Route("action")]
+        [HttpGet("{id}")]
         public CompanyInfo GetCompanyInfo(string companyId)
         {
             try
@@ -50,8 +50,8 @@ namespace InvoiceMIcroServices.Controllers
         }
 
         [HttpPost]
-        [Route("action")]
-        public async Task<string> SetCompanyInfo(CompanyInfo companyInfo)
+        [ProducesResponseType(typeof(CompanyInfo), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> Post([FromBody]CompanyInfo companyInfo)
         {
             try
             {
@@ -72,7 +72,7 @@ namespace InvoiceMIcroServices.Controllers
                     _context.CompanyInfo.Update(res);
                     await _context.SaveChangesAsync();
 
-                    return "Company information updated successfully";
+                    return Ok(res);
                 }
                 else
                 {
@@ -89,7 +89,7 @@ namespace InvoiceMIcroServices.Controllers
 
                     _context.CompanyInfo.Add(newCompany);
                    await _context.SaveChangesAsync();
-                    return "New company information added successfully";
+                    return  Ok(newCompany);
                 }
             }
             catch(Exception ex)
