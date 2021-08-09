@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using InvoiceMIcroServices.Data;
 using InvoiceMIcroServices.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -12,6 +13,7 @@ namespace InvoiceMIcroServices.Controllers
 {
     [Produces("application/json")]
     [Route("api/CompanyInfo")]
+    //[Authorize]
     public class CompanyInfoController : Controller
     {
         private readonly AdminDBContext _context;
