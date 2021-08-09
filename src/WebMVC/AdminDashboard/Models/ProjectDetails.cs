@@ -10,5 +10,23 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.Models
     {
         [Display(Name = "Client")]
         public int projectId { get; set; }
+
+        [Display(Name = "Project Name")]
+        public string projectname { get; set; }
+        [Display(Name = "Project Code")]
+        [Required(ErrorMessage = "Please enter your Project Code")]
+        public string projectcode { get; set; }
+        [Display(Name = "Project Id")]
+        [Required(ErrorMessage = "Please enter your Project Id")]
+        public string Id { get; set; }
+        [Display(Name = "Project State")]
+        [Required(ErrorMessage = "Please enter your Project State")]
+        public string projectState { get; set; }
+        [Display(Name = "Project Type")]
+        [Required(ErrorMessage = "Please enter your Project Type")]
+        public string projectType { get; set; }
+        [Display(Name = "Number of unbilled hours")]
+        [Required(ErrorMessage = "Please enter your No.of unbilled hours")]
+        public string unbilledHours { get; set; }
     }
 }

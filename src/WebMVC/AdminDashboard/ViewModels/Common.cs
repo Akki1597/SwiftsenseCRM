@@ -17,5 +17,13 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.ViewModels
 
         public EmployeeTimeSheet employee { get; set; }
         public List<SelectListItem> employeeList { get; set; }
+
+        public YearList year { get; set; }
+        public List<SelectListItem> yearList { get; set; }
+
+
+        public MonthList month { get; set; }
+        public List<SelectListItem> monthList { get; set; }
+
     }
 }

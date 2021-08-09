@@ -13,5 +13,9 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.ViewModels
         public int invoiceId { get; set; }
         public List<SelectListItem> employeeList { get; set; }
 
+        [Display(Name = "User Id")]
+        public string userId { get; set; }
+        [Display(Name = "Password")]
+        public string password { get; set; }
     }
 }

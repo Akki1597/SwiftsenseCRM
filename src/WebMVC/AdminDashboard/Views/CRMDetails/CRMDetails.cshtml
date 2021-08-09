@@ -7,7 +7,7 @@
 }
 
 <link href="~/StyleSheet/DashboardPanel.css" rel="stylesheet" />
-<div class="container-fluid">
+<div class="container-xl">
     <div class="row">
         @{
             Html.RenderPartial("PartialLeftMenu");
@@ -15,20 +15,16 @@
         <div class="col-md-10 menuMargin" style="margin-top:30px;">
             <form role="form" class="needs-validation" method="post" enctype="multipart/form-data" novalidate>
                 <div class="card" style="margin-top:10px">
-                    <h4 style="margin:20px 0px 20px 20px;color:gray">Client Management</h4>
-                    <div class="form-row" style="padding-left:20px">
-                        <div class="col-sm-5">
-                            <div class="form-group">
-                                <label asp-for="client.ClientId" class="control-label"></label>
-                                <select asp-for="client.ClientId" asp-items="@Model.clientList" class="form-control"></select>
-                            </div>
+                    <div class="row">
+                        <div class="col-sm-10 col-12">
+                            <h4 style="margin:20px 0px 20px 20px;color:gray;">Client Details</h4>
                         </div>
-                        <div class="col-sm-3">
-                            <button type="submit" class="btn btnColor" style="margin-top:30px">Add</button>
+                        <div class="col-sm-2 col-12">
+                            <button type="button" class="btn btnColor" onclick="location.href='@Url.Action("ClientList", "CRMDetails")'" style="margin-top:30px;text-align:right">
+                                <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Add New
+                            </button>
                         </div>
-                        <div class="offset-4"></div>
-
-                        </div>
+                    </div>
                     <div class="form-row" style="padding-left:20px">
                         <div class="col-sm-5">
                             <div class="form-group">
@@ -37,25 +33,22 @@
                             </div>
                         </div>
                         <div class="col-sm-3">
-                            <button type="submit" class="btn btnColor" style="margin-top:30px">View</button>
+                            <button type="button" class="btn btnColor" onclick="location.href='@Url.Action("ClientListViewDetails", "CRMDetails")'" style="margin-top:30px">View</button>
                         </div>
                         <div class="offset-4"></div>
                     </div>
-                    </div>
+                </div>
 
                 <div class="card" style="margin-top:20px;">
-                    <h4 style="margin:20px 0px 20px 20px;color:gray">Project Management</h4>
-                    <div class="form-row" style="padding-left:20px">
-                        <div class="col-sm-5">
-                            <div class="form-group">
-                                <label asp-for="project.projectId" class="control-label"></label>
-                                <select asp-for="project.projectId" asp-items="@Model.projectList" class="form-control"></select>
-                            </div>
+                    <div class="row">
+                        <div class="col-sm-10 col-12">
+                            <h4 style="margin:20px 0px 20px 20px;color:gray">Project Management</h4>
                         </div>
-                        <div class="col-sm-3">
-                            <button type="submit" class="btn btnColor" style="margin-top:30px">Add</button>
+                        <div class="col-sm-2 col-12">
+                            <button type="button" class="btn btnColor" onclick="location.href='@Url.Action("ProjectList", "CRMDetails")'" style="margin-top:30px;text-align:right">
+                                <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Add New
+                            </button>
                         </div>
-                        <div class="offset-4"></div>
                     </div>
                     <div class="form-row" style="padding-left:20px">
                         <div class="col-sm-5">
@@ -65,7 +58,7 @@
                             </div>
                         </div>
                         <div class="col-sm-3">
-                            <button type="submit" class="btn btnColor" style="margin-top:30px">View</button>
+                            <button type="button" class="btn btnColor" onclick="location.href='@Url.Action("ProjectListViewDetails", "CRMDetails")'" style="margin-top:30px">View</button>
                         </div>
                         <div class="offset-4"></div>
                     </div>
@@ -93,22 +86,20 @@
                         </div>
                         <div class="col-sm-7">
                             <div class="form-group">
-                                @Html.LabelFor(m => m.employee.year, new { @for = "year" })
-                                @Html.TextBoxFor(m => m.employee.year, new { @class = "form-control", @placeholder = "Enter Year" })
-                                @Html.ValidationMessageFor(m => m.employee.year, "", new { @class = "text-danger" })
+                                <label asp-for="year.yearId" class="control-label"></label>
+                                <select asp-for="year.yearId" asp-items="@Model.yearList" class="form-control"></select>
                             </div>
                         </div>
                         <div class="col-sm-7">
                             <div class="form-group">
-                                @Html.LabelFor(m => m.employee.month, new { @for = "month" })
-                                @Html.TextBoxFor(m => m.employee.month, new { @class = "form-control", @placeholder = "enter month" })
-                                @Html.ValidationMessageFor(m => m.employee.month, "", new { @class = "text-danger" })
+                                <label asp-for="month.monthId" class="control-label"></label>
+                                <select asp-for="month.monthId" asp-items="@Model.monthList" class="form-control"></select>
                             </div>
                         </div>
                     </div>
                     <div class="row" style="padding-left:20px;padding-bottom:15px">
                         <div class="col-sm-3">
-                            <button type="submit" class="btn btnColor">Update</button>
+                            <button type="button" onclick="location.href='@Url.Action("EmployeeTimeSheetView","CRMDetails")'" class="btn btnColor">View</button>
                         </div>
                         <div class="col-sm-9">
                         </div>
