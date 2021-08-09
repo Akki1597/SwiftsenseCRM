@@ -15,25 +15,76 @@ namespace AdminDashboard.Controllers
             Common model = new Common();
             model.clientList = new List<SelectListItem>
             {
-                new SelectListItem {Text = "--Select Category--", Value = "1"},
-                new SelectListItem {Text = "demo1", Value = "2"},
-                new SelectListItem {Text = "demo2", Value = "3"}
+                new SelectListItem {Text = "--Select Category--"},
+                new SelectListItem {Text = "Active", Value = "1"},
+                new SelectListItem {Text = "InActive", Value = "2"}
             };
             model.projectList = new List<SelectListItem>
             {
-                new SelectListItem {Text = "--Select Client--", Value = "1"},
-                new SelectListItem {Text = "demo3", Value = "2"},
-                new SelectListItem {Text = "demo4", Value = "3"}
+                new SelectListItem {Text = "--Select Project Client--"},
+                new SelectListItem {Text = "Active", Value = "1"},
+                new SelectListItem {Text = "InActive", Value = "2"}
             };
 
             model.employeeList = new List<SelectListItem>
             {
-                new SelectListItem {Text = "--Select Employee--", Value = "1"},
-                new SelectListItem {Text = "demo5", Value = "2"},
-                new SelectListItem {Text = "demo6", Value = "3"}
+                new SelectListItem {Text = "--Select Employee--"},
+                new SelectListItem {Text = "demo5", Value = "1"},
+                new SelectListItem {Text = "demo6", Value = "2"}
             };
+            model.yearList = new List<SelectListItem>
+            {
+                new SelectListItem {Text = "--Select Year--"},
+                new SelectListItem {Text = "2020", Value = "1"},
+                new SelectListItem {Text = "2021", Value = "2"},
+                new SelectListItem {Text = "2022", Value = "3"},
+                new SelectListItem {Text = "2023", Value = "4"},
+                new SelectListItem {Text = "2024", Value = "5"},
+                new SelectListItem {Text = "2025", Value = "6"},
+                new SelectListItem {Text = "2026", Value = "7"},
+                new SelectListItem {Text = "2027", Value = "8"},
+                new SelectListItem {Text = "2028", Value = "9"},
+                new SelectListItem {Text = "2029", Value = "10"},
+                new SelectListItem {Text = "2030", Value = "11"}
 
+            };
+            model.monthList = new List<SelectListItem>
+            {
+                new SelectListItem {Text = "--Select Month--"},
+                new SelectListItem {Text = "January", Value = "2"},
+                new SelectListItem {Text = "February", Value = "3"},
+                new SelectListItem {Text = "March", Value = "4"},
+                new SelectListItem {Text = "April", Value = "5"},
+                new SelectListItem {Text = "May", Value = "6"},
+                new SelectListItem {Text = "June", Value = "7"},
+                new SelectListItem {Text = "July", Value = "8"},
+                new SelectListItem {Text = "August", Value = "9"},
+                new SelectListItem {Text = "September", Value = "10"},
+                new SelectListItem {Text = "October", Value = "11"},
+                new SelectListItem {Text = "November", Value = "12"},
+                new SelectListItem {Text = "December", Value = "13"}
+            };
             return View(model);
+        }
+        public IActionResult ClientList()
+        {
+            return View();
+        }
+        public IActionResult ClientListViewDetails()
+        {
+            return View();
+        }
+        public IActionResult ProjectList()
+        {
+            return View();
+        }
+        public IActionResult ProjectListViewDetails()
+        {
+            return View();
+        }
+        public IActionResult EmployeeTimeSheetView()
+        {
+            return View();
         }
     }
 }

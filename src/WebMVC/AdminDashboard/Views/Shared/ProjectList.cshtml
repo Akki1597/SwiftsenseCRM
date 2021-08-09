@@ -1,0 +1,76 @@
+﻿@model InvoiceMicroServices.WebMVC.AdminDashboard.ViewModels.Common
+
+@{
+    ViewData["Title"] = "ProjectList";
+}
+
+<div class="container-xl">
+    <div class="row">
+        @{
+            Html.RenderPartial("PartialLeftMenu");
+        }
+        <div class="col-md-10 menuMargin" style="margin-top:30px;">
+            <form role="form" class="needs-validation" method="get" enctype="multipart/form-data" novalidate>
+                <div class="card" style="margin-top:20px;">
+                    <div class="row">
+                        <div class="col-sm-11 col-12">
+                            <h4 style="margin:20px 0px 20px 20px;color:gray">Project Details</h4>
+                        </div>
+                        <div class="col-sm-1 col-12">
+                            <button type="button" class="btn btnColor btn-sm" onclick="location.href='@Url.Action("CRMDetails", "CRMDetails")'" style="margin-top:30px;text-align:right">
+                                <i class="fa fa-angle-double-left" aria-hidden="true"></i>&nbsp;Back
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-row" style="padding-left:20px">
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="project.projectname" class="control-label"></label>
+                                <input asp-for="project.projectname" type="text" placeholder="Enter Project Name" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="project.projectcode" class="control-label"></label>
+                                <input asp-for="project.projectcode" type="text" placeholder="Enter Project Code" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="project.Id" class="control-label"></label>
+                                <input asp-for="project.Id" type="text" placeholder="Enter Project Id" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="project.projectState" class="control-label"></label>
+                                <input asp-for="project.projectState" type="text" placeholder="Enter Project State" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="project.projectType" class="control-label"></label>
+                                <input asp-for="project.projectType" type="text" placeholder="Enter Project Type" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="project.unbilledHours" class="control-label"></label>
+                                <input asp-for="project.unbilledHours" type="number" placeholder="Enter No of unbilled hours" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="padding-left:20px;padding-bottom:15px">
+                        <div class="col-sm-3">
+                            <button type="submit" class="btn btn-success">Save</button>
+                            <button type="submit" class="btn btnColor">Update</button>
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </div>
+                        <div class="col-sm-9">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

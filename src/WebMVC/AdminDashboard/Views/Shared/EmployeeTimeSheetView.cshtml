@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewData["Title"] = "EmployeeTimeSheetView";
+}
+<div class="container-xl">
+    <div class="row">
+        @{
+            Html.RenderPartial("PartialLeftMenu");
+        }
+        <div class="col-md-10 menuMargin" style="margin-top:30px;">
+            <div class="card" style="min-height:220px;margin-top:10px;padding-left:10px;padding-right:10px">
+                <div class="row">
+                    <div class="col-sm-11 col-12">
+                        <h4 style="margin:20px 0px 40px 20px;color:gray;">Employee Time sheet</h4>
+                    </div>
+                    <div class="col-sm-1 col-12">
+                        <button type="button" class="btn btnColor btn-sm" onclick="location.href='@Url.Action("CRMDetails", "CRMDetails")'" style="margin-top:30px;text-align:right">
+                            <i class="fa fa-angle-double-left" aria-hidden="true"></i>&nbsp;Back
+                        </button>
+                    </div>
+                </div>
+                <table class="table table-bordered table-sm">
+                    <thead>
+                        <tr>
+                            <th>S.No.</th>
+                            <th>Date</th>
+                            <th>Day</th>
+                            <th>Status</th>
+                            <th>No of hours</th>
+                            <th>Tag</th>
+                            <th>Comment / Remarks</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Doe</td>
+                            <td>xyz</td>
+                            <td>7654327689</td>
+                            <td>john@example.com</td>
+                            <td>abc</td>
+                            <td>gdfhbgvnhfdghbfcbvc</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

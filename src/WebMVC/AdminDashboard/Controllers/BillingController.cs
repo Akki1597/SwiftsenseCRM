@@ -21,5 +21,13 @@ namespace AdminDashboard.Controllers
             };
             return View(model);
         }
+        public IActionResult Generateinvoice()
+        {
+            return View();
+        }
+        public IActionResult ViewInvoiceList()
+        {
+            return View();
+        }
     }
 }

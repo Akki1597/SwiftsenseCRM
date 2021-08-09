@@ -1,0 +1,110 @@
+﻿@{
+    ViewData["Title"] = "ViewUserToken";
+}
+<div class="container-xl">
+    <div class="row">
+        @{
+            Html.RenderPartial("PartialLeftMenu");
+        }
+        <div class="col-md-10 menuMargin" style="margin-top:30px;">
+            <form role="form" class="needs-validation" enctype="multipart/form-data" novalidate>
+                <div class="card" style="margin-top:20px;">
+                    <div class="row">
+                        <div class="col-sm-11 col-12">
+                            <h4 style="margin:20px 0px 40px 20px;color:gray;">User Token</h4>
+                        </div>
+                        <div class="col-sm-1 col-12">
+                            <button type="button" class="btn btnColor btn-sm" onclick="location.href='@Url.Action("UserManagement", "UserManagement")'" style="margin-top:30px;text-align:right">
+                                <i class="fa fa-angle-double-left" aria-hidden="true"></i>&nbsp;Back
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card" style="margin-left:20%;margin-right:20%">
+                        <div class="form-row" style="padding-left:10px;margin-top: 10px;">
+                            <div class="col-sm-12">
+                                <div class="row form-group">
+                                    <div class="col-sm-2">
+                                        <label class="control-label">Name</label>
+                                    </div>
+                                    <div class="col-sm-1">
+                                        <label class="control-label">:</label>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <span class="control-label">Abhinav</span>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <button type="submit" class="btn btn-success btn-sm">Accept</button>
+                                        <button type="submit" class="btn btn-danger btn-sm">Denied</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="row form-group">
+                                    <div class="col-sm-2">
+                                        <label class="control-label">Email</label>
+                                    </div>
+                                    <div class="col-sm-1">
+                                        <label class="control-label">:</label>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <span class="control-label">Abhinav@gmail.com</span>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <button type="submit" class="btn btn-success btn-sm">Accept</button>
+                                        <button type="submit" class="btn btn-danger btn-sm">Denied</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="row form-group">
+                                    <div class="col-sm-2">
+                                        <label class="control-label">DOB</label>
+                                    </div>
+                                    <div class="col-sm-1">
+                                        <label class="control-label">:</label>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <span class="control-label">12-8-1996</span>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <button type="submit" class="btn btn-success btn-sm">Accept</button>
+                                        <button type="submit" class="btn btn-danger btn-sm">Denied</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="row form-group">
+                                    <div class="col-sm-2">
+                                        <label class="control-label">Mobile</label>
+                                    </div>
+                                    <div class="col-sm-1">
+                                        <label class="control-label">:</label>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <span class="control-label">9876543210</span>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <button type="submit" class="btn btn-success btn-sm">Accept</button>
+                                        <button type="submit" class="btn btn-danger btn-sm">Denied</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="padding-left:20px;padding-bottom:15px;margin-top:20px">
+                        <div class="col-sm-4">
+                        </div>
+                        <div class="col-sm-4">
+                            <button type="submit" class="btn btn-success">Approve</button>
+                            <button type="submit" class="btn btn-danger">Reject</button>
+                        </div>
+                        <div class="col-sm-4">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+  
