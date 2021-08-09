@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace AdminDashboard.Controllers
 {
-    [Authorize]
+    
     public class CompanyInfoController : Controller
     {
         private readonly ICompanyInfo _companyInfosvc;
