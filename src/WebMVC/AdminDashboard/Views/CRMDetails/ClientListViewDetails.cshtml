@@ -1,8 +1,7 @@
 ﻿
 @{
-    ViewData["Title"] = "ViewInvoiceList";
+    ViewData["Title"] = "ClientListViewDetails";
 }
-
 <div class="container-xl">
     <div class="row">
         @{
@@ -12,10 +11,10 @@
             <div class="card" style="min-height:220px;margin-top:10px;padding-left:10px;padding-right:10px">
                 <div class="row">
                     <div class="col-sm-11 col-12">
-                        <h4 style="margin:20px 0px 40px 20px;color:gray;">Invoice List</h4>
+                        <h4 style="margin:20px 0px 40px 20px;color:gray;">Client Details</h4>
                     </div>
                     <div class="col-sm-1 col-12">
-                        <button type="button" class="btn btnColor btn-sm" onclick="location.href='@Url.Action("Billing", "Billing")'" style="margin-top:30px;text-align:right">
+                        <button type="button" class="btn btnColor btn-sm" onclick="location.href='@Url.Action("CRMDetails", "CRMDetails")'" style="margin-top:30px;text-align:right">
                             <i class="fa fa-angle-double-left" aria-hidden="true"></i>&nbsp;Back
                         </button>
                     </div>
@@ -24,15 +23,13 @@
                     <thead>
                         <tr>
                             <th>S.No.</th>
-                            <th>Invoice No</th>
-                            <th>Date</th>
-                            <th>Billing Month</th>
                             <th>Client Name</th>
-                            <th>Project Name</th>
-                            <th>Project Id</th>
-                            <th>Total Number If Hours</th>
-                            <th>Total Amount</th>
-                            <th>View PDF</th>
+                            <th>Address</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th>View Project</th>
+                            <th>No of unbilled hours</th>
+                            <th>View</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -44,13 +41,12 @@
                             <td>john@example.com</td>
                             <td>abc</td>
                             <td>42</td>
-                            <td>7654327689</td>
-                            <td>john@example.com</td>
                             <td><button class="btn btn-sm btn-primary">View</button></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            </div>
         </div>
     </div>
+</div>
+
