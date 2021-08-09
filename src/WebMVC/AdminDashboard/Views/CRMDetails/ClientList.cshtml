@@ -10,7 +10,7 @@
             Html.RenderPartial("PartialLeftMenu");
         }
         <div class="col-md-10 menuMargin" style="margin-top:30px;">
-            <form role="form" class="needs-validation" method="get" enctype="multipart/form-data" novalidate>
+            <form role="form" class="needs-validation" method="post" asp-action="Saveclientdetails" asp-controller="CRMDetails" enctype="multipart/form-data" novalidate>
                 <div class="card" style="margin-top:20px;">
                     <div class="row">
                         <div class="col-sm-11 col-12">
@@ -63,8 +63,8 @@
                     <div class="row" style="padding-left:20px;padding-bottom:15px">
                         <div class="col-sm-9">
                             <button type="submit" class="btn btn-success">Save</button>
-                            <button type="submit" class="btn btnColor">Update</button>
-                            <button type="submit" class="btn btn-danger">Delete</button>
+                            @*<button type="submit" class="btn btnColor">Update</button>
+                            <button type="submit" class="btn btn-danger">Delete</button>*@
                         </div>
                         <div class="col-sm-3">
                         </div>

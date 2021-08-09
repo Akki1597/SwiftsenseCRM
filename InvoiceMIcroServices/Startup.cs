@@ -49,7 +49,7 @@ namespace InvoiceMIcroServices
             //    options.DescribeAllEnumsAsStrings();
             //    options.SwaggerDoc("v1", new Swashbuckle.AspNetCore.Swagger.Info
             //    {
-            //        Title = "AdminService - A AdminDashboard HTTP API",
+            //        Title = "Inovice - A AdminDashboard HTTP API",
             //    Version = "v1",
             //    Description = "The AdminDashboard MicroService HTTP API. This is Data-Driven Microservice.",
             //    TermsOfService = "Terms of Service"
@@ -61,7 +61,7 @@ namespace InvoiceMIcroServices
                 options.DescribeAllEnumsAsStrings();
                 options.SwaggerDoc("v1", new Info
                 {
-                    Title = "AdminService HTTP API",
+                    Title = "Inovice HTTP API",
                     Version = "v1",
                     Description = "The Admin Service HTTP API",
                     TermsOfService = "Terms Of Service"
@@ -74,7 +74,7 @@ namespace InvoiceMIcroServices
                     TokenUrl = $"{Configuration.GetValue<string>("IdentityUrl")}/connect/token",
                     Scopes = new Dictionary<string, string>()
                     {
-                        { "AdminService", "AdminService Api" }
+                        { "Inovice", "Inovice Api" }
                     }
                 });
 
@@ -112,7 +112,7 @@ namespace InvoiceMIcroServices
             {
                 options.Authority = identityUrl;
                 options.RequireHttpsMetadata = false;
-                options.Audience = "AdminService";
+                options.Audience = "Inovice";
             });
 
          
@@ -141,7 +141,7 @@ namespace InvoiceMIcroServices
             UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint($"{ (!string.IsNullOrEmpty(pathBase) ? pathBase : string.Empty) }/swagger/v1/swagger.json", "AdminDashboardAPI V1");
-                c.ConfigureOAuth2("adminUI", "", "", "AdminDashboard Swagger UI");
+                c.ConfigureOAuth2("adminInoviceUI", "", "", "AdminDashboard Swagger UI");
             });
 
             app.UseMvc(routes =>

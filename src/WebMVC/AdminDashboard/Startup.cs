@@ -44,7 +44,8 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard
                 options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
             })
             .AddCookie()
-             .AddOpenIdConnect(options => {
+             .AddOpenIdConnect(options =>
+             {
                  options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
 
                  options.Authority = identityUrl.ToString();
@@ -58,15 +59,15 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard
                  options.Scope.Add("openid");
                  options.Scope.Add("profile");
                  options.Scope.Add("offline_access");
-                 //options.TokenValidationParameters = new TokenValidationParameters()
-                 //{
+                 options.TokenValidationParameters = new TokenValidationParameters()
+                 {
 
-                 //    NameClaimType = "name",
-                 //    RoleClaimType = "role"
-                 //};
-                 options.Scope.Add("AdminService");
+                     NameClaimType = "name",
+                     RoleClaimType = "role"
+                 };
+                 options.Scope.Add("Inovice");
              });
-            
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -83,7 +84,7 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard
             }
 
             app.UseStaticFiles();
-
+            app.UseAuthentication();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

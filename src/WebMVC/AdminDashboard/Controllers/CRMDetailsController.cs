@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using InvoiceMicroServices.WebMVC.AdminDashboard.Models;
+using InvoiceMicroServices.WebMVC.AdminDashboard.Services;
 using InvoiceMicroServices.WebMVC.AdminDashboard.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -10,6 +12,12 @@ namespace AdminDashboard.Controllers
 {
     public class CRMDetailsController : Controller
     {
+        private readonly IClientInfo _clientInfosvc;
+        public CRMDetailsController(IClientInfo clientInfo)
+        {
+            _clientInfosvc = clientInfo;
+        }
+
         public IActionResult CRMDetails()
         {
             Common model = new Common();
@@ -65,6 +73,22 @@ namespace AdminDashboard.Controllers
                 new SelectListItem {Text = "December", Value = "13"}
             };
             return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> SaveclientdetailsAsync(ClientDetails req)
+        {
+            var res = await _clientInfosvc.Saveclientdetails(req);
+            if(res == true)
+            {
+                return RedirectToAction("CRMDetails");
+            }
+            else
+            {
+                return  RedirectToAction("ClientList");
+            }
+           
+
         }
         public IActionResult ClientList()
         {

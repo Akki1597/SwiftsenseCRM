@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace AdminDashboard.Controllers
 {
-    
+    //[Authorize]
     public class CompanyInfoController : Controller
     {
         private readonly ICompanyInfo _companyInfosvc;
@@ -23,11 +23,11 @@ namespace AdminDashboard.Controllers
         public async Task<IActionResult> Index(int? id)  /*int? page*/
         {
             //int itemsPage = 10;
-            
-           // var info = await  _companyInfosvc.GetCompanyInfo("sw751");
+
+            var info = await _companyInfosvc.GetCompanyInfo("sw751");
             var vm = new CompanyIndexViewModel()
             {
-                //companyInfos = info,
+                companyInfos = info,
 
                 //paginationInfo = new PaginationInfo()
                 //{
@@ -36,7 +36,7 @@ namespace AdminDashboard.Controllers
                 //    totalItems = info.count,
                 //    totalpages = (int)Math.Ceiling(((decimal)info.count/itemsPage))
                 //}
-                
+
             };
             //vm.paginationInfo.next = (vm.paginationInfo.actualPage == vm.paginationInfo.totalpages - 1) ? "is-disabled" : "";
             //vm.paginationInfo.previous = (vm.paginationInfo.actualPage == 0) ? "is-disabled" : "";

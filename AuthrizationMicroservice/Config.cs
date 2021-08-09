@@ -15,7 +15,7 @@ namespace AuthrizationMicroservice
             Dictionary<string, string> urls = new Dictionary<string, string>();
 
             urls.Add("Mvc", configuration.GetValue<string>("MvcClient"));
-            urls.Add("Admin", configuration.GetValue<string>("AdminAPIClient"));
+            urls.Add("Invoice", configuration.GetValue<string>("InvoiceAPIClient"));
 
             return urls;
 
@@ -24,7 +24,7 @@ namespace AuthrizationMicroservice
         {
             return new List<ApiResource>
             {
-                 new ApiResource("AdminService", "Admin Dashboard API"),
+                 new ApiResource("Inovice", "Admin Dashboard API"),
                  //new ApiResource("orders", "Ordering Api"),
             };
         }
@@ -65,25 +65,25 @@ namespace AuthrizationMicroservice
                         IdentityServerConstants.StandardScopes.OfflineAccess,
                       //  IdentityServerConstants.StandardScopes.Email,
                          //"orders",
-                        "AdminService",
+                        "Inovice",
 
                     }
 
                 },
                 new Client
                 {
-                    ClientId = "adminUI",
-                    ClientName = "admin Swagger UI",
+                    ClientId = "adminInoviceUI",
+                    ClientName = "admin  Swagger UI",
                     AllowedGrantTypes = GrantTypes.Implicit,
                     AllowAccessTokensViaBrowser = true,
 
-                    RedirectUris = { $"{clientUrls["Admin"]}/swagger/o2c.html" },
-                    PostLogoutRedirectUris = { $"{clientUrls["Admin"]}/swagger/" },
+                    RedirectUris = { $"{clientUrls["Invoice"]}/swagger/o2c.html" },
+                    PostLogoutRedirectUris = { $"{clientUrls["Invoice"]}/swagger/" },
 
                      AllowedScopes = new List<string>
                      {
 
-                        "AdminService"
+                        "Inovice"
                      }
         }
             };
