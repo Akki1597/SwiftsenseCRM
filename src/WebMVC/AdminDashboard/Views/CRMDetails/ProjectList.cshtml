@@ -1,4 +1,4 @@
-﻿@model InvoiceMicroServices.WebMVC.AdminDashboard.ViewModels.Common
+﻿@model InvoiceMicroServices.WebMVC.AdminDashboard.ViewModels.CrmIndexViewModel
 
 @{
     ViewData["Title"] = "ProjectList";
@@ -10,7 +10,7 @@
             Html.RenderPartial("PartialLeftMenu");
         }
         <div class="col-md-10 menuMargin" style="margin-top:30px;">
-            <form role="form" class="needs-validation" method="get" enctype="multipart/form-data" novalidate>
+            <form role="form" class="needs-validation" method="post" asp-action="Saveprojectdetails" asp-controller="CRMDetails" enctype="multipart/form-data" novalidate>
                 <div class="card" style="margin-top:20px;">
                     <div class="row">
                         <div class="col-sm-11 col-12">
@@ -37,8 +37,8 @@
                         </div>
                         <div class="col-sm-7">
                             <div class="form-group">
-                                <label asp-for="project.Id" class="control-label"></label>
-                                <input asp-for="project.Id" type="text" placeholder="Enter Project Id" class="form-control" />
+                                <label asp-for="project.proId" class="control-label"></label>
+                                <input asp-for="project.proId" type="text" placeholder="Enter Project Id" class="form-control" />
                             </div>
                         </div>
                         <div class="col-sm-7">

@@ -33,9 +33,17 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.Services
             return response;
         }
 
-        public Task<bool> Getclientlist(List<ClientDetails> req)
+        public async Task<List<ClientDetails>> Getclientlist()
         {
-            throw new NotImplementedException();
+            var allinfourl = APIGateway.ClientInfo.GetClientList(_remoteServiceBaseUri);
+            var datastring = await _apiclient.GetStringAsync(allinfourl);
+            List<ClientDetails> clientList = new List<ClientDetails>();
+            foreach (dynamic data in datastring)
+            {
+              var listItem =  JsonConvert.DeserializeObject<ClientDetails>(data);
+              clientList.Add(listItem);
+            }
+            return clientList;
         }
 
         public async Task<bool> Saveclientdetails(ClientDetails req)

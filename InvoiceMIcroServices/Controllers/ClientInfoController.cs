@@ -32,10 +32,42 @@ namespace InvoiceMIcroServices.Controllers
         }
 
         // GET: api/ClientInfo/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        [HttpGet("{clientId}", Name = "Get")]
+        public ClientInfo GetClientInfo(int clientId)
         {
-            return "value";
+            try
+            {
+                if (clientId == 0)
+                {
+                    return new ClientInfo();
+                }
+                else
+                {
+                    var res = _context.clientInfo.Where(x => x.id == clientId).FirstOrDefault();
+                    return res;
+                }
+            } 
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+        [HttpGet]
+        public List<ClientInfo> GetClientList()
+        {
+            try
+            {
+                var res =  _context.clientInfo.ToList();
+                return res;
+
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
         }
 
         // POST: api/ClientInfo

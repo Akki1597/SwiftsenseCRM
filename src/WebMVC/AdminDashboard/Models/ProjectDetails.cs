@@ -18,7 +18,7 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.Models
         public string projectcode { get; set; }
         [Display(Name = "Project Id")]
         [Required(ErrorMessage = "Please enter your Project Id")]
-        public string Id { get; set; }
+        public int proId { get; set; }
         [Display(Name = "Project State")]
         [Required(ErrorMessage = "Please enter your Project State")]
         public string projectState { get; set; }

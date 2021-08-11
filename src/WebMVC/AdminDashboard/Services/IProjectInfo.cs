@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace InvoiceMicroServices.WebMVC.AdminDashboard.Services
 {
-    public interface IClientInfo
+    public interface IProjectInfo
     {
-        Task<ClientDetails> GetClientInfo(string clientId);
-        Task<bool> Saveclientdetails(ClientDetails req);
-        Task<List<ClientDetails>> Getclientlist();
+        Task<ProjectDetails> GetProjectInfo(string projectId);
+        Task<bool> Saveprojectdetails(ProjectDetails req);
+        Task<bool> Getprojectlist(List<ProjectDetails> req);
     }
 }

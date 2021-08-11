@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace InvoiceMicroServices.WebMVC.AdminDashboard.ViewModels
 {
-    public class Common
+    public class CrmIndexViewModel
     {
         public ClientDetails client { get; set; }
         public List<SelectListItem> clientList { get; set; }

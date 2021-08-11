@@ -1,4 +1,4 @@
-﻿@model InvoiceMicroServices.WebMVC.AdminDashboard.ViewModels.Common
+﻿@model InvoiceMicroServices.WebMVC.AdminDashboard.ViewModels.CrmIndexViewModel
 
 @{
 
@@ -20,10 +20,10 @@
                             <h4 style="margin:20px 0px 20px 20px;color:gray;">Client Details</h4>
                         </div>
                         <div class="col-sm-2 col-12">
-                            <button type="button" class="btn btnColor" onclick="location.href='@Url.Action("ClientList", "CRMDetails")'" style="margin-top:30px;text-align:right">
-                                <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Add New
-                            </button>
-                        </div>
+
+                        </div>   <button type="button" class="btn btnColor" onclick="location.href='@Url.Action("ClientList", "CRMDetails")'" style="margin-top:30px;text-align:right">
+                            <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Add New
+                        </button>
                     </div>
                     <div class="form-row" style="padding-left:20px">
                         <div class="col-sm-5">

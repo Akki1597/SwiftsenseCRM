@@ -13,14 +13,16 @@ namespace AdminDashboard.Controllers
     public class CRMDetailsController : Controller
     {
         private readonly IClientInfo _clientInfosvc;
-        public CRMDetailsController(IClientInfo clientInfo)
+        private readonly IProjectInfo _projectInfosvc;
+        public CRMDetailsController(IClientInfo clientInfo , IProjectInfo projectInfo)
         {
             _clientInfosvc = clientInfo;
+            _projectInfosvc = projectInfo;
         }
 
         public IActionResult CRMDetails()
         {
-            Common model = new Common();
+            CrmIndexViewModel model = new CrmIndexViewModel();
             model.clientList = new List<SelectListItem>
             {
                 new SelectListItem {Text = "--Select Category--"},
@@ -74,6 +76,27 @@ namespace AdminDashboard.Controllers
             };
             return View(model);
         }
+      
+        public async Task<IActionResult> GetClientDetails(int? id)
+        {
+            var info = await _clientInfosvc.GetClientInfo("sw751");
+            var vm = new CrmIndexViewModel()
+            {
+                client = info,
+            };
+            return View(vm);
+        }
+
+
+        public async Task<IActionResult> ClientListViewDetails(int? id)
+        {
+            var info = await _clientInfosvc.GetClientList();
+            var vm = new CrmIndexViewModel()
+            {
+                client = info,
+            };
+            return View(vm);
+        }
 
         [HttpPost]
         public async Task<IActionResult> SaveclientdetailsAsync(ClientDetails req)
@@ -90,18 +113,22 @@ namespace AdminDashboard.Controllers
            
 
         }
-        public IActionResult ClientList()
+        [HttpPost]
+        public async Task<IActionResult> SaveProjectdetailsAsync(ProjectDetails req)
         {
-            return View();
+            var res = await _projectInfosvc.Saveprojectdetails(req);
+            if (res == true)
+            {
+                return RedirectToAction("CRMDetails");
+            }
+            else
+            {
+                return RedirectToAction("ProjectList");
+            }
+
+
         }
-        public IActionResult ClientListViewDetails()
-        {
-            return View();
-        }
-        public IActionResult ProjectList()
-        {
-            return View();
-        }
+     
         public IActionResult ProjectListViewDetails()
         {
             return View();
