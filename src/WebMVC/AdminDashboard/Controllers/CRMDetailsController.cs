@@ -35,7 +35,16 @@ namespace AdminDashboard.Controllers
                 new SelectListItem {Text = "Active", Value = "1"},
                 new SelectListItem {Text = "InActive", Value = "2"}
             };
-
+            model.empClientList = new List<SelectListItem>
+            {
+                new SelectListItem {Text = "--Select Employee--"},
+               
+            };
+            model.empProjectList = new List<SelectListItem>
+            {
+                new SelectListItem {Text = "--Select Employee--"},
+        
+            };
             model.employeeList = new List<SelectListItem>
             {
                 new SelectListItem {Text = "--Select Employee--"},
@@ -79,14 +88,13 @@ namespace AdminDashboard.Controllers
       
         public async Task<IActionResult> GetClientDetails(int? id)
         {
-            var info = await _clientInfosvc.GetClientInfo("sw751");
+            var info = await _clientInfosvc.GetClientInfo("51");
             var vm = new CrmIndexViewModel()
             {
                 client = info,
             };
             return View(vm);
         }
-
 
         public async Task<IActionResult> GetClientListDetails()
         {
@@ -101,7 +109,7 @@ namespace AdminDashboard.Controllers
             //}
 
         }
-
+       
         [HttpPost]
         public async Task<IActionResult> SaveclientdetailsAsync(ClientDetails req)
         {
@@ -117,6 +125,27 @@ namespace AdminDashboard.Controllers
            
 
         }
+
+        /* Project Details */
+
+        public async Task<IActionResult> GetProjectDetails(int? id)
+        {
+            var info = await _projectInfosvc.GetProjectInfo("");
+            var vm = new CrmIndexViewModel()
+            {
+                project = info,
+            };
+            return View(vm);
+        }
+
+        public async Task<IActionResult> GetProjectListDetails()
+        {
+            var info = await _projectInfosvc.Getprojectlist();
+            List<ProjectDetails> vm = new List<ProjectDetails>();
+            vm = info;
+            return View(vm);
+        }
+
         [HttpPost]
         public async Task<IActionResult> SaveProjectdetailsAsync(ProjectDetails req)
         {
@@ -131,11 +160,6 @@ namespace AdminDashboard.Controllers
             }
 
 
-        }
-     
-        public IActionResult ProjectListViewDetails()
-        {
-            return View();
         }
         public IActionResult EmployeeTimeSheetView()
         {

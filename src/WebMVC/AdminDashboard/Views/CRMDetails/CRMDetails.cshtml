@@ -20,10 +20,10 @@
                             <h4 style="margin:20px 0px 20px 20px;color:gray;">Client Details</h4>
                         </div>
                         <div class="col-sm-2 col-12">
-
-                        </div>   <button type="button" class="btn btnColor" onclick="location.href='@Url.Action("ClientList", "CRMDetails")'" style="margin-top:30px;text-align:right">
-                            <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Add New
-                        </button>
+                            <button type="button" class="btn btnColor" onclick="location.href='@Url.Action("ClientList", "CRMDetails")'" style="margin-top:30px;text-align:right">
+                                <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Add New
+                            </button>
+                        </div> 
                     </div>
                     <div class="form-row" style="padding-left:20px">
                         <div class="col-sm-5">
@@ -69,13 +69,13 @@
                         <div class="col-sm-7">
                             <div class="form-group">
                                 <label asp-for="employee.projectClient" class="control-label"></label>
-                                <select asp-for="employee.projectClient" asp-items="@Model.clientList" class="form-control"></select>
+                                <select asp-for="employee.projectClient" asp-items="@Model.empClientList" class="form-control"></select>
                             </div>
                         </div>
                         <div class="col-sm-7">
                             <div class="form-group">
                                 <label asp-for="employee.empProject" class="control-label"></label>
-                                <select asp-for="employee.empProject" asp-items="@Model.projectList" class="form-control"></select>
+                                <select asp-for="employee.empProject" asp-items="@Model.empProjectList" class="form-control"></select>
                             </div>
                         </div>
                         <div class="col-sm-7">

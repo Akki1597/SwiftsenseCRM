@@ -11,9 +11,11 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.ViewModels
     {
         public ClientDetails client { get; set; }
         public List<SelectListItem> clientList { get; set; }
+        public List<SelectListItem> empClientList { get; set; }
 
         public ProjectDetails project { get; set; }
         public List<SelectListItem> projectList { get; set; }
+        public List<SelectListItem> empProjectList { get; set; }
 
         public EmployeeTimeSheet employee { get; set; }
         public List<SelectListItem> employeeList { get; set; }

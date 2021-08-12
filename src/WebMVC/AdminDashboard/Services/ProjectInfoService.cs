@@ -33,9 +33,13 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.Services
             return response;
         }
 
-        public Task<bool> Getprojectlist(List<ProjectDetails> req)
+        public async Task<List<ProjectDetails>> Getprojectlist()
         {
-            throw new NotImplementedException();
+            var allinfourl = APIGateway.ProjectInfo.GetProjectList(_remoteServiceBaseUri);
+            var datastring = await _apiclient.GetStringAsync(allinfourl);
+            List<ProjectDetails> projectList = new List<ProjectDetails>();
+            projectList = JsonConvert.DeserializeObject<List<ProjectDetails>>(datastring);
+            return projectList;
         }
 
         public async Task<bool> Saveprojectdetails(ProjectDetails req)

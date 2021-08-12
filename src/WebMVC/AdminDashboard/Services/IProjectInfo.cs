@@ -10,6 +10,6 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.Services
     {
         Task<ProjectDetails> GetProjectInfo(string projectId);
         Task<bool> Saveprojectdetails(ProjectDetails req);
-        Task<bool> Getprojectlist(List<ProjectDetails> req);
+        Task<List<ProjectDetails>> Getprojectlist();
     }
 }

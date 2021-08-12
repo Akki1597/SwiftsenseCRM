@@ -33,6 +33,7 @@ namespace InvoiceMIcroServices.Controllers
 
         // GET: api/ClientInfo/5
         [HttpGet("{id}")]
+        [Route("GetClientDetails")]
         public ClientDetails GetClientInfo(int clientId)
         {
             try

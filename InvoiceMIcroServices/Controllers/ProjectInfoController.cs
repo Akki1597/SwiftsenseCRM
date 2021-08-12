@@ -37,7 +37,46 @@ namespace InvoiceMIcroServices.Controllers
         //{
         //    return "value";
         //}
-        
+        [HttpGet("{id}")]
+        [Route("GetProjectDetails")]
+        public ProjectDetails GetProjectInfo(int projectId)
+        {
+            try
+            {
+                if (projectId == 0)
+                {
+                    return new ProjectDetails();
+                }
+                else
+                {
+                    var res = _context.projectDetails.Where(x => x.id == projectId).FirstOrDefault();
+                    return res;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+        [HttpGet]
+        [Route("GetProjectList")]
+        public List<ProjectDetails> GetProjectList()
+        {
+            try
+            {
+                var res = _context.projectDetails.ToList();
+                return res;
+
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+        }
+
         // POST: api/ProjectInfo
         [HttpPost]
         [ProducesResponseType(typeof(ProjectDetails), (int)HttpStatusCode.OK)]

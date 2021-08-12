@@ -55,6 +55,12 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.GatewayToMicroServices
                 var res = $"{baseuri}";
                 return res;
             }
+
+            public static string GetProjectList(string baseuri)
+            {
+                var res = $"{baseuri}GetProjectList";
+                return res;
+            }
         }
 
     }
