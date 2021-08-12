@@ -1,6 +1,6 @@
-﻿
+﻿@model List<InvoiceMicroServices.WebMVC.AdminDashboard.Models.ClientDetails>
 @{
-    ViewData["Title"] = "ClientList";
+    ViewData["Title"] = "GetClientListDetails";
 }
 
 <div class="container-xl">
@@ -34,16 +34,21 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @{int i = 0;}
+                        @foreach (var data in Model)
+                        {
                         <tr>
-                            <td>1</td>
-                            <td>Doe</td>
-                            <td>xyz</td>
-                            <td>7654327689</td>
-                            <td>john@example.com</td>
-                            <td>abc</td>
-                            <td>42</td>
+                            <td>@(i = i + 1)</td> 
+                            <td>@data.name</td>
+                            <td>@data.address</td>
+                            <td>@data.phone</td>
+                            <td>@data.email</td>
+                            <td>@data.project</td>
+                            <td>@data.unbilledHours</td>
                             <td><button class="btn btn-sm btn-primary">View</button></td>
                         </tr>
+                        }
+
                     </tbody>
                 </table>
             </div>

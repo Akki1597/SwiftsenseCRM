@@ -12,7 +12,7 @@ using Microsoft.Extensions.Options;
 namespace InvoiceMIcroServices.Controllers
 {
     [Produces("application/json")]
-    [Route("api/ClientInfo")]
+    [Route("api/ClientInfo/")]
     public class ClientInfoController : Controller
     {
         private readonly AdminDBContext _context;
@@ -25,25 +25,25 @@ namespace InvoiceMIcroServices.Controllers
             string url = settings.Value.ExternalServiceBaseUrl;
         }
         // GET: api/ClientInfo
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
+        //[HttpGet]
+        //public IEnumerable<string> Get()
+        //{
+        //    return new string[] { "value1", "value2" };
+        //}
 
         // GET: api/ClientInfo/5
-        [HttpGet("{clientId}", Name = "Get")]
-        public ClientInfo GetClientInfo(int clientId)
+        [HttpGet("{id}")]
+        public ClientDetails GetClientInfo(int clientId)
         {
             try
             {
                 if (clientId == 0)
                 {
-                    return new ClientInfo();
+                    return new ClientDetails();
                 }
                 else
                 {
-                    var res = _context.clientInfo.Where(x => x.id == clientId).FirstOrDefault();
+                    var res = _context.clientDetails.Where(x => x.id == clientId).FirstOrDefault();
                     return res;
                 }
             } 
@@ -55,11 +55,12 @@ namespace InvoiceMIcroServices.Controllers
         }
 
         [HttpGet]
-        public List<ClientInfo> GetClientList()
+        [Route("GetClientList")]
+        public List<ClientDetails> GetClientList()
         {
             try
             {
-                var res =  _context.clientInfo.ToList();
+                var res =  _context.clientDetails.ToList();
                 return res;
 
             }
@@ -72,15 +73,15 @@ namespace InvoiceMIcroServices.Controllers
 
         // POST: api/ClientInfo
         [HttpPost]
-        [ProducesResponseType(typeof(ClientInfo), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> Post([FromBody]ClientInfo clientInfo)
+        [ProducesResponseType(typeof(ClientDetails), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> Post([FromBody]ClientDetails clientInfo)
         {
             try
             {
                 if (clientInfo.id != 0)
                 {
 
-                    var res = _context.clientInfo.Where(x => x.id == clientInfo.id).FirstOrDefault();
+                    var res = _context.clientDetails.Where(x => x.id == clientInfo.id).FirstOrDefault();
 
                     res.address = clientInfo.address;
                     res.name = clientInfo.name;
@@ -88,7 +89,7 @@ namespace InvoiceMIcroServices.Controllers
                     res.unbilledHours = clientInfo.unbilledHours;
                     res.phoneNo = clientInfo.phoneNo;
 
-                    _context.clientInfo.Update(res);
+                    _context.clientDetails.Update(res);
                     await _context.SaveChangesAsync();
 
                     return Ok(res);
@@ -96,7 +97,7 @@ namespace InvoiceMIcroServices.Controllers
                 else
                 {
 
-                    var newClient = new ClientInfo()
+                    var newClient = new ClientDetails()
                     {
                         address = clientInfo.address,
                         name = clientInfo.name,
@@ -105,7 +106,7 @@ namespace InvoiceMIcroServices.Controllers
                         phoneNo = clientInfo.phoneNo,
                     };
 
-                    _context.clientInfo.Add(newClient);
+                    _context.clientDetails.Add(newClient);
                     await _context.SaveChangesAsync();
                     return Ok(newClient);
                 }

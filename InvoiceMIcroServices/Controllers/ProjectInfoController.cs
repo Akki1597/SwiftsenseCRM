@@ -12,7 +12,7 @@ using Microsoft.Extensions.Options;
 namespace InvoiceMIcroServices.Controllers
 {
     [Produces("application/json")]
-    [Route("api/ProjectInfo")]
+    [Route("api/ProjectInfo/")]
     public class ProjectInfoController : Controller
     {
         private readonly AdminDBContext _context;
@@ -25,39 +25,39 @@ namespace InvoiceMIcroServices.Controllers
             string url = settings.Value.ExternalServiceBaseUrl;
         }
         // GET: api/ProjectInfo
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
+        //[HttpGet]
+        //public IEnumerable<string> Get()
+        //{
+        //    return new string[] { "value1", "value2" };
+        //}
 
         // GET: api/ProjectInfo/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
-        {
-            return "value";
-        }
+        //[HttpGet("{id}", Name = "Get")]
+        //public string Get(int id)
+        //{
+        //    return "value";
+        //}
         
         // POST: api/ProjectInfo
         [HttpPost]
-        [ProducesResponseType(typeof(ProjectInfo), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> Post([FromBody]ProjectInfo projectInfo)
+        [ProducesResponseType(typeof(ProjectDetails), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> Post([FromBody]ProjectDetails projectInfo)
         {
             try
             {
                 if (projectInfo.id != 0)
                 {
 
-                    var res = _context.projectInfo.Where(x => x.id == projectInfo.id).FirstOrDefault();
+                    var res = _context.projectDetails.Where(x => x.id == projectInfo.id).FirstOrDefault();
 
-                    res.projectname = projectInfo.projectname;
-                    res.projectcode = projectInfo.projectcode;
-                    res.proId = projectInfo.proId;
-                    res.projectState = projectInfo.projectState;
-                    res.projectType = projectInfo.projectType;
+                    res.name = projectInfo.name;
+                    res.pCode = projectInfo.pCode;
+                    res.status = projectInfo.status;
+                    res.clientId = projectInfo.clientId;
+                    //res.projectType = projectInfo.projectType;
                     res.unbilledHours = projectInfo.unbilledHours;
 
-                    _context.clientInfo.Update(res);
+                    _context.projectDetails.Update(res);
                     await _context.SaveChangesAsync();
 
                     return Ok(res);
@@ -65,17 +65,17 @@ namespace InvoiceMIcroServices.Controllers
                 else
                 {
 
-                    var newProject = new ProjectInfo()
+                    var newProject = new ProjectDetails()
                     {
-                        projectname = projectInfo.projectname,
-                        projectcode = projectInfo.projectcode,
-                        proId = projectInfo.proId,
-                        projectState = projectInfo.projectState,
-                        projectType = projectInfo.projectType,
-                        unbilledHours = projectInfo.unbilledHours,
+                       name = projectInfo.name,
+                       pCode = projectInfo.pCode,
+                       status = projectInfo.status,
+                       clientId = projectInfo.clientId,
+                    //res.projectType = projectInfo.projectType;
+                      unbilledHours = projectInfo.unbilledHours,
                 };
 
-                    _context.projectInfo.Add(newProject);
+                    _context.projectDetails.Add(newProject);
                     await _context.SaveChangesAsync();
                     return Ok(newProject);
                 }

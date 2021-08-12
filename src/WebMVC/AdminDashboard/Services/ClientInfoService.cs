@@ -38,11 +38,7 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.Services
             var allinfourl = APIGateway.ClientInfo.GetClientList(_remoteServiceBaseUri);
             var datastring = await _apiclient.GetStringAsync(allinfourl);
             List<ClientDetails> clientList = new List<ClientDetails>();
-            foreach (dynamic data in datastring)
-            {
-              var listItem =  JsonConvert.DeserializeObject<ClientDetails>(data);
-              clientList.Add(listItem);
-            }
+            clientList = JsonConvert.DeserializeObject<List<ClientDetails>>(datastring);
             return clientList;
         }
 

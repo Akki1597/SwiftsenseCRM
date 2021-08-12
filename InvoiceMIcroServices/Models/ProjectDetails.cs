@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace InvoiceMIcroServices.Models
 {
-    public class ClientInfo
+    public class ProjectDetails
     {
         [Key]
         public int id { get; set; }
         public string name { get; set; }
-        public string address { get; set; }
-        public string phoneNo { get; set; }
-        public string email { get; set; }
+        public string pCode { get; set; }
+        public string clientId { get; set; }
+        public string status { get; set; }
         public string unbilledHours { get; set; }
     }
 }

@@ -34,6 +34,8 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard
             services.Configure<AppSettings>(Configuration);
             services.AddSingleton<IHttpClient, CustomHttpClient>();
             services.AddTransient<ICompanyInfo, CompanyInfoService>();
+            services.AddTransient<IClientInfo, ClientInfoService>();
+            services.AddTransient<IProjectInfo, ProjectInfoService>();
 
             var identityUrl = Configuration.GetValue<string>("IdentityURL");
             var callBackUrl = Configuration.GetValue<string>("CallBackURL");

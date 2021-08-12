@@ -8,22 +8,22 @@ using Microsoft.AspNetCore.Mvc;
 namespace InvoiceMIcroServices.Controllers
 {
     [Produces("application/json")]
-    [Route("api/Billing")]
+    [Route("api/Billing/")]
     public class BillingController : Controller
     {
         // GET: api/Billing
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
+        //[HttpGet]
+        //public IEnumerable<string> Get()
+        //{
+        //    return new string[] { "value1", "value2" };
+        //}
 
         // GET: api/Billing/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
-        {
-            return "value";
-        }
+        //[HttpGet("{id}", Name = "Get")]
+        //public string Get(int id)
+        //{
+        //    return "value";
+        //}
         
         // POST: api/Billing
         [HttpPost]

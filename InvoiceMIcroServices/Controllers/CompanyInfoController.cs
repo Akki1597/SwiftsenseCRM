@@ -13,7 +13,7 @@ using Microsoft.Extensions.Options;
 namespace InvoiceMIcroServices.Controllers
 {
     [Produces("application/json")]
-    [Route("api/CompanyInfo")]
+    [Route("api/CompanyInfo/")]
     //[Authorize]
     public class CompanyInfoController : Controller
     {

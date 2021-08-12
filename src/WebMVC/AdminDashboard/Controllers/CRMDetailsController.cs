@@ -88,14 +88,18 @@ namespace AdminDashboard.Controllers
         }
 
 
-        public async Task<IActionResult> ClientListViewDetails(int? id)
+        public async Task<IActionResult> GetClientListDetails()
         {
-            var info = await _clientInfosvc.GetClientList();
-            var vm = new CrmIndexViewModel()
-            {
-                client = info,
-            };
+            var info = await _clientInfosvc.Getclientlist();
+            List<ClientDetails> vm = new List<ClientDetails>();
+            vm = info;
             return View(vm);
+
+            //for(int i = 0; i < info.Count; i++)
+            //{
+            //    vm.clientList.Add(new SelectListItem { Selected = true, Text = info.ElementAt(i + 1).ToString(), Value = (i + 2).ToString() });
+            //}
+
         }
 
         [HttpPost]
