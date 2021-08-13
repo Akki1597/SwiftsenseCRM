@@ -24,21 +24,9 @@ namespace InvoiceMIcroServices.Controllers
             _context = context;
             string url = settings.Value.ExternalServiceBaseUrl;
         }
-        // GET: api/ProjectInfo
-        //[HttpGet]
-        //public IEnumerable<string> Get()
-        //{
-        //    return new string[] { "value1", "value2" };
-        //}
-
-        // GET: api/ProjectInfo/5
-        //[HttpGet("{id}", Name = "Get")]
-        //public string Get(int id)
-        //{
-        //    return "value";
-        //}
-        [HttpGet("{id}")]
-        [Route("GetProjectDetails")]
+    
+        [HttpGet]
+        [Route("GetProjectDetails/id")]
         public ProjectDetails GetProjectInfo(int projectId)
         {
             try
@@ -125,16 +113,6 @@ namespace InvoiceMIcroServices.Controllers
             }
         }
 
-        // PUT: api/ProjectInfo/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-        
-        // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+     
     }
 }

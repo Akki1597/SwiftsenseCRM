@@ -8,6 +8,7 @@ using AdminDashboard.Models;
 using InvoiceMicroServices.WebMVC.AdminDashboard.Services;
 using InvoiceMicroServices.WebMVC.AdminDashboard.ViewModels;
 using Microsoft.AspNetCore.Authorization;
+using InvoiceMicroServices.WebMVC.AdminDashboard.Models;
 
 namespace AdminDashboard.Controllers
 {
@@ -25,9 +26,9 @@ namespace AdminDashboard.Controllers
             //int itemsPage = 10;
 
             var info = await _companyInfosvc.GetCompanyInfo("sw751");
-            var vm = new CompanyIndexViewModel()
+            var vm = new Company()
             {
-                companyInfos = info,
+                 data = info,
 
                 //paginationInfo = new PaginationInfo()
                 //{
@@ -43,6 +44,22 @@ namespace AdminDashboard.Controllers
             return View(vm);
         }
 
+        public async Task<IActionResult> SaveCompanyDetails(Company req)
+        {
+            try
+            {
+                var info = await _companyInfosvc.SetCompanyInfo(req.data);
+                if (info)
+                    return RedirectToAction("Index");
+                else
+                    return RedirectToAction("CRMDetails", "CRMDetails");
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+            
+        }
       
         public IActionResult About()
         {

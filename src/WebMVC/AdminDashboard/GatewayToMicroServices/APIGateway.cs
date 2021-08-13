@@ -10,14 +10,14 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.GatewayToMicroServices
     {
         public static class CompanyInfo
         {
-            public static string GetCompanyInfo(string baseuri,string id)
+            public static string GetCompanyInfo(string baseuri,string companyId)
             {
-                var res =  $"{baseuri}id";
+                var res =  $"{baseuri}GetCompanyDetails?companyId="+companyId;
                 return res;
             }
             public static string setCompanyInfo(string baseuri)
             {
-                var res = $"{baseuri}";
+                var res = $"{baseuri}SaveCompanyDetails";
                 return res;
             }
 
@@ -46,7 +46,7 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.GatewayToMicroServices
         {
             public static string GetProjectInfo(string baseuri, string id)
             {
-                var res = $"{baseuri}id";
+                var res = $"{baseuri}GetProjectDetails/id";
                 return res;
             }
 

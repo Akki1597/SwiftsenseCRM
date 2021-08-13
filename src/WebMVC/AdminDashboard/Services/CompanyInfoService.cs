@@ -1,5 +1,6 @@
 ﻿using InvoiceMicroServices.WebMVC.AdminDashboard.GatewayToMicroServices;
 using InvoiceMicroServices.WebMVC.AdminDashboard.Models;
+using InvoiceMicroServices.WebMVC.AdminDashboard.ViewModels;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
@@ -31,6 +32,14 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.Services
             var datastring = await _apiclient.GetStringAsync(allinfourl);
             var response = JsonConvert.DeserializeObject<CompanyInfo>(datastring);
             return response;
+        }
+
+        public async Task<bool> SetCompanyInfo(CompanyInfo req)
+        {
+            var allinfourl = APIGateway.CompanyInfo.setCompanyInfo(_remoteServiceBaseUri);
+            var response = await _apiclient.PostAsync(allinfourl, req);
+            response.EnsureSuccessStatusCode();
+            return true;
         }
     }
 }

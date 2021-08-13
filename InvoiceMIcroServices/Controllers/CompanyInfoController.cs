@@ -27,7 +27,8 @@ namespace InvoiceMIcroServices.Controllers
             string url = settings.Value.ExternalServiceBaseUrl;
         }
 
-        [HttpGet("{id}")]
+        [HttpGet]
+        [Route("GetCompanyDetails")]
         public CompanyInfo GetCompanyInfo(string companyId)
         {
             try
@@ -51,6 +52,7 @@ namespace InvoiceMIcroServices.Controllers
 
         [HttpPost]
         [ProducesResponseType(typeof(CompanyInfo), (int)HttpStatusCode.OK)]
+        [Route("SaveCompanyDetails")]
         public async Task<IActionResult> Post([FromBody]CompanyInfo companyInfo)
         {
             try

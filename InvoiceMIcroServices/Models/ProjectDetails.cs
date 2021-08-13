@@ -12,7 +12,7 @@ namespace InvoiceMIcroServices.Models
         public int id { get; set; }
         public string name { get; set; }
         public string pCode { get; set; }
-        public string clientId { get; set; }
+        public int clientId { get; set; }
         public string status { get; set; }
         public string unbilledHours { get; set; }
     }
