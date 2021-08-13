@@ -9,7 +9,7 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.Services
 {
    public interface ICompanyInfo
     {
-        Task<CompanyInfo> GetCompanyInfo(string id);
-        Task<bool> SetCompanyInfo(CompanyInfo req);
+        Task<CompanyIndexViewModel> GetCompanyInfo(string id);
+        Task<bool> SetCompanyInfo(CompanyIndexViewModel req);
     }
 }

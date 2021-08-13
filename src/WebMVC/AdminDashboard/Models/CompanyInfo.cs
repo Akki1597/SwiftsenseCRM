@@ -31,7 +31,7 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.Models
         [RegularExpression(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$", ErrorMessage = "Please enter a valid email address")]
         public string email { get; set; }
 
-        public BankDetails bankDetails { get; set; }
+       
        
     }
 }

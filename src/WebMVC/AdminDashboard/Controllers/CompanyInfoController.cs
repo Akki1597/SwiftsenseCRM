@@ -21,15 +21,14 @@ namespace AdminDashboard.Controllers
             _companyInfosvc = companyInfo;
         }
 
-        public async Task<IActionResult> Index(int? id)  /*int? page*/
+        public async Task<IActionResult> Index(string id)  /*int? page*/
         {
             //int itemsPage = 10;
 
             var info = await _companyInfosvc.GetCompanyInfo("sw751");
-            var vm = new Company()
-            {
-                 data = info,
-
+            //var vm = new CompanyIndexViewModel()
+            //{
+              
                 //paginationInfo = new PaginationInfo()
                 //{
                 //    actualPage = page??0,
@@ -38,17 +37,17 @@ namespace AdminDashboard.Controllers
                 //    totalpages = (int)Math.Ceiling(((decimal)info.count/itemsPage))
                 //}
 
-            };
+            //};
             //vm.paginationInfo.next = (vm.paginationInfo.actualPage == vm.paginationInfo.totalpages - 1) ? "is-disabled" : "";
             //vm.paginationInfo.previous = (vm.paginationInfo.actualPage == 0) ? "is-disabled" : "";
-            return View(vm);
+            return View(info);
         }
 
-        public async Task<IActionResult> SaveCompanyDetails(Company req)
+        public async Task<IActionResult> SaveCompanyDetails(CompanyIndexViewModel req)
         {
             try
             {
-                var info = await _companyInfosvc.SetCompanyInfo(req.data);
+                var info = await _companyInfosvc.SetCompanyInfo(req);
                 if (info)
                     return RedirectToAction("Index");
                 else
