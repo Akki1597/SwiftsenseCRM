@@ -16,62 +16,65 @@
         }
         <div class="col-md-10 menuMargin" style="margin-top:30px">
             <form role="form" class="needs-validation" method="post" enctype="multipart/form-data" novalidate>
+                <input type="hidden" asp-for="companyId" />
+                <input type="hidden" asp-for="id" />
                 <div class="card" style="margin-top:10px">
-                    <h4 style="margin:20px 0px 20px 20px;color:gray">Client Details</h4>
+                    <h4 style="margin:20px 0px 20px 20px;color:gray">Company Details</h4>
                     <div class="form-row" style="padding-left:20px">
                         <div class="col-sm-7">
                             <div class="form-group">
-                                @Html.LabelFor(m => m.companyInfos.companyName, new { @for = "companyname" })
-                                @Html.TextBoxFor(m => m.companyInfos.companyName, new { @class = "form-control", @placeholder = "Enter Compamy Name" })
-                                @Html.ValidationMessageFor(m => m.companyInfos.companyName, "", new { @class = "text-danger" })
+                                @Html.LabelFor(m => m.companyName, new { @for = "companyname" })
+                                @Html.TextBoxFor(m => m.companyName, new { @class = "form-control", @placeholder = "Enter Compamy Name" })
+                                @Html.ValidationMessageFor(m => m.companyName, "", new { @class = "text-danger" })
                             </div>
                         </div>
                         <div class="col-sm-7">
                             <div class="form-group">
-                                @Html.LabelFor(m => m.companyInfos.address, new { @for = "address1" })
-                                @Html.TextBoxFor(m => m.companyInfos.address, new { @class = "form-control", @placeholder = "Enter Address1" })
-                                @Html.ValidationMessageFor(m => m.companyInfos.address, "", new { @class = "text-danger" })
+                                @Html.LabelFor(m => m.address, new { @for = "address1" })
+                                @Html.TextBoxFor(m => m.address, new { @class = "form-control", @placeholder = "Enter Address1" })
+                                @Html.ValidationMessageFor(m => m.address, "", new { @class = "text-danger" })
                             </div>
                         </div>
                         @*<div class="col-sm-7">
-                                <div class="form-group">
+                    <div class="form-group">
 
-                                    @Html.TextBoxFor(m => m.companyInfos.address2, new { @class = "form-control", @placeholder = "Enter Address2" })
-                                    @Html.ValidationMessageFor(m => m.companyInfos.address2, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            <div class="col-sm-7">
-                                <div class="form-group">
-                                    @Html.TextBoxFor(m => m.companyInfos.address3, new { @class = "form-control", @placeholder = "Enter Address3" })
-                                    @Html.ValidationMessageFor(m => m.companyInfos.address3, "", new { @class = "text-danger" })
-                                </div>
-                            </div>*@
+                        @Html.TextBoxFor(m => m.address2, new { @class = "form-control", @placeholder = "Enter Address2" })
+                        @Html.ValidationMessageFor(m => m.address2, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-sm-7">
+                    <div class="form-group">
+                        @Html.TextBoxFor(m => m.address3, new { @class = "form-control", @placeholder = "Enter Address3" })
+                        @Html.ValidationMessageFor(m => m.address3, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
                         <div class="col-sm-7">
                             <div class="form-group">
-                                @Html.LabelFor(m => m.companyInfos.gstNo, new { @for = "gstnumber" })
-                                @Html.TextBoxFor(m => m.companyInfos.gstNo, new { @class = "form-control", @placeholder = "Enter GST Number" })
-                                @Html.ValidationMessageFor(m => m.companyInfos.gstNo, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        <div class="col-sm-7">
-                            <div class="form-group">
-                                @Html.LabelFor(m => m.companyInfos.phoneNo, new { @for = "phonenumber" })
-                                @Html.TextBoxFor(m => m.companyInfos.phoneNo, new { @class = "form-control", @placeholder = "Enter phone Number", @type = "number" })
-                                @Html.ValidationMessageFor(m => m.companyInfos.phoneNo, "", new { @class = "text-danger" })
+                                @Html.LabelFor(m => m.gstNo, new { @for = "gstnumber" })
+                                @Html.TextBoxFor(m => m.gstNo, new { @class = "form-control", @placeholder = "Enter GST Number" })
+                                @Html.ValidationMessageFor(m => m.gstNo, "", new { @class = "text-danger" })
                             </div>
                         </div>
                         <div class="col-sm-7">
                             <div class="form-group">
-                                @Html.LabelFor(m => m.companyInfos.email, new { @for = "email" })
-                                @Html.TextBoxFor(m => m.companyInfos.email, new { @class = "form-control", @placeholder = "Enter Email Address", @type = "email" })
-                                @Html.ValidationMessageFor(m => m.companyInfos.email, "", new { @class = "text-danger" })
+                                @Html.LabelFor(m => m.phoneNo, new { @for = "phonenumber" })
+                                @Html.TextBoxFor(m => m.phoneNo, new { @class = "form-control", @placeholder = "Enter phone Number", @type = "number" })
+                                @Html.ValidationMessageFor(m => m.phoneNo, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.email, new { @for = "email" })
+                                @Html.TextBoxFor(m => m.email, new { @class = "form-control", @placeholder = "Enter Email Address", @type = "email" })
+                                @Html.ValidationMessageFor(m => m.email, "", new { @class = "text-danger" })
                             </div>
                         </div>
                     </div>
                     <div class="row" style="padding-left:20px;padding-bottom:15px">
-                        <div class="col-sm-3">
-                            <button type="submit" class="btn btnColor">Update</button>
-                        </div>
+                        @*<div class="col-sm-3">
+                            <input type="submit" class="btn btnColor" asp-action="SaveCompanyDetails" asp-controller="CompanyInfo" value="Update" />
+                        </div>*@
+
                         <div class="col-sm-9">
                         </div>
                     </div>
@@ -81,39 +84,39 @@
                     <div class="form-row" style="padding-left:20px">
                         <div class="col-sm-7">
                             <div class="form-group">
-                                @Html.LabelFor(m => m.companyInfos.bankDetails.name, new { @for = "name" })
-                                @Html.TextBoxFor(m => m.companyInfos.bankDetails.name, new { @class = "form-control", @placeholder = "Enter Name" })
-                                @Html.ValidationMessageFor(m => m.companyInfos.bankDetails.name, "", new { @class = "text-danger" })
+                                @Html.LabelFor(m => m.name, new { @for = "name" })
+                                @Html.TextBoxFor(m => m.name, new { @class = "form-control", @placeholder = "enter name" })
+                                @Html.ValidationMessageFor(m => m.name, "", new { @class = "text-danger" })
                             </div>
                         </div>
                         <div class="col-sm-7">
                             <div class="form-group">
-                                @Html.LabelFor(m => m.companyInfos.bankDetails.accountNumber, new { @for = "accountnumber" })
-                                @Html.TextBoxFor(m => m.companyInfos.bankDetails.accountNumber, new { @class = "form-control", @placeholder = "Enter Account Number" })
-                                @Html.ValidationMessageFor(m => m.companyInfos.bankDetails.accountNumber, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        <div class="col-sm-7">
-                            <div class="form-group">
-
-                                @Html.LabelFor(m => m.companyInfos.bankDetails.bankName, new { @for = "bankname" })
-                                @Html.TextBoxFor(m => m.companyInfos.bankDetails.bankName, new { @class = "form-control", @placeholder = "Enter Bank Name" })
-                                @Html.ValidationMessageFor(m => m.companyInfos.bankDetails.bankName, "", new { @class = "text-danger" })
+                                @Html.LabelFor(m => m.accountNumber, new { @for = "accountnumber" })
+                                @Html.TextBoxFor(m => m.accountNumber, new { @class = "form-control", @placeholder = "enter account number" })
+                                @Html.ValidationMessageFor(m => m.accountNumber, "", new { @class = "text-danger" })
                             </div>
                         </div>
                         <div class="col-sm-7">
                             <div class="form-group">
 
+                                @Html.LabelFor(m => m.bankName, new { @for = "bankname" })
+                                @Html.TextBoxFor(m => m.bankName, new { @class = "form-control", @placeholder = "enter bank name" })
+                                @Html.ValidationMessageFor(m => m.bankName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
 
-                                @Html.LabelFor(m => m.companyInfos.bankDetails.swiftCode, new { @for = "swiftcode" })
-                                @Html.TextBoxFor(m => m.companyInfos.bankDetails.swiftCode, new { @class = "form-control", @placeholder = "Enter Swift Code" })
-                                @Html.ValidationMessageFor(m => m.companyInfos.bankDetails.swiftCode, "", new { @class = "text-danger" })
+
+                                @Html.LabelFor(m => m.swiftCode, new { @for = "swiftcode" })
+                                @Html.TextBoxFor(m => m.swiftCode, new { @class = "form-control", @placeholder = "enter swift code" })
+                                @Html.ValidationMessageFor(m => m.swiftCode, "", new { @class = "text-danger" })
                             </div>
                         </div>
                     </div>
                     <div class="row" style="padding-left:20px;padding-bottom:15px">
                         <div class="col-sm-3">
-                            <button type="submit" class="btn btnColor">Update</button>
+                            <input type="submit" class="btn btnColor" asp-action="SaveCompanyDetails" asp-controller="CompanyInfo" value="Update" />
                         </div>
                         <div class="col-sm-9">
                         </div>

@@ -8,6 +8,7 @@ using AdminDashboard.Models;
 using InvoiceMicroServices.WebMVC.AdminDashboard.Services;
 using InvoiceMicroServices.WebMVC.AdminDashboard.ViewModels;
 using Microsoft.AspNetCore.Authorization;
+using InvoiceMicroServices.WebMVC.AdminDashboard.Models;
 
 namespace AdminDashboard.Controllers
 {
@@ -20,15 +21,14 @@ namespace AdminDashboard.Controllers
             _companyInfosvc = companyInfo;
         }
 
-        public async Task<IActionResult> Index(int? id)  /*int? page*/
+        public async Task<IActionResult> Index(string id)  /*int? page*/
         {
             //int itemsPage = 10;
 
             var info = await _companyInfosvc.GetCompanyInfo("sw751");
-            var vm = new CompanyIndexViewModel()
-            {
-                companyInfos = info,
-
+            //var vm = new CompanyIndexViewModel()
+            //{
+              
                 //paginationInfo = new PaginationInfo()
                 //{
                 //    actualPage = page??0,
@@ -37,12 +37,28 @@ namespace AdminDashboard.Controllers
                 //    totalpages = (int)Math.Ceiling(((decimal)info.count/itemsPage))
                 //}
 
-            };
+            //};
             //vm.paginationInfo.next = (vm.paginationInfo.actualPage == vm.paginationInfo.totalpages - 1) ? "is-disabled" : "";
             //vm.paginationInfo.previous = (vm.paginationInfo.actualPage == 0) ? "is-disabled" : "";
-            return View(vm);
+            return View(info);
         }
 
+        public async Task<IActionResult> SaveCompanyDetails(CompanyIndexViewModel req)
+        {
+            try
+            {
+                var info = await _companyInfosvc.SetCompanyInfo(req);
+                if (info)
+                    return RedirectToAction("Index");
+                else
+                    return RedirectToAction("CRMDetails", "CRMDetails");
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+            
+        }
       
         public IActionResult About()
         {

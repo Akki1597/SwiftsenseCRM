@@ -15,7 +15,8 @@ namespace InvoiceMIcroServices.Data
         }
         public DbSet<CompanyInfo> CompanyInfo { get; set; }
         public DbSet<ClientDetails> clientDetails { get; set; }
+        
         public DbSet<ProjectDetails> projectDetails { get; set; }
-
+        public DbSet<BankDetails> bankDetails { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using InvoiceMicroServices.WebMVC.AdminDashboard.GatewayToMicroServices;
 using InvoiceMicroServices.WebMVC.AdminDashboard.Models;
+using InvoiceMicroServices.WebMVC.AdminDashboard.ViewModels;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
@@ -25,12 +26,20 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.Services
             _remoteServiceBaseUri = $"{_appsettings.Value.ServiceBaseURl}/api/CompanyInfo/";
         }
         
-        public async Task<CompanyInfo> GetCompanyInfo(string id)
+        public async Task<CompanyIndexViewModel> GetCompanyInfo(string id)
         {
             var allinfourl = APIGateway.CompanyInfo.GetCompanyInfo(_remoteServiceBaseUri, id);
             var datastring = await _apiclient.GetStringAsync(allinfourl);
-            var response = JsonConvert.DeserializeObject<CompanyInfo>(datastring);
+            var response = JsonConvert.DeserializeObject<CompanyIndexViewModel>(datastring);
             return response;
+        }
+
+        public async Task<bool> SetCompanyInfo(CompanyIndexViewModel req)
+        {
+            var allinfourl = APIGateway.CompanyInfo.setCompanyInfo(_remoteServiceBaseUri);
+            var response = await _apiclient.PostAsync(allinfourl, req);
+            response.EnsureSuccessStatusCode();
+            return true;
         }
     }
 }

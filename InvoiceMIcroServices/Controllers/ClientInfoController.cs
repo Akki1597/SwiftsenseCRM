@@ -32,8 +32,8 @@ namespace InvoiceMIcroServices.Controllers
         //}
 
         // GET: api/ClientInfo/5
-        [HttpGet("{id}")]
-        [Route("GetClientDetails")]
+        [HttpGet]
+        [Route("GetClientDetails/id")]
         public ClientDetails GetClientInfo(int clientId)
         {
             try
@@ -118,16 +118,7 @@ namespace InvoiceMIcroServices.Controllers
             }
         }
 
-        // PUT: api/ClientInfo/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+        
+    
     }
 }
