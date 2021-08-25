@@ -12,7 +12,7 @@
             <div class="card" style="min-height:220px;margin-top:10px;padding-left:10px;padding-right:10px">
                 <div class="row">
                     <div class="col-sm-11 col-12">
-                        <h4 style="margin:20px 0px 40px 20px;color:gray;">Generated Invoice List</h4>
+                        <h4 style="margin:20px 0px 40px 20px;color:gray;">Project List</h4>
                     </div>
                     <div class="col-sm-1 col-12">
                         <button type="button" class="btn btnColor btn-sm" onclick="location.href='@Url.Action("Billing", "Billing")'" style="margin-top:30px;text-align:right">
@@ -42,7 +42,10 @@
                             <td>john@example.com</td>
                             <td>abc</td>
                             <td>42</td>
-                            <td><button class="btn btn-sm btn-primary">Generated Invoice</button></td>
+                            <td>
+                                <button class="btn btn-sm btn-primary" onclick="location.href='@Url.Action("billingmonth", "Billing")'">Generate Invoice
+                                </button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
