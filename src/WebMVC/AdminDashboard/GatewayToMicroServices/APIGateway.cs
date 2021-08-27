@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace InvoiceMicroServices.WebMVC.AdminDashboard.GatewayToMicroServices
 {
-    public class APIGateway 
+    public class APIGateway
     {
         public static class CompanyInfo
         {
-            public static string GetCompanyInfo(string baseuri,string companyId)
+            public static string GetCompanyInfo(string baseuri, string companyId)
             {
-                var res =  $"{baseuri}GetCompanyDetails?companyId="+companyId;
+                var res = $"{baseuri}GetCompanyDetails?companyId=" + companyId;
                 return res;
             }
             public static string setCompanyInfo(string baseuri)
@@ -33,12 +33,17 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.GatewayToMicroServices
 
             public static string setClientInfo(string baseuri)
             {
-                var res = $"{baseuri}";
+                var res = $"{baseuri}SaveClientDetails";
                 return res;
             }
-            public static string GetClientList(string baseuri)
+            public static string GetClientList(string baseuri, string status)
             {
-                var res = $"{baseuri}GetClientList";
+                var res = $"{baseuri}GetClientList?status=" + status;
+                return res;
+            }
+            public static string GetClientNameList(string baseuri, string status)
+            {
+                var res = $"{baseuri}GetClientNameList?status=" + status;
                 return res;
             }
         }
@@ -52,16 +57,36 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.GatewayToMicroServices
 
             public static string setProjectInfo(string baseuri)
             {
-                var res = $"{baseuri}";
+                var res = $"{baseuri}SaveProjectInfo";
                 return res;
             }
 
-            public static string GetProjectList(string baseuri)
+            public static string GetProjectList(string baseuri, string status)
             {
-                var res = $"{baseuri}GetProjectList";
+                var res = $"{baseuri}GetProjectList?status=" + status;
+                return res;
+            }
+
+            public static string GetProjectNameList(string baseuri, string status)
+            {
+                var res = $"{baseuri}GetProjectNameList?status=" + status;
+                return res;
+            }
+
+            public static string GetProjectNamelistClientWise(string baseuri, int clientId)
+            {
+                var res = $"{baseuri}GetProjectNamelistClientWise?clientId=" + clientId;
                 return res;
             }
         }
+        public static class EmployeeInfo
+        {
+            public static string GetEmpNamelistProjectWise(string baseuri, int pId)
 
+            {
+                var res = $"{baseuri}GetEmpNamelistProjectWise?pId=" + pId;
+                return res;
+            }
+        }
     }
 }

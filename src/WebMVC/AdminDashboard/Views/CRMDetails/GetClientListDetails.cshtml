@@ -34,19 +34,28 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @{int i = 0;}
+                        @if (Model.Count > 0)
+                        { 
+                        int i = 0;
                         @foreach (var data in Model)
                         {
-                        <tr>
-                            <td>@(i = i + 1)</td> 
-                            <td>@data.name</td>
-                            <td>@data.address</td>
-                            <td>@data.phone</td>
-                            <td>@data.email</td>
-                            <td>@data.project</td>
-                            <td>@data.unbilledHours</td>
-                            <td><button class="btn btn-sm btn-primary">View</button></td>
-                        </tr>
+                            <tr>
+                                <td>@(i = i + 1)</td>
+                                <td>@data.name</td>
+                                <td>@data.address</td>
+                                <td>@data.phone</td>
+                                <td>@data.email</td>
+                                <td>@data.project</td>
+                                <td>@data.unbilledHours</td>
+                                <td><button class="btn btn-sm btn-primary">View</button></td>
+                            </tr>
+                        }
+                            }
+                            else
+                            {
+                            <tr>
+                                <td colspan="7">No Record Found</td>
+                            </tr>
                         }
 
                     </tbody>

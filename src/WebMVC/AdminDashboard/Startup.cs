@@ -36,6 +36,7 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard
             services.AddTransient<ICompanyInfo, CompanyInfoService>();
             services.AddTransient<IClientInfo, ClientInfoService>();
             services.AddTransient<IProjectInfo, ProjectInfoService>();
+            services.AddTransient<IEmployee, EmployeeService>();
 
             var identityUrl = Configuration.GetValue<string>("IdentityURL");
             var callBackUrl = Configuration.GetValue<string>("CallBackURL");

@@ -1,7 +1,8 @@
-﻿@model InvoiceMicroServices.WebMVC.AdminDashboard.ViewModels.CrmIndexViewModel
+﻿@model InvoiceMicroServices.WebMVC.AdminDashboard.Models.ClientDetails
 
 @{
-    ViewData["Title"] = "ClientList";
+    ViewData["Title"] = "AddNewClient";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="container-xl">
@@ -25,38 +26,38 @@
                     <div class="form-row" style="padding-left:20px">
                         <div class="col-sm-7">
                             <div class="form-group">
-                                <label asp-for="client.name" class="control-label"></label>
-                                <input asp-for="client.name" type="text" placeholder="Enter Client Name" class="form-control" />
+                                <label asp-for="name" class="control-label"></label>
+                                <input asp-for="name" type="text" placeholder="Enter Client Name" class="form-control" />
                             </div>
                         </div>
                         <div class="col-sm-7">
                             <div class="form-group">
-                                <label asp-for="client.address" class="control-label"></label>
-                                <input asp-for="client.address" type="text" placeholder="Enter Address" class="form-control" />
+                                <label asp-for="address" class="control-label"></label>
+                                <input asp-for="address" type="text" placeholder="Enter Address" class="form-control" />
                             </div>
                         </div>
                         <div class="col-sm-7">
                             <div class="form-group">
-                                <label asp-for="client.phone" class="control-label"></label>
-                                <input asp-for="client.phone" type="number" placeholder="Enter Phone Number" class="form-control" />
+                                <label asp-for="phone" class="control-label"></label>
+                                <input asp-for="phone" type="number" placeholder="Enter Phone Number" class="form-control" />
                             </div>
                         </div>
                         <div class="col-sm-7">
                             <div class="form-group">
-                                <label asp-for="client.email" class="control-label"></label>
-                                <input asp-for="client.email" type="email" placeholder="Enter Email Address" class="form-control" />
+                                <label asp-for="email" class="control-label"></label>
+                                <input asp-for="email" type="email" placeholder="Enter Email Address" class="form-control" />
                             </div>
                         </div>
                         <div class="col-sm-7">
                             <div class="form-group">
-                                <label asp-for="client.project" class="control-label"></label>
-                                <input asp-for="client.project" type="text" placeholder="Enter Client Project" class="form-control" />
+                                <label asp-for="project" class="control-label"></label>
+                                <input asp-for="project" type="text" placeholder="Enter Client Project" class="form-control" />
                             </div>
                         </div>
                         <div class="col-sm-7">
                             <div class="form-group">
-                                <label asp-for="client.unbilledHours" class="control-label"></label>
-                                <input asp-for="client.unbilledHours" type="number" placeholder="Enter No of unbilled hours" class="form-control" />
+                                <label asp-for="unbilledHours" class="control-label"></label>
+                                <input asp-for="unbilledHours" type="number" placeholder="Enter No of unbilled hours" class="form-control" />
                             </div>
                         </div>
                     </div>
@@ -74,5 +75,3 @@
         </div>
     </div>
 </div>
-
-

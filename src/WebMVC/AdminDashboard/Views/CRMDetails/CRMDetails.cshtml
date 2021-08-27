@@ -4,6 +4,7 @@
 
     ViewData["Title"] = "CRMDetails";
     Layout = "~/Views/Shared/PartialDashboardLayout.cshtml";
+   
 }
 
 <link href="~/StyleSheet/DashboardPanel.css" rel="stylesheet" />
@@ -20,20 +21,20 @@
                             <h4 style="margin:20px 0px 20px 20px;color:gray;">Client Details</h4>
                         </div>
                         <div class="col-sm-2 col-12">
-                            <button type="button" class="btn btnColor" onclick="location.href='@Url.Action("ClientList", "CRMDetails")'" style="margin-top:30px;text-align:right">
+                            <button type="button" class="btn btnColor" onclick="location.href='@Url.Action("AddNewClient", "CRMDetails")'" style="margin-top:30px;text-align:right">
                                 <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Add New
                             </button>
-                        </div> 
+                        </div>
                     </div>
                     <div class="form-row" style="padding-left:20px">
                         <div class="col-sm-5">
                             <div class="form-group">
-                                <label asp-for="client.ClientId" class="control-label"></label>
-                                <select asp-for="client.ClientId" asp-items="@Model.clientList" method="post" class="form-control"></select>
+                                <label class="control-label">Client List</label>
+                                <select asp-for="client.status" asp-items="@Model.clientList" class="form-control"></select>
                             </div>
                         </div>
                         <div class="col-sm-3">
-                            <button type="button" class="btn btnColor" onclick="location.href='@Url.Action("GetClientListDetails", "CRMDetails")'" style="margin-top:30px">View</button>
+                            <button type="button" class="btn btnColor" onclick="GetClientList();" style="margin-top:30px">View</button>
                         </div>
                         <div class="offset-4"></div>
                     </div>
@@ -45,7 +46,7 @@
                             <h4 style="margin:20px 0px 20px 20px;color:gray">Project Management</h4>
                         </div>
                         <div class="col-sm-2 col-12">
-                            <button type="button" class="btn btnColor" onclick="location.href='@Url.Action("ProjectList", "CRMDetails")'" style="margin-top:30px;text-align:right">
+                            <button type="button" class="btn btnColor" onclick="location.href='@Url.Action("AddNewProject", "CRMDetails")'" style="margin-top:30px;text-align:right">
                                 <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Add New
                             </button>
                         </div>
@@ -53,12 +54,12 @@
                     <div class="form-row" style="padding-left:20px">
                         <div class="col-sm-5">
                             <div class="form-group">
-                                <label asp-for="project.projectId" class="control-label"></label>
-                                <select asp-for="project.projectId" asp-items="@Model.projectList" method="post" class="form-control"></select>
+                                <label class="control-label">Project List</label>
+                                <select asp-for="project.status" asp-items="@Model.projectList" class="form-control"></select>
                             </div>
                         </div>
                         <div class="col-sm-3">
-                            <button type="button" class="btn btnColor" onclick="location.href='@Url.Action("ProjectListViewDetails", "CRMDetails")'" style="margin-top:30px">View</button>
+                            <button type="button" class="btn btnColor" onclick="GetProjectList();" style="margin-top:30px">View</button>
                         </div>
                         <div class="offset-4"></div>
                     </div>
@@ -68,19 +69,19 @@
                     <div class="form-row" style="padding-left:20px">
                         <div class="col-sm-7">
                             <div class="form-group">
-                                <label asp-for="employee.projectClient" class="control-label"></label>
-                                <select asp-for="employee.projectClient" asp-items="@Model.empClientList" class="form-control"></select>
+                                <label class="control-label">Client List</label>
+                                <select asp-for="client.id" asp-items="@Model.empClientList" class="form-control"></select>
                             </div>
                         </div>
                         <div class="col-sm-7">
                             <div class="form-group">
-                                <label asp-for="employee.empProject" class="control-label"></label>
-                                <select asp-for="employee.empProject" asp-items="@Model.empProjectList" class="form-control"></select>
+                                <label  class="control-label">Project List</label>
+                                <select asp-for="project.projectId" asp-items="@Model.empProjectList" class="form-control"></select>
                             </div>
                         </div>
                         <div class="col-sm-7">
                             <div class="form-group">
-                                <label asp-for="employee.employeeId" class="control-label"></label>
+                                <label  class="control-label">Employee List</label>
                                 <select asp-for="employee.employeeId" asp-items="@Model.employeeList" class="form-control"></select>
                             </div>
                         </div>
@@ -109,3 +110,79 @@
         </div>
     </div>
 </div>
+@section Scripts{
+    <script>
+        function GetClientList() {
+            var selectedStatus = $("#client_status").val();
+            if (selectedStatus == "1") {
+                window.location.href = '@Url.Action("GetClientListDetails", "CRMDetails",new {status = "1" })';
+            } else if (selectedStatus == "2") {
+                window.location.href = '@Url.Action("GetClientListDetails", "CRMDetails",new {status = "2" })';
+            } else {
+                 window.location.href = '@Url.Action("CRMDetails", "CRMDetails")';
+            }
+            
+        };
+      function GetProjectList(){
+            var selectedStatus = $("#project_status").val();
+         
+            if (selectedStatus == "1") {
+                alert(selectedStatus);
+                window.location.href = '@Url.Action("GetProjectListDetails", "CRMDetails",new {status = "1" })';
+            } else if (selectedStatus == "2") {
+                window.location.href = '@Url.Action("GetProjectListDetails", "CRMDetails",new {status = "2" })';
+            } else {
+                 window.location.href = '@Url.Action("CRMDetails", "CRMDetails")';
+            }
+            
+        };
+
+        $('#client_id').change(function () {
+
+            var selectedClient = parseInt($("#client_id").val());
+            var Projectlist = $('#project_projectId');
+            //alert(Projectlist);
+            Projectlist.empty();
+
+            if (selectedClient != null && selectedClient != '') {
+                $.getJSON('@Url.Action("GetProjectNamesClientWise", "CRMDetails")', { clientId: selectedClient }, function (responses) {
+                   
+                        if (responses != null && !jQuery.isEmptyObject(responses))
+                        {
+                            $.each(responses, function (index, response) {
+                                Projectlist.append($('<option/>', {
+                                    value: response.value,
+                                    text: response.text,
+                                }));
+                            });
+                        };
+                    });
+
+              }
+        });
+
+        $('#project_projectId').change(function () {
+
+            var selectedProject = parseInt($("#project_projectId").val());
+            var empList = $('#employee_employeeId');
+            empList.empty();
+
+            if (selectedProject != null && selectedProject != '') {
+                $.getJSON('@Url.Action("GetEmplist", "CRMDetails")', { pId: selectedProject }, function (responses) {
+                   
+                        if (responses != null && !jQuery.isEmptyObject(responses))
+                        {
+                            $.each(responses, function (index, response) {
+                                empList.append($('<option/>', {
+                                    value: response.value,
+                                    text: response.text,
+                                }));
+                            });
+                        };
+                    });
+
+              }
+            });
+    </script>
+    
+    }

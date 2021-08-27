@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using InvoiceMicroServices.WebMVC.AdminDashboard.Models;
+using InvoiceMicroServices.WebMVC.AdminDashboard.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -10,6 +11,15 @@ namespace AdminDashboard.Controllers
 {
     public class BillingController : Controller
     {
+        private readonly IClientInfo _clientInfosvc;
+        private readonly IProjectInfo _projectInfosvc;
+        private readonly IEmployee _employeesvc;
+        public BillingController(IClientInfo clientInfo, IProjectInfo projectInfo, IEmployee employee)
+        {
+            _clientInfosvc = clientInfo;
+            _projectInfosvc = projectInfo;
+            _employeesvc = employee;
+        }
         public IActionResult Billing()
         {
             BillingInvoice model = new BillingInvoice();
@@ -21,12 +31,15 @@ namespace AdminDashboard.Controllers
             };
             return View(model);
         }
-        public IActionResult Generateinvoice()
+        public async Task<IActionResult> Generateinvoice()
         {
-            return View();
+            var res = await _projectInfosvc.Getprojectlist("1");
+
+            return View(res);
         }
         public IActionResult ViewInvoiceList()
         {
+
             return View();
         }
     }

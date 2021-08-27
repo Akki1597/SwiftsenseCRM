@@ -1,8 +1,10 @@
-﻿@model InvoiceMicroServices.WebMVC.AdminDashboard.ViewModels.CrmIndexViewModel
+﻿@model InvoiceMicroServices.WebMVC.AdminDashboard.Models.ProjectDetails
 
 @{
-    ViewData["Title"] = "ClientList";
+    ViewData["Title"] = "AddNewProject";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 
 <div class="container-xl">
     <div class="row">
@@ -10,11 +12,11 @@
             Html.RenderPartial("PartialLeftMenu");
         }
         <div class="col-md-10 menuMargin" style="margin-top:30px;">
-            <form role="form" class="needs-validation" method="post" asp-action="Saveclientdetails" asp-controller="CRMDetails" enctype="multipart/form-data" novalidate>
+            <form role="form" class="needs-validation" method="post" asp-action="Saveprojectdetails" asp-controller="CRMDetails" enctype="multipart/form-data" novalidate>
                 <div class="card" style="margin-top:20px;">
                     <div class="row">
                         <div class="col-sm-11 col-12">
-                            <h4 style="margin:20px 0px 40px 20px;color:gray;">Client Details</h4>
+                            <h4 style="margin:20px 0px 20px 20px;color:gray">Project Details</h4>
                         </div>
                         <div class="col-sm-1 col-12">
                             <button type="button" class="btn btnColor btn-sm" onclick="location.href='@Url.Action("CRMDetails", "CRMDetails")'" style="margin-top:30px;text-align:right">
@@ -25,48 +27,48 @@
                     <div class="form-row" style="padding-left:20px">
                         <div class="col-sm-7">
                             <div class="form-group">
-                                <label asp-for="client.name" class="control-label"></label>
-                                <input asp-for="client.name" type="text" placeholder="Enter Client Name" class="form-control" />
+                                <label asp-for="name" class="control-label"></label>
+                                <input asp-for="name" type="text" placeholder="Enter Project Name" class="form-control" />
                             </div>
                         </div>
                         <div class="col-sm-7">
                             <div class="form-group">
-                                <label asp-for="client.address" class="control-label"></label>
-                                <input asp-for="client.address" type="text" placeholder="Enter Address" class="form-control" />
+                                <label asp-for="pCode" class="control-label"></label>
+                                <input asp-for="pCode" type="text" placeholder="Enter Project Code" class="form-control" />
                             </div>
                         </div>
                         <div class="col-sm-7">
                             <div class="form-group">
-                                <label asp-for="client.phone" class="control-label"></label>
-                                <input asp-for="client.phone" type="number" placeholder="Enter Phone Number" class="form-control" />
+                                <label asp-for="projectId" class="control-label"></label>
+                                <input asp-for="projectId" type="text" placeholder="Enter Project Id" class="form-control" />
                             </div>
                         </div>
                         <div class="col-sm-7">
                             <div class="form-group">
-                                <label asp-for="client.email" class="control-label"></label>
-                                <input asp-for="client.email" type="email" placeholder="Enter Email Address" class="form-control" />
+                                <label asp-for="status" class="control-label"></label>
+                                <input asp-for="status" type="text" placeholder="Enter Project State" class="form-control" />
                             </div>
                         </div>
+                        @*<div class="col-sm-7">
+                                <div class="form-group">
+                                    <label asp-for="projectType" class="control-label"></label>
+                                    <input asp-for="projectType" type="text" placeholder="Enter Project Type" class="form-control" />
+                                </div>
+                            </div>*@
                         <div class="col-sm-7">
                             <div class="form-group">
-                                <label asp-for="client.project" class="control-label"></label>
-                                <input asp-for="client.project" type="text" placeholder="Enter Client Project" class="form-control" />
-                            </div>
-                        </div>
-                        <div class="col-sm-7">
-                            <div class="form-group">
-                                <label asp-for="client.unbilledHours" class="control-label"></label>
-                                <input asp-for="client.unbilledHours" type="number" placeholder="Enter No of unbilled hours" class="form-control" />
+                                <label asp-for="unbilledHours" class="control-label"></label>
+                                <input asp-for="unbilledHours" type="number" placeholder="Enter No of unbilled hours" class="form-control" />
                             </div>
                         </div>
                     </div>
                     <div class="row" style="padding-left:20px;padding-bottom:15px">
-                        <div class="col-sm-9">
+                        <div class="col-sm-3">
                             <button type="submit" class="btn btn-success">Save</button>
                             @*<button type="submit" class="btn btnColor">Update</button>
-                                <button type="submit" class="btn btn-danger">Delete</button>*@
+                            <button type="submit" class="btn btn-danger">Delete</button>*@
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-9">
                         </div>
                     </div>
                 </div>
@@ -74,5 +76,4 @@
         </div>
     </div>
 </div>
-
 

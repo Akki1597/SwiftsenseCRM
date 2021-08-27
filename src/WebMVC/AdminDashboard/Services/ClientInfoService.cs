@@ -33,14 +33,22 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.Services
             return response;
         }
 
-        public async Task<List<ClientDetails>> Getclientlist()
+        public async Task<List<ClientDetails>> Getclientlist(string status)
         {
-            var allinfourl = APIGateway.ClientInfo.GetClientList(_remoteServiceBaseUri);
+            var allinfourl = APIGateway.ClientInfo.GetClientList(_remoteServiceBaseUri, status);
             var datastring = await _apiclient.GetStringAsync(allinfourl);
             List<ClientDetails> clientList = new List<ClientDetails>();
             clientList = JsonConvert.DeserializeObject<List<ClientDetails>>(datastring);
             return clientList;
         }
+        //public async Task<List<ClientDetails>> GetclientNamelist(string status)
+        //{
+        //    var allinfourl = APIGateway.ClientInfo.GetClientNameList(_remoteServiceBaseUri, status);
+        //    var datastring = await _apiclient.GetStringAsync(allinfourl);
+        //    List<ClientDetails> clientNameList = new List<ClientDetails>();
+        //    clientNameList = JsonConvert.DeserializeObject<List<ClientDetails>>(datastring);
+        //    return clientNameList;
+        //}
 
         public async Task<bool> Saveclientdetails(ClientDetails req)
         {

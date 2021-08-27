@@ -14,43 +14,42 @@ namespace AdminDashboard.Controllers
     {
         private readonly IClientInfo _clientInfosvc;
         private readonly IProjectInfo _projectInfosvc;
-        public CRMDetailsController(IClientInfo clientInfo , IProjectInfo projectInfo)
+        private readonly IEmployee _employeesvc;
+        public CRMDetailsController(IClientInfo clientInfo , IProjectInfo projectInfo,IEmployee employee)
         {
             _clientInfosvc = clientInfo;
             _projectInfosvc = projectInfo;
+            _employeesvc = employee;
         }
 
-        public IActionResult CRMDetails()
+        public async Task<IActionResult> CRMDetails()
         {
+             var clientlist = await _clientInfosvc.Getclientlist("1");
+            var projectlist = await _projectInfosvc.Getprojectlist("1");
+
             CrmIndexViewModel model = new CrmIndexViewModel();
             model.clientList = new List<SelectListItem>
             {
-                new SelectListItem {Text = "--Select Category--"},
+                new SelectListItem {Text = "--Select Client Status--"},
                 new SelectListItem {Text = "Active", Value = "1"},
-                new SelectListItem {Text = "InActive", Value = "2"}
+                new SelectListItem {Text = "InActive", Value = "0"}
             };
             model.projectList = new List<SelectListItem>
             {
-                new SelectListItem {Text = "--Select Project Client--"},
+                new SelectListItem {Text = "--Select Project Status --"},
                 new SelectListItem {Text = "Active", Value = "1"},
-                new SelectListItem {Text = "InActive", Value = "2"}
+                new SelectListItem {Text = "InActive", Value = "0"}
             };
-            model.empClientList = new List<SelectListItem>
+
+            List<ClientDetails> clist = await GetCLientlist();
+
+            model.empClientList = new List<SelectListItem>();
+            model.empClientList.Add(new SelectListItem { Text = "---Select Client---", Value ="0", Selected = true  });
+            for (int i=0;i< clist.Count;i++)
             {
-                new SelectListItem {Text = "--Select Employee--"},
-               
-            };
-            model.empProjectList = new List<SelectListItem>
-            {
-                new SelectListItem {Text = "--Select Employee--"},
-        
-            };
-            model.employeeList = new List<SelectListItem>
-            {
-                new SelectListItem {Text = "--Select Employee--"},
-                new SelectListItem {Text = "demo5", Value = "1"},
-                new SelectListItem {Text = "demo6", Value = "2"}
-            };
+                model.empClientList.Add(new SelectListItem { Text = clist[i].name, Value = clist[i].id.ToString() });
+            }
+           
             model.yearList = new List<SelectListItem>
             {
                 new SelectListItem {Text = "--Select Year--"},
@@ -85,7 +84,13 @@ namespace AdminDashboard.Controllers
             };
             return View(model);
         }
-      
+
+        public IActionResult AddNewClient()
+        {
+            ClientDetails vm  = new ClientDetails();
+            return View(vm);
+        }
+
         public async Task<IActionResult> GetClientDetails(int? id)
         {
             var info = await _clientInfosvc.GetClientInfo("51");
@@ -96,9 +101,9 @@ namespace AdminDashboard.Controllers
             return View(vm);
         }
 
-        public async Task<IActionResult> GetClientListDetails()
+        public async Task<IActionResult> GetClientListDetails(string status)
         {
-            var info = await _clientInfosvc.Getclientlist();
+            var info = await _clientInfosvc.Getclientlist(status);
             List<ClientDetails> vm = new List<ClientDetails>();
             vm = info;
             return View(vm);
@@ -111,7 +116,7 @@ namespace AdminDashboard.Controllers
         }
        
         [HttpPost]
-        public async Task<IActionResult> SaveclientdetailsAsync(ClientDetails req)
+        public async Task<IActionResult> Saveclientdetails(ClientDetails req)
         {
             var res = await _clientInfosvc.Saveclientdetails(req);
             if(res == true)
@@ -128,6 +133,13 @@ namespace AdminDashboard.Controllers
 
         /* Project Details */
 
+        public IActionResult AddNewProject()
+        {
+            ProjectDetails vm = new ProjectDetails();
+            return View(vm);
+        }
+
+
         public async Task<IActionResult> GetProjectDetails(int? id)
         {
             var info = await _projectInfosvc.GetProjectInfo("");
@@ -138,16 +150,16 @@ namespace AdminDashboard.Controllers
             return View(vm);
         }
 
-        public async Task<IActionResult> GetProjectListDetails()
+        public async Task<IActionResult> GetProjectListDetails(string status)
         {
-            var info = await _projectInfosvc.Getprojectlist();
+            var info = await _projectInfosvc.Getprojectlist(status);
             List<ProjectDetails> vm = new List<ProjectDetails>();
             vm = info;
             return View(vm);
         }
 
         [HttpPost]
-        public async Task<IActionResult> SaveProjectdetailsAsync(ProjectDetails req)
+        public async Task<IActionResult> SaveProjectdetails(ProjectDetails req)
         {
             var res = await _projectInfosvc.Saveprojectdetails(req);
             if (res == true)
@@ -164,6 +176,34 @@ namespace AdminDashboard.Controllers
         public IActionResult EmployeeTimeSheetView()
         {
             return View();
+        }
+
+        public async Task<List<ClientDetails>> GetCLientlist()
+        {
+            var res = await _clientInfosvc.Getclientlist("1");
+            return res;
+            
+        }
+        public async Task<ActionResult> GetEmplist(int pId)
+        {
+            IEnumerable<SelectListItem> response = await _employeesvc.GetEmplist(pId);
+            var res = Json(response);
+            return res;
+
+        }
+
+        public async Task<List<string>> GetProjectNames()
+        {
+            var res = await _projectInfosvc.GetprojectNamelist("1");
+            return res;
+
+        }
+        public async Task<ActionResult> GetProjectNamesClientWise(int clientId)
+        {
+            IEnumerable<SelectListItem> response = await _projectInfosvc.GetprojectNamelistClientWise(clientId);
+            var res = Json(response);
+            return res;
+
         }
     }
 }

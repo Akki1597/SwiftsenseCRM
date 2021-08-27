@@ -4,8 +4,8 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.Models
 {
     public class ClientDetails
     {
-        [Display(Name = "Category")]
-        public int ClientId { get; set; }
+        
+        public int id { get; set; }
 
         [Display(Name = "Name")]
         public string name { get; set; }
@@ -24,5 +24,6 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.Models
         [Display(Name = "Number of unbilled hours")]
         [Required(ErrorMessage = "Please enter your No.of unbilled hours")]
         public string unbilledHours { get; set; }
+        public string status { get; set; }
     }
 }

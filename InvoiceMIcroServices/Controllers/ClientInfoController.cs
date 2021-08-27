@@ -57,11 +57,20 @@ namespace InvoiceMIcroServices.Controllers
 
         [HttpGet]
         [Route("GetClientList")]
-        public List<ClientDetails> GetClientList()
+        public List<ClientDetails> GetClientList(string status)
         {
             try
             {
-                var res =  _context.clientDetails.ToList();
+                List<ClientDetails> res = new List<ClientDetails>();
+                if (status == "1")
+                {
+                     res = _context.clientDetails.Where(x => x.status == "Active").ToList();
+                }
+                else if(status == "0")
+                {
+                     res = _context.clientDetails.Where(x => x.status == "InActive").ToList();
+                }
+                
                 return res;
 
             }
@@ -74,6 +83,7 @@ namespace InvoiceMIcroServices.Controllers
 
         // POST: api/ClientInfo
         [HttpPost]
+        [Route("SaveClientDetails")]
         [ProducesResponseType(typeof(ClientDetails), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> Post([FromBody]ClientDetails clientInfo)
         {
@@ -105,6 +115,7 @@ namespace InvoiceMIcroServices.Controllers
                         email = clientInfo.email,
                         unbilledHours = clientInfo.unbilledHours,
                         phoneNo = clientInfo.phoneNo,
+                        status = "Active"
                     };
 
                     _context.clientDetails.Add(newClient);
@@ -118,7 +129,26 @@ namespace InvoiceMIcroServices.Controllers
             }
         }
 
-        
-    
+        //[HttpGet]
+        //[Route("GetClientNameList")]
+        //public List<string> GetClientNameList(string status)
+        //{
+        //    try
+        //    {
+        //        List<string> res = new List<string>();
+        //        if (status == "1")
+        //        {
+        //            res = _context.clientDetails.Where(x => x.status == "Active").Select(x => x.name).ToList();
+        //        }
+
+        //        return res;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return null;
+        //    }
+
+        //}
+
     }
 }

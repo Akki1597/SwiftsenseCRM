@@ -1,4 +1,6 @@
 ﻿using InvoiceMicroServices.WebMVC.AdminDashboard.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +12,8 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.Services
     {
         Task<ProjectDetails> GetProjectInfo(string projectId);
         Task<bool> Saveprojectdetails(ProjectDetails req);
-        Task<List<ProjectDetails>> Getprojectlist();
+        Task<List<ProjectDetails>> Getprojectlist(string status);
+        Task<List<string>> GetprojectNamelist(string status);
+        Task<IEnumerable<SelectListItem>> GetprojectNamelistClientWise(int clientId);
     }
 }
