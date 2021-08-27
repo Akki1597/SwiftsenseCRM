@@ -1,0 +1,52 @@
+﻿@model InvoiceMicroServices.WebMVC.AdminDashboard.Models.billingIndexViewModel
+
+@{
+    ViewData["Title"] = "billingmonth";
+}
+
+
+<div class="container-xl">
+    <div class="row">
+        @{
+            Html.RenderPartial("PartialLeftMenu");
+        }
+        <div class="col-md-10 menuMargin" style="margin-top:30px;">
+            <div class="card" style="min-height:220px;margin-top:10px;padding-left:10px;padding-right:10px">
+                <div class="row">
+
+                    <h4 style="margin:20px 0px 40px 20px;color:gray;">Select Month</h4>
+
+
+                </div>
+
+                <div class="form-row" style="padding-left:20px">
+                    <div class="col-sm-7">
+                        <div class="form-group">
+                            <label class="control-label"></label>
+                            <select asp-items="@Model.yearList" class="form-control"></select>
+                        </div>
+                    </div>
+                    <div class="col-sm-7">
+                        <div class="form-group">
+                            <label class="control-label"></label>
+                            <select asp-items="@Model.monthList" class="form-control"></select>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+                <div class="">
+                    <button type="button" class="btn btnColor" onclick="location.href='@Url.Action("BillingRate", "Billing")'">Next</button>
+                    <button type="button" class="btn btnColor" onclick="location.href='@Url.Action("GenerateInvoice", "Billing")'">Back</button>
+                </div>
+
+            </div>
+        </div>
+
+
+        
+
+    </div>
+</div>
