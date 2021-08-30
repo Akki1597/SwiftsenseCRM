@@ -25,9 +25,11 @@ namespace AdminDashboard.Controllers
             BillingInvoice model = new BillingInvoice();
             model.invoiceList = new List<SelectListItem>
             {
-                new SelectListItem {Text = "--Select Invoice--", Value = "1"},
-                new SelectListItem {Text = "demo", Value = "2"},
-                new SelectListItem {Text = "demo1", Value = "3"}
+                new SelectListItem {Text = "--Select Invoice Filter--", Value = "1"},
+                new SelectListItem {Text = "Project Wise", Value = "2"},
+                new SelectListItem {Text = "Client Wise", Value = "3"},
+                new SelectListItem {Text = "Month Wise", Value = "4"},
+                new SelectListItem {Text = "Year Wise", Value = "5"},
             };
             return View(model);
         }

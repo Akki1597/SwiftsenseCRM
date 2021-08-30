@@ -1,0 +1,7 @@
+﻿.invoicebg {
+    /*background-color: #9EDFBF;*/
+    background-image: url('../images/invoice bgtop.svg');
+    /*background-image: url('../images/invoice bgbottom.svg');*/
+    background-repeat: no-repeat;
+    background-position: top;
+}

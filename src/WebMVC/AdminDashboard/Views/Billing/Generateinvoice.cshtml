@@ -28,7 +28,7 @@
                             <th>Project Code</th>
                             <th>Project Id</th>
                             <th>Project State</th>
-                           @* <th>Invoice generated</th>*@
+                            @*<th>Invoice generated</th>*@
                             <th>No of unbilled hours</th>
                             <th>Generate Invoice</th>
                         </tr>
@@ -47,7 +47,7 @@
                                     <td>@data.status</td>
                                     @*<td>@data.</td>*@
                                     <td>@data.unbilledHours</td>
-                                    <td><button class="btn btn-sm btn-primary">Generate</button></td>
+                                    <td><button class="btn btn-sm btn-primary" onclick="location.href='@Url.Action("billingmonth","Billing")'">Generate</button></td>
                                 </tr>
                             }
                         }
