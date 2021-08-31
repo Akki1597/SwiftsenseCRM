@@ -1,7 +1,28 @@
 ﻿.invoicebg {
-    /*background-color: #9EDFBF;*/
-    background-image: url('../images/invoice bgtop.svg');
-    /*background-image: url('../images/invoice bgbottom.svg');*/
+    background-image: url('../images/invoice bgtop.svg'), url('../images/invoice bgbottom.svg');
     background-repeat: no-repeat;
-    background-position: top;
+    background-position: top, bottom;
+}
+
+.underline {
+    text-decoration: underline;
+}
+.fontclass {
+    font-family: 'Book Antiqua';
+    font-weight: bold !important;
+    line-height:2.3;
+}
+
+
+table {
+      border-collapse: collapse;
+   }
+
+
+.InvoiceItems td, th {
+    border: 1px solid #000000 !important;
+}
+
+.center{
+text-align:center;
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -13,6 +14,8 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.Models
         [DisplayName("Rate/hr")]
         public string RatePerHr { get; set; }
         [DisplayName("Currency Type")]
-        public string CurrencyType { get; set; }
+        public List<SelectListItem> CurrencyType { get; set; }
+        [DisplayName("Total Number of Hours")]
+        public string NoofHours { get; set; }
     }
 }

@@ -36,7 +36,7 @@ namespace AdminDashboard.Controllers
         public async Task<IActionResult> Generateinvoice()
         {
             var res = await _projectInfosvc.Getprojectlist("1");
-
+            //List<ProjectDetails> res = new List<ProjectDetails>();
             return View(res);
         }
         public IActionResult ViewInvoiceList()
@@ -84,6 +84,16 @@ namespace AdminDashboard.Controllers
         public IActionResult BillingRate()
         {
             billingRate model = new billingRate();
+
+            model.CurrencyType = new List<SelectListItem>()
+            {
+                new SelectListItem {Text = "--Currency Type--"},
+                new SelectListItem {Text = "USD", Value = "1"},
+                new SelectListItem {Text = "Rupees", Value = "2"},
+
+            };
+
+
             return View(model);
         }
         public IActionResult InvoicePreview()
