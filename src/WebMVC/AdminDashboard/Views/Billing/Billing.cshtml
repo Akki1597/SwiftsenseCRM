@@ -17,16 +17,42 @@
                         <div class="card" style="min-height:220px;margin-top:10px">
                             <h4 style="padding:20px 0px 20px 20px;color:gray">View Invoice List</h4>
                             <div class="form-row" style="padding-left:20px;">
-                                <div class="col-sm-9">
+                                <div class="col-sm-9" id="invoiceView">
                                     <div class="form-group">
-                                        <label  class="control-label">Invoice Category</label>
-                                        <select asp-for="invoice" asp-items="@Model.invoiceList" class="form-control"></select>
+                                        <label class="control-label">Invoice Category</label>
+                                        <select asp-for="invoice" asp-items="@Model.invoiceList" class="form-control" id='invoiceListSelect'></select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6" id="invoiceProjectList" style="display:none;">
+                                    <div class="form-group">
+                                        <label class="control-label">Project Name</label>
+                                        <select asp-for="projectWise" asp-items="@Model.invoiceListProjectWise" class="form-control"></select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6" id="invoiceClientList" style="display:none;">
+                                    <div class="form-group">
+                                        <label class="control-label">Client Name</label>
+                                        <select asp-for="clientWise" asp-items="@Model.invoiceListClientWise" class="form-control"></select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6" id="invoiceYearList" style="display:none;">
+                                    <div class="form-group">
+                                        <label class="control-label">Year</label>
+                                        <select asp-for="yearWise" asp-items="@Model.invoiceListYearWise" class="form-control"></select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6" id="invoiceMonthList" style="display:none;">
+                                    <div class="form-group">
+                                        <label class="control-label">Month</label>
+                                        <select asp-for="monthWise" asp-items="@Model.invoiceListMonthWise" class="form-control"></select>
                                     </div>
                                 </div>
                             </div>
-                            <center>
-                                <button type="button" class="btn btnColor"  onclick="location.href='@Url.Action("ViewInvoiceList", "Billing")'">View</button>
-                            </center>
+                           
+                                <div class="col-sm-1">
+                                    <button type="button" class="btn btnColor" onclick="location.href='@Url.Action("ViewInvoiceList", "Billing")'">View</button>
+                                </div>
+                           
                         </div>
                     </div>
                     <div class="col-sm-6">
@@ -40,7 +66,7 @@
                                 </div>
                             </div>
                             <center>
-                                <button type="button" class="btn btnColor"  onclick="location.href='@Url.Action("Generateinvoice", "Billing")'">Generate</button>
+                                <button type="button" class="btn btnColor" onclick="location.href='@Url.Action("Generateinvoice", "Billing")'">Generate</button>
                             </center>
                         </div>
                     </div>
@@ -49,3 +75,55 @@
         </div>
     </div>
 </div>
+@section Scripts{
+    <script>
+            $(document).ready(function () {
+              
+                $('#invoiceListSelect').on('change', function () {
+                    if (this.value == '1') {
+                        $("#invoiceProjectList").show();
+                        $("#invoiceClientList").hide();
+                        $("#invoiceYearList").hide();
+                        $("#invoiceMonthList").hide();
+                        $('#invoiceView').removeClass('col-sm-9');
+                        $('#invoiceView').addClass('col-sm-5');
+                    }
+                    else if (this.value == '2') {
+                        $("#invoiceProjectList").hide();
+                        $("#invoiceClientList").show();
+                        $("#invoiceYearList").hide();
+                        $("#invoiceMonthList").hide();
+                        $('#invoiceView').removeClass('col-sm-9');
+                        $('#invoiceView').addClass('col-sm-5');
+                    }
+                    else if (this.value == '3') {
+                        $("#invoiceProjectList").hide();
+                        $("#invoiceClientList").hide();
+                        $("#invoiceYearList").hide();
+                        $("#invoiceMonthList").show();
+                        $('#invoiceView').removeClass('col-sm-9');
+                        $('#invoiceView').addClass('col-sm-5');
+                    }
+                    else if (this.value == '4') {
+                        $("#invoiceProjectList").hide();
+                        $("#invoiceClientList").hide();
+                        $("#invoiceYearList").show();
+                        $("#invoiceMonthList").hide();
+                        $('#invoiceView').removeClass('col-sm-9');
+                        $('#invoiceView').addClass('col-sm-5');
+                    }
+                    else {
+                        $("#invoiceProjectList").hide();
+                        $("#invoiceClientList").hide();
+                        $("#invoiceYearList").hide();
+                        $("#invoiceMonthList").hide();
+                        $('#invoiceView').removeClass('col-sm-5');
+                        $('#invoiceView').addClass('col-sm-9');
+                    }
+
+                });
+
+            });
+
+    </script>
+}

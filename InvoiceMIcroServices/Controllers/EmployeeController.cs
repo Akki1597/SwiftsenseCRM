@@ -46,7 +46,7 @@ namespace InvoiceMIcroServices.Controllers
                 var prolistinitial = new SelectListItem()
                 {
                     Value = "0",
-                    Text = "--- Select Employee Name ---",
+                    Text = "Select Employee Name",
                     Selected = true
                 };
                 emplist.Insert(0, prolistinitial);

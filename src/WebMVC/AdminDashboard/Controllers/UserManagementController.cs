@@ -15,7 +15,7 @@ namespace AdminDashboard.Controllers
             UserManagement model = new UserManagement();
             model.employeeList = new List<SelectListItem>
             {
-                new SelectListItem {Text = "--Select Type--"},
+                new SelectListItem {Text = "Select Type"},
                 new SelectListItem {Text = "Employee", Value = "1"},
                 new SelectListItem {Text = "Payroll", Value = "2"},
                 new SelectListItem {Text = "Hr", Value = "3"},

@@ -30,13 +30,13 @@ namespace AdminDashboard.Controllers
             CrmIndexViewModel model = new CrmIndexViewModel();
             model.clientList = new List<SelectListItem>
             {
-                new SelectListItem {Text = "--Select Client Status--"},
+                new SelectListItem {Text = "Select Client Status"},
                 new SelectListItem {Text = "Active", Value = "1"},
                 new SelectListItem {Text = "InActive", Value = "0"}
             };
             model.projectList = new List<SelectListItem>
             {
-                new SelectListItem {Text = "--Select Project Status --"},
+                new SelectListItem {Text = "Select Project Status "},
                 new SelectListItem {Text = "Active", Value = "1"},
                 new SelectListItem {Text = "InActive", Value = "0"}
             };
@@ -44,7 +44,7 @@ namespace AdminDashboard.Controllers
             List<ClientDetails> clist = await GetCLientlist();
 
             model.empClientList = new List<SelectListItem>();
-            model.empClientList.Add(new SelectListItem { Text = "---Select Client---", Value ="0", Selected = true  });
+            model.empClientList.Add(new SelectListItem { Text = "Select Client", Value ="0", Selected = true  });
             for (int i=0;i< clist.Count;i++)
             {
                 model.empClientList.Add(new SelectListItem { Text = clist[i].name, Value = clist[i].id.ToString() });
@@ -52,7 +52,7 @@ namespace AdminDashboard.Controllers
            
             model.yearList = new List<SelectListItem>
             {
-                new SelectListItem {Text = "--Select Year--"},
+                new SelectListItem {Text = "Select Year"},
                 new SelectListItem {Text = "2020", Value = "1"},
                 new SelectListItem {Text = "2021", Value = "2"},
                 new SelectListItem {Text = "2022", Value = "3"},
@@ -68,7 +68,7 @@ namespace AdminDashboard.Controllers
             };
             model.monthList = new List<SelectListItem>
             {
-                new SelectListItem {Text = "--Select Month--"},
+                new SelectListItem {Text = "Select Month"},
                 new SelectListItem {Text = "January", Value = "2"},
                 new SelectListItem {Text = "February", Value = "3"},
                 new SelectListItem {Text = "March", Value = "4"},
