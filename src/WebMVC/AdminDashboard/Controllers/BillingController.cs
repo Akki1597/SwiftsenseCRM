@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web.Script.Serialization;
 using InvoiceMicroServices.WebMVC.AdminDashboard.Models;
 using InvoiceMicroServices.WebMVC.AdminDashboard.Services;
+using InvoiceMicroServices.WebMVC.AdminDashboard.ViewModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Newtonsoft.Json;
 
 namespace AdminDashboard.Controllers
 {
@@ -13,12 +17,14 @@ namespace AdminDashboard.Controllers
     {
         private readonly IClientInfo _clientInfosvc;
         private readonly IProjectInfo _projectInfosvc;
+        private readonly ICompanyInfo _companyInfosvc;
         private readonly IEmployee _employeesvc;
-        public BillingController(IClientInfo clientInfo, IProjectInfo projectInfo, IEmployee employee)
+        public BillingController(IClientInfo clientInfo, IProjectInfo projectInfo, IEmployee employee,ICompanyInfo companyInfo)
         {
             _clientInfosvc = clientInfo;
             _projectInfosvc = projectInfo;
             _employeesvc = employee;
+            _companyInfosvc = companyInfo;
         }
         public IActionResult Billing()
         {
@@ -44,61 +50,167 @@ namespace AdminDashboard.Controllers
 
             return View();
         }
-        public IActionResult billingmonth()
+        public IActionResult billingmonth(int clientId)
         {
-            billingIndexViewModel model = new billingIndexViewModel(); 
+            billingIndexViewModel model = new billingIndexViewModel();
+            model.clientId = clientId;
             model.yearList = new List<SelectListItem>
             {
                 new SelectListItem {Text = "--Select Year--"},
-                new SelectListItem {Text = "2020", Value = "1"},
-                new SelectListItem {Text = "2021", Value = "2"},
-                new SelectListItem {Text = "2022", Value = "3"},
-                new SelectListItem {Text = "2023", Value = "4"},
-                new SelectListItem {Text = "2024", Value = "5"},
-                new SelectListItem {Text = "2025", Value = "6"},
-                new SelectListItem {Text = "2026", Value = "7"},
-                new SelectListItem {Text = "2027", Value = "8"},
-                new SelectListItem {Text = "2028", Value = "9"},
-                new SelectListItem {Text = "2029", Value = "10"},
-                new SelectListItem {Text = "2030", Value = "11"}
+                new SelectListItem {Text = "2020", Value = "2020"},
+                new SelectListItem {Text = "2021", Value = "2021"},
+                new SelectListItem {Text = "2022", Value = "2022"},
+                new SelectListItem {Text = "2023", Value = "2023"},
+                new SelectListItem {Text = "2024", Value = "2024"},
+                new SelectListItem {Text = "2025", Value = "2025"},
+                new SelectListItem {Text = "2026", Value = "2026"},
+                new SelectListItem {Text = "2027", Value = "2027"},
+                new SelectListItem {Text = "2028", Value = "2028"},
+                new SelectListItem {Text = "2029", Value = "2029"},
+                new SelectListItem {Text = "2030", Value = "2030"}
 
             };
             model.monthList = new List<SelectListItem>
             {
                 new SelectListItem {Text = "--Select Month--"},
-                new SelectListItem {Text = "January", Value = "2"},
-                new SelectListItem {Text = "February", Value = "3"},
-                new SelectListItem {Text = "March", Value = "4"},
-                new SelectListItem {Text = "April", Value = "5"},
-                new SelectListItem {Text = "May", Value = "6"},
-                new SelectListItem {Text = "June", Value = "7"},
-                new SelectListItem {Text = "July", Value = "8"},
-                new SelectListItem {Text = "August", Value = "9"},
-                new SelectListItem {Text = "September", Value = "10"},
-                new SelectListItem {Text = "October", Value = "11"},
-                new SelectListItem {Text = "November", Value = "12"},
-                new SelectListItem {Text = "December", Value = "13"}
+                new SelectListItem {Text = "January", Value = "1"},
+                new SelectListItem {Text = "February", Value = "2"},
+                new SelectListItem {Text = "March", Value = "3"},
+                new SelectListItem {Text = "April", Value = "4"},
+                new SelectListItem {Text = "May", Value = "5"},
+                new SelectListItem {Text = "June", Value = "6"},
+                new SelectListItem {Text = "July", Value = "7"},
+                new SelectListItem {Text = "August", Value = "8"},
+                new SelectListItem {Text = "September", Value = "9"},
+                new SelectListItem {Text = "October", Value = "10"},
+                new SelectListItem {Text = "November", Value = "11"},
+                new SelectListItem {Text = "December", Value = "12"}
             };
             return View(model);
         }
-        public IActionResult BillingRate()
+
+        
+        public IActionResult Selectedbillingmonth(billingIndexViewModel req)
         {
+            
+            TempData["selectedMonth"] = req.selectedMonth;
+            TempData["selectedYear"] = req.selectedYear;
+            TempData["clientId"] = req.clientId;
+
+            return RedirectToAction("Rateperhr");
+        }
+
+        public async Task<IActionResult> Rateperhr()
+        {
+            var clientId = TempData["clientId"];
+            TempData.Keep();
             billingRate model = new billingRate();
 
             model.CurrencyType = new List<SelectListItem>()
+                {
+                    new SelectListItem {Text = "--Currency Type--"},
+                    new SelectListItem {Text = "USD", Value = "1"},
+                    new SelectListItem {Text = "Rupees", Value = "2"},
+
+                };
+            var cdetails =  await GetClientDetails(Convert.ToInt32(clientId));
+
+            var res  = await GetEmplist(cdetails.projectId);
+            model.Employees = new List<EmployeeDetail>();
+            foreach(var item in res)
             {
-                new SelectListItem {Text = "--Currency Type--"},
-                new SelectListItem {Text = "USD", Value = "1"},
-                new SelectListItem {Text = "Rupees", Value = "2"},
+                EmployeeDetail rate = new EmployeeDetail();
+                rate.employeeName = item.firstName + item.lastName;
+                rate.NoofHours = item.totalhr;
+                rate.RatePerHr = item.ratePerHr;
 
-            };
-
-
+                model.Employees.Add(rate);
+            }
             return View(model);
         }
-        public IActionResult InvoicePreview()
+        //public async Task<IActionResult> BillingRate()
+        //{
+        //    List<EmployeeDetails> model = new List<EmployeeDetails>();
+
+
+        //    var selectedMonth = TempData["selectedMonth"].ToString();
+        //    var selectedYear = TempData["selectedYear"].ToString();
+
+      
+        //    TempData.Keep();
+        //    model =  await GetEmplist("P000SW1");
+
+        //    //model.ratePerHr = new List<RatePerHourResponse>();
+
+        //    //foreach (var item in model.Employees)
+        //    //{
+        //    //    RatePerHourResponse billingmodel = new RatePerHourResponse();
+        //    //    billingmodel.employeeName = item.firstName + " " + item.lastName;
+        //    //    billingmodel.NoofHours = item.totalhr;
+        //    //    billingmodel.RatePerHr = 0;
+        //    //    billingmodel.selectedCurrency = "";
+
+        //    //    model.ratePerHr.Add(billingmodel);
+        //    //}
+
+        ////model.Employees =  await GetEmplist("P000SW1",selectedYear,selectedMonth);
+        //        return View(model);
+        //}
+
+        [HttpPost]
+        public IActionResult Rateperhr(billingRate item)
         {
-            return View();
+            var s = JsonConvert.SerializeObject(item);
+            TempData["billingrate"] = s;
+            TempData.Keep();
+            return RedirectToAction("InvoicePreview","Billing");
+        }
+
+        public async Task<ActionResult> InvoicePreview()
+        {
+            billinginfo model = new billinginfo();
+
+            if (TempData["billingrate"] is string s)
+            {
+                model.billingRate = JsonConvert.DeserializeObject<billingRate>(s);
+            }
+            var clientId = TempData["clientId"];
+            TempData.Keep();
+            model.clientDetails = await GetClientDetails(Convert.ToInt32(clientId));
+             HttpContext.Session.SetString("CompanyId", "sw751");
+            var companyId = HttpContext.Session.GetString("CompanyId");
+            model.companydetails = await GetCompanyDetails(companyId);
+            model.projectDetails = await GetProjectDetails(model.clientDetails.projectId);
+            return View(model);
+        }
+
+        public async Task<List<EmployeeDetails>> GetEmplist(string pId)
+        {
+            List<EmployeeDetails> employeeDetails = new List<EmployeeDetails>();
+            employeeDetails = await _employeesvc.GetEmplistDetails(pId);
+            return employeeDetails;
+
+        }
+
+        public async Task<CompanyIndexViewModel> GetCompanyDetails(string companyId)
+        {
+            var info = await _companyInfosvc.GetCompanyInfo(companyId);
+            return info;
+
+        }
+
+        public async Task<ClientDetails> GetClientDetails(int? clinetId)
+        {
+            var info = await _clientInfosvc.GetClientInfo(clinetId);
+            return info;
+
+        }
+
+        public async Task<ProjectDetails> GetProjectDetails(string pId)
+        {
+            var info = await _projectInfosvc.GetProjectInfo(pId);
+            return info;
+
         }
     }
 }

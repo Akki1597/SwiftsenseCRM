@@ -1,0 +1,91 @@
+﻿@*@model List<InvoiceMicroServices.WebMVC.AdminDashboard.Models.billingRate>*@
+@model InvoiceMicroServices.WebMVC.AdminDashboard.Models.billingRate
+
+@{
+    ViewData["Title"] = "Rateperhr";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-xl">
+    <div class="row">
+        @{
+            Html.RenderPartial("PartialLeftMenu");
+        }
+        <div class="col-md-10 menuMargin" style="margin-top:30px;">
+            <div class="card" style="min-height:220px;margin-top:10px;padding-left:10px;padding-right:10px">
+                <div class="row">
+
+                    <h4 style="margin:20px 0px 40px 20px;color:gray;">Billing Rate/Hour</h4>
+
+                </div>
+
+                <div class="form-row" style="padding-left:20px">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">Employee Name</label>
+
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="control-label">Rate/hr</label>
+
+                            </div>
+                        </div>
+                    <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="control-label">Currency Type</label>
+
+                            </div>
+                        </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">No Of Hours</label>
+
+                        </div>
+                    </div>
+                  
+                    <form class="row" method="post" role="form" asp-action="Rateperhr" asp-controller="Billing">
+
+                        @for (int i = 0; i < Model.Employees.Count; i++)
+                        {
+                            //{ await Html.RenderPartialAsync("Partial_Employeedetails", item); }
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    @*  <label class="control-label">Employee Name</label><br />*@
+                                    @*<label asp-for="firstName" class="control-label">@(String.Format("{0} {1}", data.firstName, data.lastName))</label>*@
+
+                                    <input asp-for="@Model.Employees[i].employeeName" type="text" readonly placeholder="Name of Employee" class="form-control" value="@Model.Employees[i].employeeName" />
+
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <input asp-for="@Model.Employees[i].RatePerHr" type="text" placeholder="Enter Rate/hr" class="form-control" value="@Model.Employees[i].RatePerHr" />
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <select asp-items="@Model.CurrencyType" asp-for="selectedCurrency" class="form-control"></select>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <input asp-for="@Model.Employees[i].NoofHours" readonly type="text" placeholder="Enter No of hrs" class="form-control" value="@Model.Employees[i].NoofHours" />
+                                </div>
+                            </div>
+                        }
+
+
+                        <div class="">
+                            <input type="submit" class="btn btnColor" value="Next" />
+                            <button type="button" class="btn btnColor" onclick="location.href='@Url.Action("billingmonth", "Billing")'">Back</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+

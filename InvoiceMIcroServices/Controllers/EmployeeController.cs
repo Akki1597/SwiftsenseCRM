@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using InvoiceMIcroServices.Data;
+using InvoiceMIcroServices.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -27,7 +28,7 @@ namespace InvoiceMIcroServices.Controllers
 
         [HttpGet]
         [Route("GetEmpNamelistProjectWise")]
-        public IEnumerable<SelectListItem> GetEmpNamelistProjectWise(int pId)
+        public IEnumerable<SelectListItem> GetEmpNamelistProjectWise(string pId)
         {
             try
             {
@@ -52,6 +53,24 @@ namespace InvoiceMIcroServices.Controllers
 
                 return new SelectList(emplist, "Value", "Text", "Selected");
 
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+        }
+
+        [HttpGet]
+        [Route("GetEmpNamelistDetailsProjectWise")]
+        public List<EmployeeDetails> GetEmpNamelistDetailsProjectWise(string pId)
+        {
+            try
+            {
+                var res = _context.employeeDetails.AsNoTracking()
+             .OrderBy(x => x.firstName)
+              .Where(x => x.projectId == pId).ToList();
+                return res;
             }
             catch (Exception ex)
             {

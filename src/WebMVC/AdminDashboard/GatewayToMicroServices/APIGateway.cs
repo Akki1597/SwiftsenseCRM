@@ -24,9 +24,9 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.GatewayToMicroServices
         }
         public static class ClientInfo
         {
-            public static string GetClientInfo(string baseuri, string id)
+            public static string GetClientInfo(string baseuri, int? id)
             {
-                var res = $"{baseuri}id";
+                var res = $"{baseuri}GetClientDetails?clientId=" +id;
                 //var res = $"{baseuri}action?clientid=" + id;
                 return res;
             }
@@ -51,7 +51,7 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.GatewayToMicroServices
         {
             public static string GetProjectInfo(string baseuri, string id)
             {
-                var res = $"{baseuri}GetProjectDetails/id";
+                var res = $"{baseuri}GetProjectDetails?projectId=" +id;
                 return res;
             }
 
@@ -81,10 +81,17 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.GatewayToMicroServices
         }
         public static class EmployeeInfo
         {
-            public static string GetEmpNamelistProjectWise(string baseuri, int pId)
+            public static string GetEmpNamelistProjectWise(string baseuri, string pId)
 
             {
                 var res = $"{baseuri}GetEmpNamelistProjectWise?pId=" + pId;
+                return res;
+            }
+
+            public static string GetEmpNamelistDetailsProjectWise(string baseuri, string pId)
+
+            {
+                var res = $"{baseuri}GetEmpNamelistDetailsProjectWise?pId=" + pId;
                 return res;
             }
         }

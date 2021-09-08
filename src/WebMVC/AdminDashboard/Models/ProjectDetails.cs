@@ -8,8 +8,9 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.Models
 {
     public class ProjectDetails
     {
-       
-        public int projectId { get; set; }
+        [Display(Name = "Project Id")]
+        [Required(ErrorMessage = "Please enter your Project Id")]
+        public string projectId { get; set; }
         public int clientId { get; set; }
         [Display(Name = "Project Name")]
         public string name { get; set; }

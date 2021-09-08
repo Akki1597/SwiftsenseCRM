@@ -29,18 +29,18 @@ namespace InvoiceMIcroServices.Controllers
         }
     
         [HttpGet]
-        [Route("GetProjectDetails/id")]
-        public ProjectDetails GetProjectInfo(int projectId)
+        [Route("GetProjectDetails")]
+        public ProjectDetails GetProjectInfo(string projectId)
         {
             try
             {
-                if (projectId == 0)
+                if (string.IsNullOrEmpty(projectId))
                 {
                     return new ProjectDetails();
                 }
                 else
                 {
-                    var res = _context.projectDetails.Where(x => x.id == projectId).FirstOrDefault();
+                    var res = _context.projectDetails.Where(x => x.projectId == projectId).FirstOrDefault();
                     return res;
                 }
             }
@@ -148,7 +148,7 @@ namespace InvoiceMIcroServices.Controllers
                     res.pCode = projectInfo.pCode;
                     res.status = projectInfo.status;
                     res.clientId = projectInfo.clientId;
-                    //res.projectType = projectInfo.projectType;
+                    res.projectId = projectInfo.projectId;
                     res.unbilledHours = projectInfo.unbilledHours;
 
                     _context.projectDetails.Update(res);
@@ -165,6 +165,7 @@ namespace InvoiceMIcroServices.Controllers
                        pCode = projectInfo.pCode,
                        status = "Active",
                        clientId = projectInfo.clientId,
+                       projectId = projectInfo.projectId,
                       unbilledHours = projectInfo.unbilledHours,
                 };
 

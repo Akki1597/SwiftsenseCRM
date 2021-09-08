@@ -41,6 +41,13 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard
             var identityUrl = Configuration.GetValue<string>("IdentityURL");
             var callBackUrl = Configuration.GetValue<string>("CallBackURL");
 
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(2);
+                options.Cookie.HttpOnly = true;
+
+            });
+
             services.AddAuthentication(options =>
             {
                 options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
@@ -80,6 +87,7 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard
             {
                 app.UseBrowserLink();
                 app.UseDeveloperExceptionPage();
+
             }
             else
             {
@@ -88,6 +96,7 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard
 
             app.UseStaticFiles();
             app.UseAuthentication();
+            app.UseSession();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

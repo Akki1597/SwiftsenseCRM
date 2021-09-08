@@ -1,0 +1,36 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@using InvoiceMicroServices.WebMVC.AdminDashboard.Models
+@model EmployeeDetail
+@{
+
+}
+@*@foreach (var item in Model)
+{*@
+    <div class="col-sm-3">
+        <div class="form-group">
+            @*  <label class="control-label">Employee Name</label><br />*@
+            @*<label asp-for="firstName" class="control-label">@(String.Format("{0} {1}", data.firstName, data.lastName))</label>*@
+
+            <input asp-for="employeeName" type="text" readonly placeholder="Name of Employee" class="form-control" value="@Model.employeeName" />
+
+        </div>
+    </div>
+    @*<div class="col-sm-3">
+            <div class="form-group">
+                <input asp-for="RatePerHr" type="text" placeholder="Enter Rate/hr" class="form-control" value="@Model.RatePerHr" />
+            </div>
+        </div>*@
+    @*<div class="col-sm-3">
+            <div class="form-group">
+                <select asp-items="@Model.CurrencyType" asp-for="selectedCurrency" class="form-control"></select>
+            </div>
+        </div>*@
+    <div class="col-sm-3">
+        <div class="form-group">
+            <input asp-for="NoofHours" readonly type="text" placeholder="Enter No of hrs" class="form-control" value="@Model.NoofHours" />
+        </div>
+    </div>
+
+@*}*@

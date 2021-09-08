@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "InvoiceTemplate";
 }
 
@@ -15,144 +14,150 @@
                 </div>
                 @*<div class="col-lg-3"></div>*@
                 <div class="col-lg-5 text-center">
-                    <img src="~/images/FAsset 4@2x.png" style="width:100px; height:100px;"/>
+                    <img src="~/images/FAsset 4@2x.png" style="width:100px; height:100px;" />
                 </div>
             </div>
-                <br />
-                <div class="row">
-                    <div class="col-lg-3">
-                        <h4 class="underline">DATE</h4>
-                        <h5>03-Dec-2020</h5>
-                    </div>
-                    <div class="col-lg-4">
-                        <h4 class="underline">INVOICE NO</h4>
-                        
-                        <h5>SSIT 0046</h5>
-                        <br />
-                        <h4 class="underline">PROJECT ID</h4>
-                        
-                        <h5>AHRI-20190101</h5>
-                    </div>
-                    <div class="col-lg-5">
-                        <h4>SWIFTSENSE IT SOLUTIONS (OPC) Private Limited</h4>
-
-                        GST No. : 29ABBCS3672H1Z3
-                        <br />
-                        #403, 7th A Main, 1st Block HRBR Layout,
-                        <br />
-                        Bangalore, India – 560043
-                        <br />
-                        Phone : (+91) 7022531630
-                        <br />
-                        Email: <a href="">psvishnu85@yahoo.co.uk</a>
-                    </div>
+            <br />
+            <div class="row">
+                <div class="col-lg-3">
+                    <h4 class="underline">DATE</h4>
+                    <h5>@DateTime.UtcNow.ToShortDateString()</h5>
                 </div>
-                <br />
-                <div class="row">
-                    <div class="col-lg-6">
-                        <h5>
-                            AHRI (AIR-CONDITIONING,
-                            HEATING AND REFRIGERATION
-                            INSTITUTE)
-                        </h5>
+                <div class="col-lg-4">
+                    <h4 class="underline">INVOICE NO</h4>
+                    @{ double count = 1;}
+                    <h5>SSIT @count.ToString().PadLeft(4, '0')</h5>
+                    @{count++;}
+                    <br />
+                    <h4 class="underline">PROJECT ID</h4>
 
-                        2311 Wilson Blvd, Suite 400,
-                        <br />
-                        Arlington, VA,
-                        <br />
-                        USA - 22201
-                        <br />
-                        Phone : +1 (703)5248800
-                        <br />
-                        Email : wfong@ahrinet.org
-
-                    </div>
-                    <div class="col-lg-6">
-
-                    </div>
+                    <h5>@Model.clientDetails.projectId</h5>
                 </div>
-                <br />
-                <div class="row InvoiceItems">
-                    <div class="col-lg-12">
-                        <table class="table table-bordered table-sm">
-                            <thead>
-                                <tr class="center" style="background-color:#B8E1FA">
-                                    <th>
-                                        <h5>
-                                            M1 Project<br />
-                                            (GL Code: 7215-8-35-9191)
-                                        </h5>
-                                    </th>
-                                    <th style="width:110px;">
-                                        <h5>
-                                            Billing
-                                            Rate / Hr
-                                            (USD)
-                                        </h5>
-                                    </th>
-                                    <th style="width:110px;">
-                                        <h5>
-                                            No of
-                                            Hours
-                                        </h5>
-                                    </th>
-                                    <th style="width:110px;">
-                                        <h5>
-                                            Total
-                                            (USD)
-                                        </h5>
-                                    </th>
+                <div class="col-lg-5">
+                    <h4>@Model.companydetails.companyName</h4>
 
-                                </tr>
-                            </thead>
-                            <tbody>
+                    GST No. : @Model.companydetails.gstNo
+                    <br />
+                    @Model.companydetails.address
+                    <br />
+                    Phone : (+91) @Model.companydetails.phoneNo
+                    <br />
+                    Email: <a href="">@Model.companydetails.email</a>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-lg-6">
+                    <h5>
+                        @Model.clientDetails.name
+                    </h5>
+
+                    @Model.clientDetails.address
+                    <br />
+                    Arlington, VA,
+                    <br />
+                    USA - 22201
+                    <br />
+                    Phone : @Model.clientDetails.phone
+                    <br />
+                    Email : @Model.clientDetails.email
+
+                </div>
+                <div class="col-lg-6">
+
+                </div>
+            </div>
+            <br />
+            <div class="row InvoiceItems">
+                <div class="col-lg-12">
+                    <table class="table table-bordered table-sm">
+                        <thead>
+                            <tr class="center" style="background-color:#B8E1FA">
+                                <th>
+                                    <h5>
+                                        @Model.projectDetails.name<br />
+                                        (GL Code: @Model.projectDetails.pCode)
+                                    </h5>
+                                </th>
+                                <th style="width:110px;">
+                                    <h5>
+                                        Billing
+                                        Rate / Hr
+                                        (USD)
+                                    </h5>
+                                </th>
+                                <th style="width:110px;">
+                                    <h5>
+                                        No of
+                                        Hours
+                                    </h5>
+                                </th>
+                                <th style="width:110px;">
+                                    <h5>
+                                        Total
+                                        (USD)
+                                    </h5>
+                                </th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{ int i = 0;}
+                            @{int sum = 0; }
+                            @foreach (var val in Model.billingRate.Employees)
+                            {
+
                                 <tr>
-                                    <td>1) Tester 1</td>
-                                    <td class="center">XXX</td>
-                                    <td class="center">140</td>
-                                    <td class="center">XXXX</td>
+                                    <td>@(i = i + 1) ) @val.employeeName</td>
+                                    <td class="center">@val.RatePerHr</td>
+                                    <td class="center">@val.NoofHours</td>
+                                    <td class="center">@(val.NoofHours * val.RatePerHr)</td>
 
                                 </tr>
-                                <tr class="center">
-                                   
-                                    <td colspan="3">
-                                        <h6>TOTAL (USD)</h6>
-                                    </td>
-                                    <td>
-                                        <h6>XXXXX</h6>
-                                    </td>
-                                </tr>
+                                sum += val.NoofHours * val.RatePerHr;
+                            }
+                            
 
-                            </tbody>
-                        </table>
+                            <tr class="center">
 
-                    </div>
+                                <td colspan="3">
+                                    <h6>TOTAL (USD)</h6>
+                                </td>
+                                <td>
+                                    <h6>@sum </h6>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
                 </div>
-                <br />
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h4 class="underline">
-                            Payment Terms:
-                        </h4>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-lg-12">
+                    <h4 class="underline">
+                        Payment Terms:
+                    </h4>
 
-                        1) Please make all payments payable to
-                        <h5 style="padding-left:75px;">
-                            <i>
-                                <br />
-                                SWIFTSENSE IT Solutions (OPC) Private Limited
-                                <br />
-                                Account Number – 50200036869869
-                                <br />
-                                BANK: HDFC BANK LIMITED
-                                <br />
-                                SWIFT CODE: HDFCINBBBNG
-                            </i>
-                        </h5>
-                        <br /><br />
-                    </div>
-
+                    1) Please make all payments payable to
+                    <h5 style="padding-left:75px;">
+                        <i>
+                            <br />
+                            SWIFTSENSE IT Solutions (OPC) Private Limited
+                            <br />
+                            Account Number – 50200036869869
+                            <br />
+                            BANK: HDFC BANK LIMITED
+                            <br />
+                            SWIFT CODE: HDFCINBBBNG
+                        </i>
+                    </h5>
+                    <br /><br />
                 </div>
 
             </div>
+
+        </div>
     </div>
 </div>

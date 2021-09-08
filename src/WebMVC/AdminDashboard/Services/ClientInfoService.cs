@@ -25,7 +25,7 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.Services
             _remoteServiceBaseUri = $"{_appsettings.Value.ServiceBaseURl}/api/ClientInfo/";
         }
 
-        public async Task<ClientDetails> GetClientInfo(string clientId)
+        public async Task<ClientDetails> GetClientInfo(int? clientId)
         {
             var allinfourl = APIGateway.ClientInfo.GetClientInfo(_remoteServiceBaseUri, clientId);
             var datastring = await _apiclient.GetStringAsync(allinfourl);

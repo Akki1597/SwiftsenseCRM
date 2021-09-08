@@ -1,5 +1,4 @@
-﻿@model InvoiceMicroServices.WebMVC.AdminDashboard.Models.billingRate
-
+﻿@model List<InvoiceMicroServices.WebMVC.AdminDashboard.Models.EmployeeDetails>
 @{
     ViewData["Title"] = "BillingRate";
 }
@@ -15,45 +14,60 @@
 
                     <h4 style="margin:20px 0px 40px 20px;color:gray;">Billing Rate/Hour</h4>
 
-
                 </div>
+                <form role="form" method="post" asp-action="BillingRate" asp-controller="Billing" >
+                    <div class="form-row" style="padding-left:20px">
 
-                <div class="form-row" style="padding-left:20px">
-                    <div class="col-sm-3">
-                        <div class="form-group">
-                            <label asp-for="@Model.EmployeeName" class="control-label"></label>
+                        @if (Model != null)
+                        {
 
-                        </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label  class="control-label">Employee Name</label>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label class="control-label">Rate/hr</label>
+
+                                </div>
+                            </div>
+                            @*<div class="col-sm-3">
+                                <div class="form-group">
+                                    <label asp-for="selectedCurrency" class="control-label"></label>
+
+                                </div>
+                            </div>*@
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label class="control-label">No Of Hours</label>
+
+                                </div>
+                            </div>
+                            foreach (var item in Model)
+                            {
+                                Html.RenderPartial("Partial_Employeedetails",item);
+                            }
+
+                        }
+                        else
+                        {
+                            <div class="col-sm-12">
+                                <p> <center>No Record Found</center> </p>
+                            </div>
+                        }
+
+
                     </div>
-                    <div class="col-sm-3">
-                        <div class="form-group">
-
-                            <input asp-for="@Model.RatePerHr" type="text" placeholder="Enter Rate" class="form-control" />
-                        </div>
-                    </div>
-                    <div class="col-sm-2">
-                        <div class="form-group">
-                            <label asp-for="@Model.CurrencyType" class="control-label"></label>
-
-                        </div>
-                    </div>
-                    <div class="col-sm-2">
-                        <div class="form-group">
-
-                            <label asp-for="@Model.NoofHours" class="control-label"></label>
-                            Hours
-                        </div>
-                    </div>
-
-                </div>
 
 
 
-                <div class="">
-                    <button type="button" class="btn btnColor" onclick="location.href='@Url.Action("InvoicePreview", "Billing")'">Next</button>
-                    <button type="button" class="btn btnColor" onclick="location.href='@Url.Action("billingmonth", "Billing")'">Back</button>
-                </div>
-
+                                <div class="">
+                                    <input type="submit" class="btn btnColor"  value="Next" />
+                                    <button type="button" class="btn btnColor" onclick="location.href='@Url.Action("billingmonth", "Billing")'">Back</button>
+                                </div>
+</form>
             </div>
         </div>
     </div>

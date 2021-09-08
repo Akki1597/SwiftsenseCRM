@@ -53,14 +53,14 @@ namespace AuthrizationMicroservice
             {
                 app.UseBrowserLink();
                 app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage();
+                //app.UseDatabaseErrorPage();
             }
             else
             {
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            app.UseStaticFiles();
+    app.UseStaticFiles();
 
             //app.UseAuthentication();
             app.UseIdentityServer();

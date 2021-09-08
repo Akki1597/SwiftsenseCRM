@@ -8,7 +8,7 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.Services
 {
     public interface IClientInfo
     {
-        Task<ClientDetails> GetClientInfo(string clientId);
+        Task<ClientDetails> GetClientInfo(int? clientId);
         Task<bool> Saveclientdetails(ClientDetails req);
         Task<List<ClientDetails>> Getclientlist(string status);
         //Task<List<ClientDetails>> GetclientNamelist(string status);

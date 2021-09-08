@@ -26,6 +26,7 @@
                             <th>S.No.</th>
                             <th>Project Name</th>
                             <th>Project Code</th>
+                            <th>Project Id</th>
                             <th>Client Id</th>
                             <th>Status</th>
                             <th>No of unbilled hours</th>
@@ -38,21 +39,22 @@
                             int i = 0;
                             @foreach (var data in Model)
                             {
-                                <tr>
-                                    <td>@(i = i + 1)</td>
-                                    <td>@data.name</td>
-                                    <td>@data.pCode</td>
-                                    <td>@data.clientId</td>
-                                    <td>@data.status</td>
-                                    <td>@data.unbilledHours</td>
-                                    <td><button class="btn btn-sm btn-primary">View</button></td>
-                                </tr>
+                        <tr>
+                            <td>@(i = i + 1)</td>
+                            <td>@data.name</td>
+                            <td>@data.pCode</td>
+                            <td>@data.projectId</td>
+                            <td>@data.clientId</td>
+                            <td>@data.status</td>
+                            <td>@data.unbilledHours</td>
+                            <td><button class="btn btn-sm btn-primary">View</button></td>
+                        </tr>
                             }
                         }
                         else
                         {
                             <tr>
-                                <td colspan="7">No Record Found</td>
+                                <td colspan="8">No Record Found</td>
                             </tr>
                         }
 

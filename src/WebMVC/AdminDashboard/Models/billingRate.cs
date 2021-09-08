@@ -7,15 +7,23 @@ using System.Threading.Tasks;
 
 namespace InvoiceMicroServices.WebMVC.AdminDashboard.Models
 {
+    
     public class billingRate
     {
-        [DisplayName("Employee Name")]
-        public string EmployeeName { get; set; }
-        [DisplayName("Rate/hr")]
-        public string RatePerHr { get; set; }
-        [DisplayName("Currency Type")]
         public List<SelectListItem> CurrencyType { get; set; }
-        [DisplayName("Total Number of Hours")]
-        public string NoofHours { get; set; }
+        [DisplayName("Currency Type")]
+        public string selectedCurrency { get; set; }
+        public List<EmployeeDetail> Employees { get; set; } = new List<EmployeeDetail>();
     }
+
+    public class EmployeeDetail
+    {
+        [DisplayName("Employee Name")]
+        public string employeeName { get; set; }
+        [DisplayName("Total Number of Hours")]
+        public int? NoofHours { get; set; }
+        [DisplayName("Rate/hr")]
+        public int? RatePerHr { get; set; }
+    }
+
 }

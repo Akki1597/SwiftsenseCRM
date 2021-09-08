@@ -93,7 +93,7 @@ namespace AdminDashboard.Controllers
 
         public async Task<IActionResult> GetClientDetails(int? id)
         {
-            var info = await _clientInfosvc.GetClientInfo("51");
+            var info = await _clientInfosvc.GetClientInfo(id);
             var vm = new CrmIndexViewModel()
             {
                 client = info,
@@ -184,7 +184,7 @@ namespace AdminDashboard.Controllers
             return res;
             
         }
-        public async Task<ActionResult> GetEmplist(int pId)
+        public async Task<ActionResult> GetEmplist(string pId)
         {
             IEnumerable<SelectListItem> response = await _employeesvc.GetEmplist(pId);
             var res = Json(response);

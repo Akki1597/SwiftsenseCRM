@@ -28,7 +28,7 @@
             <div class="navbar-right">
                 <a asp-controller="EmployeeHomePage" asp-action="EmployeeHomePage" style="padding:20px;color:white">Home</a>
                 <a href="#contact" style="padding:20px;color:white">Service Offered</a>
-                <a href="#about" style="padding:20px;color:white">About Us</a>
+                <a asp-controller="Home" asp-action="About" style="padding:20px;color:white">About Us</a>
                 <a href="#contact" style="padding:20px;color:white">Contact</a>
                 <a href="#about" style="padding:20px;color:white">Our Team</a>
             </div>
@@ -61,6 +61,5 @@
     </environment>
 
     @RenderSection("Scripts", required: false)
-    @RenderSection("Styles", required: false)
 </body>
 </html>
