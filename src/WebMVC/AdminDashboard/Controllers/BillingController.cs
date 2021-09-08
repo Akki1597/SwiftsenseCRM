@@ -25,11 +25,50 @@ namespace AdminDashboard.Controllers
             BillingInvoice model = new BillingInvoice();
             model.invoiceList = new List<SelectListItem>
             {
-                new SelectListItem {Text = "--Select Invoice Filter--", Value = "1"},
-                new SelectListItem {Text = "Project Wise", Value = "2"},
-                new SelectListItem {Text = "Client Wise", Value = "3"},
-                new SelectListItem {Text = "Month Wise", Value = "4"},
-                new SelectListItem {Text = "Year Wise", Value = "5"},
+                new SelectListItem {Text = "Select Invoice Filter", Value = "0"},
+                new SelectListItem {Text = "Project Wise", Value = "1"},
+                new SelectListItem {Text = "Client Wise", Value = "2"},
+                new SelectListItem {Text = "Month Wise", Value = "3"},
+                new SelectListItem {Text = "Year Wise", Value = "4"},
+            };
+            model.invoiceListClientWise = new List<SelectListItem>
+            {
+                new SelectListItem {Text = "Select Client Name", Value = "0"},
+            };
+            model.invoiceListProjectWise = new List<SelectListItem>
+            {
+                new SelectListItem {Text = "Select Project Name", Value = "0"},
+            };
+            model.invoiceListMonthWise = new List<SelectListItem>
+            {
+                new SelectListItem {Text = "Select Month",Value="0"},
+                new SelectListItem {Text = "January", Value = "1"},
+                new SelectListItem {Text = "February", Value = "2"},
+                new SelectListItem {Text = "March", Value = "3"},
+                new SelectListItem {Text = "April", Value = "4"},
+                new SelectListItem {Text = "May", Value = "5"},
+                new SelectListItem {Text = "June", Value = "6"},
+                new SelectListItem {Text = "July", Value = "7"},
+                new SelectListItem {Text = "August", Value = "8"},
+                new SelectListItem {Text = "September", Value = "9"},
+                new SelectListItem {Text = "October", Value = "10"},
+                new SelectListItem {Text = "November", Value = "11"},
+                new SelectListItem {Text = "December", Value = "12"}
+            };
+            model.invoiceListYearWise = new List<SelectListItem>
+            {
+                 new SelectListItem {Text = "Select Year", Value = "0"},
+                new SelectListItem {Text = "2020-21", Value = "1"},
+                new SelectListItem {Text = "2021-22", Value = "2"},
+                new SelectListItem {Text = "2022-23", Value = "3"},
+                new SelectListItem {Text = "2023-24", Value = "4"},
+                new SelectListItem {Text = "2024-25", Value = "5"},
+                new SelectListItem {Text = "2025-26", Value = "6"},
+                new SelectListItem {Text = "2026-27", Value = "7"},
+                new SelectListItem {Text = "2027-28", Value = "8"},
+                new SelectListItem {Text = "2028-29", Value = "9"},
+                new SelectListItem {Text = "2029-30", Value = "10"},
+                new SelectListItem {Text = "2030-31", Value = "11"}
             };
             return View(model);
         }
@@ -49,7 +88,7 @@ namespace AdminDashboard.Controllers
             billingIndexViewModel model = new billingIndexViewModel(); 
             model.yearList = new List<SelectListItem>
             {
-                new SelectListItem {Text = "--Select Year--"},
+                new SelectListItem {Text = "Select Year"},
                 new SelectListItem {Text = "2020", Value = "1"},
                 new SelectListItem {Text = "2021", Value = "2"},
                 new SelectListItem {Text = "2022", Value = "3"},
@@ -65,7 +104,7 @@ namespace AdminDashboard.Controllers
             };
             model.monthList = new List<SelectListItem>
             {
-                new SelectListItem {Text = "--Select Month--"},
+                new SelectListItem {Text = "Select Month"},
                 new SelectListItem {Text = "January", Value = "2"},
                 new SelectListItem {Text = "February", Value = "3"},
                 new SelectListItem {Text = "March", Value = "4"},
@@ -87,7 +126,7 @@ namespace AdminDashboard.Controllers
 
             model.CurrencyType = new List<SelectListItem>()
             {
-                new SelectListItem {Text = "--Currency Type--"},
+                new SelectListItem {Text = "Currency Type"},
                 new SelectListItem {Text = "USD", Value = "1"},
                 new SelectListItem {Text = "Rupees", Value = "2"},
 
