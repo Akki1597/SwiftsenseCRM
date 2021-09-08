@@ -88,6 +88,13 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.GatewayToMicroServices
                 return res;
             }
 
+            public static string GetEmpNamelistMonthWise(string baseuri, string pId)
+
+            {
+                var res = $"{baseuri}GetEmpNamelistProjectWise?pId=" + pId;
+                return res;
+            }
+
             public static string GetEmpNamelistDetailsProjectWise(string baseuri, string pId)
 
             {

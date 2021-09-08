@@ -62,6 +62,41 @@ namespace InvoiceMIcroServices.Controllers
         }
 
         [HttpGet]
+        [Route("GetEmpNamelistMonthtWise")]
+        public IEnumerable<SelectListItem> GetEmpNamelistMonthtWise(string pId,string month,string year)
+        {
+            try
+            {
+                List<SelectListItem> emplist = _context.employeeDetails.AsNoTracking()
+             .OrderBy(x => x.firstName)
+              .Where(x => x.projectId == pId)
+                 .Select(x =>
+                 new SelectListItem
+                 {
+                     Value = x.id.ToString(),
+                     Text = x.firstName + x.lastName,
+                     Selected = false
+                 }).ToList();
+
+                var prolistinitial = new SelectListItem()
+                {
+                    Value = "0",
+                    Text = "--- Select Employee Name ---",
+                    Selected = true
+                };
+                emplist.Insert(0, prolistinitial);
+
+                return new SelectList(emplist, "Value", "Text", "Selected");
+
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+        }
+
+        [HttpGet]
         [Route("GetEmpNamelistDetailsProjectWise")]
         public List<EmployeeDetails> GetEmpNamelistDetailsProjectWise(string pId)
         {

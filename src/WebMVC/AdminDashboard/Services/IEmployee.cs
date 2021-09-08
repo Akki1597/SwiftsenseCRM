@@ -11,5 +11,6 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.Services
     {
         Task<IEnumerable<SelectListItem>> GetEmplist(string pId);
         Task<List<EmployeeDetails>> GetEmplistDetails(string pId);
+        Task<List<EmployeeDetails>> GetEmplistDetails(string pId,string month,string year);
     }
 }

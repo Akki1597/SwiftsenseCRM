@@ -103,7 +103,7 @@ namespace AdminDashboard.Controllers
         public async Task<IActionResult> Rateperhr()
         {
             var clientId = TempData["clientId"];
-            TempData.Keep();
+       
             billingRate model = new billingRate();
 
             model.CurrencyType = new List<SelectListItem>()
@@ -114,6 +114,12 @@ namespace AdminDashboard.Controllers
 
                 };
             var cdetails =  await GetClientDetails(Convert.ToInt32(clientId));
+
+            var selectedMonth = TempData["selectedMonth"].ToString();
+            var selectedYear = TempData["selectedYear"].ToString();
+
+
+            TempData.Keep();
 
             var res  = await GetEmplist(cdetails.projectId);
             model.Employees = new List<EmployeeDetail>();
