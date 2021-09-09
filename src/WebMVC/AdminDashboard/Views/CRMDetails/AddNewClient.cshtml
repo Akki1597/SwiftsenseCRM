@@ -28,36 +28,42 @@
                             <div class="form-group">
                                 <label asp-for="name" class="control-label"></label>
                                 <input asp-for="name" type="text" placeholder="Enter Client Name" class="form-control" />
+                                <span asp-validation-for="name" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-sm-7">
                             <div class="form-group">
                                 <label asp-for="address" class="control-label"></label>
                                 <input asp-for="address" type="text" placeholder="Enter Address" class="form-control" />
+                                <span asp-validation-for="address" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-sm-7">
                             <div class="form-group">
                                 <label asp-for="phone" class="control-label"></label>
                                 <input asp-for="phone" type="number" placeholder="Enter Phone Number" class="form-control" />
+                                <span asp-validation-for="phone" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-sm-7">
                             <div class="form-group">
                                 <label asp-for="email" class="control-label"></label>
                                 <input asp-for="email" type="email" placeholder="Enter Email Address" class="form-control" />
+                                <span asp-validation-for="email" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-sm-7">
                             <div class="form-group">
                                 <label asp-for="project" class="control-label"></label>
                                 <input asp-for="project" type="text" placeholder="Enter Client Project" class="form-control" />
+                                <span asp-validation-for="project" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-sm-7">
                             <div class="form-group">
                                 <label asp-for="unbilledHours" class="control-label"></label>
                                 <input asp-for="unbilledHours" type="number" placeholder="Enter No of unbilled hours" class="form-control" />
+                                <span asp-validation-for="unbilledHours" class="text-danger"></span>
                             </div>
                         </div>
                     </div>

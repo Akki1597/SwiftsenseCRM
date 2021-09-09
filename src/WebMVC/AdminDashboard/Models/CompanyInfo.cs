@@ -11,9 +11,11 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.Models
         public int id { get; set; }
         public string companyId { get; set; }
 
+        [Required(ErrorMessage = "Please enter your Company Name")]
         [Display(Name = "Company Name")]
         public string companyName { get; set; }
 
+        [Required(ErrorMessage = "Please enter your Address")]
         [Display(Name = "Address")]
         public string address { get; set; }
 

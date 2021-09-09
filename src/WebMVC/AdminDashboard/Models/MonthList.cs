@@ -9,6 +9,7 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.Models
     public class MonthList
     {
         [Display(Name = "Month")]
+        [Required(ErrorMessage = "Month is required.")]
         public int monthId { get; set; }
     }
 }

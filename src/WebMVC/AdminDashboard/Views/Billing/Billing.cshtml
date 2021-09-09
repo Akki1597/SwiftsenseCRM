@@ -11,7 +11,7 @@
             Html.RenderPartial("PartialLeftMenu");
         }
         <div class="col-md-10 menuMargin" style="margin-top:30px;">
-            <form role="form" class="needs-validation" method="post" novalidate>
+            <form role="form" class="needs-validation" asp-action="ViewInvoiceList" asp-controller="Billing" novalidate>
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="card" style="min-height:220px;margin-top:10px">
@@ -21,38 +21,45 @@
                                     <div class="form-group">
                                         <label class="control-label">Invoice Category</label>
                                         <select asp-for="invoice" asp-items="@Model.invoiceList" class="form-control" id='invoiceListSelect'></select>
+                                        <span asp-validation-for="invoice" class="text-danger"></span>
                                     </div>
                                 </div>
                                 <div class="col-sm-6" id="invoiceProjectList" style="display:none;">
                                     <div class="form-group">
                                         <label class="control-label">Project Name</label>
                                         <select asp-for="projectWise" asp-items="@Model.invoiceListProjectWise" class="form-control"></select>
+                                        <span asp-validation-for="projectWise" class="text-danger"></span>
                                     </div>
                                 </div>
                                 <div class="col-sm-6" id="invoiceClientList" style="display:none;">
                                     <div class="form-group">
                                         <label class="control-label">Client Name</label>
                                         <select asp-for="clientWise" asp-items="@Model.invoiceListClientWise" class="form-control"></select>
+                                        <span asp-validation-for="clientWise" class="text-danger"></span>
                                     </div>
                                 </div>
                                 <div class="col-sm-6" id="invoiceYearList" style="display:none;">
                                     <div class="form-group">
                                         <label class="control-label">Year</label>
                                         <select asp-for="yearWise" asp-items="@Model.invoiceListYearWise" class="form-control"></select>
+                                        <span asp-validation-for="yearWise" class="text-danger"></span>
                                     </div>
                                 </div>
                                 <div class="col-sm-6" id="invoiceMonthList" style="display:none;">
                                     <div class="form-group">
                                         <label class="control-label">Month</label>
                                         <select asp-for="monthWise" asp-items="@Model.invoiceListMonthWise" class="form-control"></select>
+                                        <span asp-validation-for="monthWise" class="text-danger"></span>
                                     </div>
                                 </div>
                             </div>
-                           
-                                <div class="col-sm-1">
-                                    <button type="button" class="btn btnColor" onclick="location.href='@Url.Action("ViewInvoiceList", "Billing")'">View</button>
-                                </div>
-                           
+
+                            <span class="text-danger" id="errMsg" style="display:none">please select one of the invoice filter</span>
+
+                            <div class="col-sm-1">
+                                <input type="submit" id="btnInvoice" class="btn btnColor"/>
+                            </div>
+
                         </div>
                     </div>
                     <div class="col-sm-6">
@@ -78,8 +85,20 @@
 @section Scripts{
     <script>
             $(document).ready(function () {
-              
+                $("#btnInvoice").click(function (e) {
+                    e.preventDefault();
+                    var selectedValue = $('#invoiceListSelect').val();
+                    if (selectedValue == "0") {
+                        $("#errMsg").show();
+                        return;
+                    } else {
+                        $("#errMsg").hide();
+                        return;
+                    }
+                });
+
                 $('#invoiceListSelect').on('change', function () {
+                    $("#errMsg").hide();
                     if (this.value == '1') {
                         $("#invoiceProjectList").show();
                         $("#invoiceClientList").hide();

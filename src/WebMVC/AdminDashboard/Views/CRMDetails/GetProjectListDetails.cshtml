@@ -29,7 +29,8 @@
                             <th>Client Id</th>
                             <th>Status</th>
                             <th>No of unbilled hours</th>
-                            <th>View</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -38,15 +39,16 @@
                             int i = 0;
                             @foreach (var data in Model)
                             {
-                                <tr>
-                                    <td>@(i = i + 1)</td>
-                                    <td>@data.name</td>
-                                    <td>@data.pCode</td>
-                                    <td>@data.clientId</td>
-                                    <td>@data.status</td>
-                                    <td>@data.unbilledHours</td>
-                                    <td><button class="btn btn-sm btn-primary">View</button></td>
-                                </tr>
+                        <tr>
+                            <td>@(i = i + 1)</td>
+                            <td>@data.name</td>
+                            <td>@data.pCode</td>
+                            <td>@data.clientId</td>
+                            <td>@data.status</td>
+                            <td>@data.unbilledHours</td>
+                            <td><button class="btn btn-sm btn-success">Edit</button></td>
+                            <td><button class="btn btn-sm btn-danger">Delete</button></td>
+                        </tr>
                             }
                         }
                         else

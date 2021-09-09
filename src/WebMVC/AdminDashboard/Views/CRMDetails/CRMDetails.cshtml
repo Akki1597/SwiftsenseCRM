@@ -31,6 +31,8 @@
                             <div class="form-group">
                                 <label class="control-label">Client List</label>
                                 <select asp-for="client.status" asp-items="@Model.clientList" class="form-control"></select>
+                                <span asp-validation-for="client.status" class="text-danger"></span>
+
                             </div>
                         </div>
                         <div class="col-sm-3">
@@ -56,6 +58,7 @@
                             <div class="form-group">
                                 <label class="control-label">Project List</label>
                                 <select asp-for="project.status" asp-items="@Model.projectList" class="form-control"></select>
+                                <span asp-validation-for="project.status" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-sm-3">
@@ -71,30 +74,35 @@
                             <div class="form-group">
                                 <label class="control-label">Client List</label>
                                 <select asp-for="client.id" asp-items="@Model.empClientList" class="form-control"></select>
+                                <span asp-validation-for="client.id" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-sm-7">
                             <div class="form-group">
-                                <label  class="control-label">Project List</label>
+                                <label class="control-label">Project List</label>
                                 <select asp-for="project.projectId" asp-items="@Model.empProjectList" class="form-control"></select>
+                                <span asp-validation-for="project.projectId" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-sm-7">
                             <div class="form-group">
-                                <label  class="control-label">Employee List</label>
+                                <label class="control-label">Employee List</label>
                                 <select asp-for="employee.employeeId" asp-items="@Model.employeeList" class="form-control"></select>
+                                <span asp-validation-for="employee.employeeId" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-sm-7">
                             <div class="form-group">
                                 <label asp-for="year.yearId" class="control-label"></label>
                                 <select asp-for="year.yearId" asp-items="@Model.yearList" class="form-control"></select>
+                                <span asp-validation-for="year.yearId" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-sm-7">
                             <div class="form-group">
                                 <label asp-for="month.monthId" class="control-label"></label>
                                 <select asp-for="month.monthId" asp-items="@Model.monthList" class="form-control"></select>
+                                <span asp-validation-for="month.monthId" class="text-danger"></span>
                             </div>
                         </div>
                     </div>
@@ -127,7 +135,7 @@
             var selectedStatus = $("#project_status").val();
          
             if (selectedStatus == "1") {
-                alert(selectedStatus);
+                //alert(selectedStatus);
                 window.location.href = '@Url.Action("GetProjectListDetails", "CRMDetails",new {status = "1" })';
             } else if (selectedStatus == "2") {
                 window.location.href = '@Url.Action("GetProjectListDetails", "CRMDetails",new {status = "2" })';

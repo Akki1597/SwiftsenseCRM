@@ -29,24 +29,28 @@
                             <div class="form-group">
                                 <label asp-for="name" class="control-label"></label>
                                 <input asp-for="name" type="text" placeholder="Enter Project Name" class="form-control" />
+                                <span asp-validation-for="name" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-sm-7">
                             <div class="form-group">
                                 <label asp-for="pCode" class="control-label"></label>
                                 <input asp-for="pCode" type="text" placeholder="Enter Project Code" class="form-control" />
+                                <span asp-validation-for="pCode" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-sm-7">
                             <div class="form-group">
                                 <label asp-for="projectId" class="control-label"></label>
                                 <input asp-for="projectId" type="text" placeholder="Enter Project Id" class="form-control" />
+                                <span asp-validation-for="projectId" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-sm-7">
                             <div class="form-group">
                                 <label asp-for="status" class="control-label"></label>
                                 <input asp-for="status" type="text" placeholder="Enter Project State" class="form-control" />
+                                <span asp-validation-for="status" class="text-danger"></span>
                             </div>
                         </div>
                         @*<div class="col-sm-7">
@@ -59,6 +63,7 @@
                             <div class="form-group">
                                 <label asp-for="unbilledHours" class="control-label"></label>
                                 <input asp-for="unbilledHours" type="number" placeholder="Enter No of unbilled hours" class="form-control" />
+                                <span asp-validation-for="unbilledHours" class="text-danger"></span>
                             </div>
                         </div>
                     </div>

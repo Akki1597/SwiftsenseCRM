@@ -27,13 +27,14 @@
                             <div class="form-group">
                                 <label asp-for="userId" class="control-label"></label>
                                 <input asp-for="userId" type="number" placeholder="Enter Your User Id" class="form-control" />
+                                <span asp-validation-for="userId" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-sm-7">
                             <div class="form-group">
                                 <label asp-for="password" class="control-label"></label>
                                 <input asp-for="password" type="number" placeholder="Enter Your Password" class="form-control" />
-                            </div>
+                                <span asp-validation-for="password" class="text-danger"></span>                            </div>
                         </div>
                     </div>
                     <div class="row" style="padding-left:20px;padding-bottom:15px">

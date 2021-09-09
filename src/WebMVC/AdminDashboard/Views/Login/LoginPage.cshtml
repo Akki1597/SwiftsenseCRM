@@ -26,12 +26,14 @@
                                     <div class="form-group" style="margin-top:5px">
                                         <label asp-for="email" class="control-label"></label>
                                         <input asp-for="email" type="email" placeholder="Enter Username" class="form-control" />
+                                        <span asp-validation-for="email" class="text-danger"></span>
                                     </div>
                                 </div>
                                 <div class="col-sm-12">
                                     <div class="form-group">
                                         <label asp-for="password" class="control-label"></label>
                                         <input asp-for="password" type="password" placeholder="Enter Password" class="form-control" />
+                                        <span asp-validation-for="password" class="text-danger"></span>
                                     </div>
                                 </div>
                                 <div class="col-sm-12">

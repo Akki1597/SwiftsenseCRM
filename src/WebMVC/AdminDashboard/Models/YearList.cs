@@ -10,6 +10,7 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.Models
     public class YearList
     {
         [Display(Name = "Year")]
+        [Required(ErrorMessage = "Year is required.")]
         public int yearId { get; set; }
     }
 }

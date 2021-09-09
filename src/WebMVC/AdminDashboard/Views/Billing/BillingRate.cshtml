@@ -22,26 +22,29 @@
                     <div class="col-sm-3">
                         <div class="form-group">
                             <label asp-for="@Model.EmployeeName" class="control-label"></label>
-
+                            <input asp-for="EmployeeName" class="form-control" />
+                            <span asp-validation-for="EmployeeName" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="col-sm-3">
                         <div class="form-group">
-
+                            <label asp-for="RatePerHr" class="control-label"></label>
                             <input asp-for="@Model.RatePerHr" type="text" placeholder="Enter Rate" class="form-control" />
+                            <span asp-validation-for="RatePerHr" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="col-sm-2">
                         <div class="form-group">
                             <label asp-for="@Model.CurrencyType" class="control-label"></label>
-
+                            <input asp-for="@Model.CurrencyType" type="text" placeholder="Enter Currency Type" class="form-control" />
                         </div>
                     </div>
                     <div class="col-sm-2">
                         <div class="form-group">
 
                             <label asp-for="@Model.NoofHours" class="control-label"></label>
-                            Hours
+                            <input asp-for="@Model.NoofHours" type="text" placeholder="Enter No. Of Hours" class="form-control" />
+                            <span asp-validation-for="NoofHours" class="text-danger"></span>
                         </div>
                     </div>
 
