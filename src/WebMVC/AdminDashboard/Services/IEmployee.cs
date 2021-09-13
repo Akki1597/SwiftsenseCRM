@@ -9,6 +9,8 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.Services
 {
     public interface IEmployee
     {
-        Task<IEnumerable<SelectListItem>> GetEmplist(int pId);
+        Task<IEnumerable<SelectListItem>> GetEmplist(string pId);
+        Task<List<EmployeeDetails>> GetEmplistDetails(string pId);
+        Task<List<EmployeeDetails>> GetEmplistDetails(string pId,string month,string year);
     }
 }

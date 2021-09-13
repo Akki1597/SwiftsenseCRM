@@ -14,7 +14,7 @@ namespace InvoiceMIcroServices.Models
         public string address { get; set; }
         public string phoneNo { get; set; }
         public string email { get; set; }
-        public int? projectId { get; set; }
+        public string projectId { get; set; }
         public string status { get; set; }
         public string unbilledHours { get; set; }
     }

@@ -26,11 +26,27 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.Services
             _remoteServiceBaseUri = $"{_appsettings.Value.ServiceBaseURl}/api/Employee/";
         }
 
-        public async Task<IEnumerable<SelectListItem>> GetEmplist(int pId)
+        public async Task<IEnumerable<SelectListItem>> GetEmplist(string pId)
         {
             var allinfourl = APIGateway.EmployeeInfo.GetEmpNamelistProjectWise(_remoteServiceBaseUri, pId);
             var datastring = await _apiclient.GetStringAsync(allinfourl);
             var emplist = JsonConvert.DeserializeObject<IEnumerable<SelectListItem>>(datastring);
+            return emplist;
+        }
+
+        public async Task<List<EmployeeDetails>> GetEmplistDetails(string pId,string month,string year)
+        {
+            var allinfourl = APIGateway.EmployeeInfo.GetEmpNamelistDetailsProjectWise(_remoteServiceBaseUri, pId);
+            var datastring = await _apiclient.GetStringAsync(allinfourl);
+            var emplist = JsonConvert.DeserializeObject<List<EmployeeDetails>>(datastring);
+            return emplist;
+        }
+
+        public async Task<List<EmployeeDetails>> GetEmplistDetails(string pId)
+        {
+            var allinfourl = APIGateway.EmployeeInfo.GetEmpNamelistDetailsProjectWise(_remoteServiceBaseUri, pId);
+            var datastring = await _apiclient.GetStringAsync(allinfourl);
+            var emplist = JsonConvert.DeserializeObject<List<EmployeeDetails>>(datastring);
             return emplist;
         }
     }

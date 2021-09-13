@@ -31,5 +31,6 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.Models
         [Required(ErrorMessage = "Please enter your No.of unbilled hours")]
         public string unbilledHours { get; set; }
         public string status { get; set; }
+        public string projectId { get; set; }
     }
 }

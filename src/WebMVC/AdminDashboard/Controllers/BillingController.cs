@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web.Script.Serialization;
 using InvoiceMicroServices.WebMVC.AdminDashboard.Models;
 using InvoiceMicroServices.WebMVC.AdminDashboard.Services;
+using InvoiceMicroServices.WebMVC.AdminDashboard.ViewModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Newtonsoft.Json;
 
 namespace AdminDashboard.Controllers
 {
@@ -13,14 +17,18 @@ namespace AdminDashboard.Controllers
     {
         private readonly IClientInfo _clientInfosvc;
         private readonly IProjectInfo _projectInfosvc;
+        private readonly ICompanyInfo _companyInfosvc;
+        private readonly IBillingInfo _billingInfo;
         private readonly IEmployee _employeesvc;
-        public BillingController(IClientInfo clientInfo, IProjectInfo projectInfo, IEmployee employee)
+        public BillingController(IClientInfo clientInfo, IProjectInfo projectInfo, IEmployee employee, ICompanyInfo companyInfo, IBillingInfo billingInfo)
         {
             _clientInfosvc = clientInfo;
             _projectInfosvc = projectInfo;
             _employeesvc = employee;
+            _billingInfo = billingInfo;
+            _companyInfosvc = companyInfo;
         }
-        public IActionResult Billing()
+        public async Task<IActionResult> Billing()
         {
             BillingInvoice model = new BillingInvoice();
             model.invoiceList = new List<SelectListItem>
@@ -31,14 +39,24 @@ namespace AdminDashboard.Controllers
                 new SelectListItem {Text = "Month Wise", Value = "3"},
                 new SelectListItem {Text = "Year Wise", Value = "4"},
             };
-            model.invoiceListClientWise = new List<SelectListItem>
+
+            List<ClientDetails> clist = await GetCLientlist();
+
+            model.invoiceListClientWise = new List<SelectListItem>();
+            model.invoiceListClientWise.Add(new SelectListItem { Text = "Select Client Name", Value = "0", Selected = true });
+            for (int i = 0; i < clist.Count; i++)
             {
-                new SelectListItem {Text = "Select Client Name", Value = "0"},
-            };
-            model.invoiceListProjectWise = new List<SelectListItem>
+                model.invoiceListClientWise.Add(new SelectListItem { Text = clist[i].name, Value = clist[i].id.ToString() });
+            }
+
+            List<ProjectDetails> plist = await _projectInfosvc.Getprojectlist("1");
+
+            model.invoiceListProjectWise = new List<SelectListItem>();
+            model.invoiceListProjectWise.Add(new SelectListItem { Text = "Select Project Name", Value = "0", Selected = true });
+            for (int i = 0; i < plist.Count; i++)
             {
-                new SelectListItem {Text = "Select Project Name", Value = "0"},
-            };
+                model.invoiceListProjectWise.Add(new SelectListItem { Text = plist[i].name, Value = plist[i].projectId.ToString() });
+            }
             model.invoiceListMonthWise = new List<SelectListItem>
             {
                 new SelectListItem {Text = "Select Month",Value="0"},
@@ -78,14 +96,16 @@ namespace AdminDashboard.Controllers
             //List<ProjectDetails> res = new List<ProjectDetails>();
             return View(res);
         }
-        public IActionResult ViewInvoiceList()
+        public IActionResult ViewInvoiceList(string id)
         {
 
+            var res = _billingInfo.GetInvoiceList(id);
             return View();
         }
-        public IActionResult billingmonth()
+        public IActionResult billingmonth(int clientId)
         {
-            billingIndexViewModel model = new billingIndexViewModel(); 
+            billingIndexViewModel model = new billingIndexViewModel();
+            model.clientId = clientId;
             model.yearList = new List<SelectListItem>
             {
                 new SelectListItem {Text = "Select Year"},
@@ -120,24 +140,175 @@ namespace AdminDashboard.Controllers
             };
             return View(model);
         }
-        public IActionResult BillingRate()
+
+
+        public IActionResult Selectedbillingmonth(billingIndexViewModel req)
         {
+
+            TempData["selectedMonth"] = req.selectedMonth;
+            TempData["selectedYear"] = req.selectedYear;
+            TempData["clientId"] = req.clientId;
+
+            return RedirectToAction("Rateperhr");
+        }
+
+        public async Task<IActionResult> Rateperhr()
+        {
+            var clientId = TempData["clientId"];
+
             billingRate model = new billingRate();
 
             model.CurrencyType = new List<SelectListItem>()
             {
                 new SelectListItem {Text = "Currency Type"},
                 new SelectListItem {Text = "USD", Value = "1"},
-                new SelectListItem {Text = "Rupees", Value = "2"},
 
-            };
+                };
+            var cdetails = await GetClientDetails(Convert.ToInt32(clientId));
+
+            var selectedMonth = TempData["selectedMonth"].ToString();
+            var selectedYear = TempData["selectedYear"].ToString();
 
 
+            TempData.Keep();
+
+            var res = await GetEmplist(cdetails.projectId);
+            model.Employees = new List<EmployeeDetail>();
+            foreach (var item in res)
+            {
+                EmployeeDetail rate = new EmployeeDetail();
+                rate.employeeName = item.firstName + item.lastName;
+                rate.NoofHours = item.totalhr;
+                rate.RatePerHr = item.ratePerHr;
+
+                model.Employees.Add(rate);
+            }
             return View(model);
         }
-        public IActionResult InvoicePreview()
+        //public async Task<IActionResult> BillingRate()
+        //{
+        //    List<EmployeeDetails> model = new List<EmployeeDetails>();
+
+
+        //    var selectedMonth = TempData["selectedMonth"].ToString();
+        //    var selectedYear = TempData["selectedYear"].ToString();
+
+
+        //    TempData.Keep();
+        //    model =  await GetEmplist("P000SW1");
+
+        //    //model.ratePerHr = new List<RatePerHourResponse>();
+
+        //    //foreach (var item in model.Employees)
+        //    //{
+        //    //    RatePerHourResponse billingmodel = new RatePerHourResponse();
+        //    //    billingmodel.employeeName = item.firstName + " " + item.lastName;
+        //    //    billingmodel.NoofHours = item.totalhr;
+        //    //    billingmodel.RatePerHr = 0;
+        //    //    billingmodel.selectedCurrency = "";
+
+        //    //    model.ratePerHr.Add(billingmodel);
+        //    //}
+
+        ////model.Employees =  await GetEmplist("P000SW1",selectedYear,selectedMonth);
+        //        return View(model);
+        //}
+
+        [HttpPost]
+        public IActionResult Rateperhr(billingRate item)
         {
-            return View();
+            var s = JsonConvert.SerializeObject(item);
+            TempData["billingrate"] = s;
+            TempData.Keep();
+            return RedirectToAction("InvoicePreview", "Billing");
+        }
+
+        public async Task<ActionResult> InvoicePreview()
+        {
+            billinginfo model = new billinginfo();
+            model.invoiceCount = await GetLastInvoiceNo();
+
+            if (TempData["billingrate"] is string s)
+            {
+                model.billingRate = JsonConvert.DeserializeObject<billingRate>(s);
+            }
+            var clientId = TempData["clientId"];
+            TempData.Keep();
+            model.clientDetails = await GetClientDetails(Convert.ToInt32(clientId));
+            HttpContext.Session.SetString("CompanyId", "sw751");
+            var companyId = HttpContext.Session.GetString("CompanyId");
+            model.companydetails = await GetCompanyDetails(companyId);
+            model.projectDetails = await GetProjectDetails(model.clientDetails.projectId);
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> InvoicePreview(billinginfo req)
+        {
+            InvoiceDetails invoice = new InvoiceDetails()
+            {
+                invoiceNo = req.invoiceCount,
+                date = req.invoiceDate,
+                billingMonth = req.billingMonth,
+                clientName = req.clientDetails.name,
+                projectId = req.projectDetails.projectId,
+                projectName = req.projectDetails.name,
+                totalAmount = req.totalAmount,
+                totalHours = req.totalhrs,
+
+            };
+            var res = await _billingInfo.SaveInvoiceDetails(invoice);
+            if (res == true)
+            {
+                return RedirectToAction("Billing");
+            }
+            else
+            {
+                return RedirectToAction("Rateperhr");
+            }
+
+        }
+
+        public async Task<List<EmployeeDetails>> GetEmplist(string pId)
+        {
+            List<EmployeeDetails> employeeDetails = new List<EmployeeDetails>();
+            employeeDetails = await _employeesvc.GetEmplistDetails(pId);
+            return employeeDetails;
+
+        }
+
+        public async Task<CompanyIndexViewModel> GetCompanyDetails(string companyId)
+        {
+            var info = await _companyInfosvc.GetCompanyInfo(companyId);
+            return info;
+
+        }
+
+        public async Task<ClientDetails> GetClientDetails(int? clinetId)
+        {
+            var info = await _clientInfosvc.GetClientInfo(clinetId);
+            return info;
+
+        }
+
+        public async Task<ProjectDetails> GetProjectDetails(string pId)
+        {
+            var info = await _projectInfosvc.GetProjectInfo(pId);
+            return info;
+
+        }
+
+
+        public async Task<List<ClientDetails>> GetCLientlist()
+        {
+            var res = await _clientInfosvc.Getclientlist("1");
+            return res;
+
+        }
+        public async Task<string> GetLastInvoiceNo()
+        {
+            var res = await _billingInfo.GetInvoiceCount();
+            return res.ToString();
         }
     }
 }

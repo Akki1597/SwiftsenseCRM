@@ -12,7 +12,7 @@
             <div class="card" style="min-height:220px;margin-top:10px;padding-left:10px;padding-right:10px">
                 <div class="row">
                     <div class="col-sm-11 col-12">
-                        <h4 style="margin:20px 0px 40px 20px;color:gray;">Generated Invoice List</h4>
+                        <h4 style="margin:20px 0px 40px 20px;color:gray;">Active Project List</h4>
                     </div>
                     <div class="col-sm-1 col-12">
                         <button type="button" class="btn btnColor btn-sm" onclick="location.href='@Url.Action("Billing", "Billing")'" style="margin-top:30px;text-align:right">
@@ -47,7 +47,7 @@
                                     <td>@data.status</td>
                                     @*<td>@data.</td>*@
                                     <td>@data.unbilledHours</td>
-                                    <td><button class="btn btn-sm btn-primary" onclick="location.href='@Url.Action("billingmonth","Billing")'">Generate</button></td>
+                                    <td><button class="btn btn-sm btn-primary" onclick="location.href='@Url.Action("billingmonth","Billing",new { clientId= data.clientId})'">Generate</button></td>
                                 </tr>
                             }
                         }

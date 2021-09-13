@@ -15,5 +15,6 @@ namespace InvoiceMIcroServices.Models
         public int clientId { get; set; }
         public string status { get; set; }
         public string unbilledHours { get; set; }
+        public string projectId { get; set; }
     }
 }

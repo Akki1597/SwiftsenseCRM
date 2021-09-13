@@ -97,6 +97,13 @@
                     }
                 });
 
+
+                $("#projectWise").on("change", function () {
+                    projectId = $(thiss).val();
+                    $.get("/Billing/ViewInvoiceList", { id: projectId })
+                    
+                });
+                
                 $('#invoiceListSelect').on('change', function () {
                     $("#errMsg").hide();
                     if (this.value == '1') {

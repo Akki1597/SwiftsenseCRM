@@ -9,11 +9,14 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.Models
 {
     public class billingIndexViewModel
     {
-        public billinginfo companyInfos { get; set; }
+        public billinginfo billinginfo { get; set; }
 
         
         public PaginationInfo paginationInfo { get; set; }
         public List<SelectListItem> yearList { get; set; }
+        public string selectedYear { get; set; }
+        public string selectedMonth { get; set; }
+        public int clientId { get; set; }
         public List<SelectListItem> monthList { get; set; }
     }
 }

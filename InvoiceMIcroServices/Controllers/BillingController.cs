@@ -1,9 +1,12 @@
-﻿using System;
+﻿using InvoiceMicroServices.Models;
+using InvoiceMIcroServices.Data;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 
 namespace InvoiceMIcroServices.Controllers
 {
@@ -11,36 +14,72 @@ namespace InvoiceMIcroServices.Controllers
     [Route("api/Billing/")]
     public class BillingController : Controller
     {
-        // GET: api/Billing
-        //[HttpGet]
-        //public IEnumerable<string> Get()
-        //{
-        //    return new string[] { "value1", "value2" };
-        //}
+        private readonly AdminDBContext _context;
+        private readonly IOptionsSnapshot<UrlSettings> _settings;
 
-        // GET: api/Billing/5
-        //[HttpGet("{id}", Name = "Get")]
-        //public string Get(int id)
-        //{
-        //    return "value";
-        //}
-        
-        // POST: api/Billing
+        public BillingController(IOptionsSnapshot<UrlSettings> settings, AdminDBContext context)
+        {
+            _settings = settings;
+            _context = context;
+            string url = settings.Value.ExternalServiceBaseUrl;
+        }
+
         [HttpPost]
-        public void Post([FromBody]string value)
+        [Route("SaveInvoiceDetails")]
+        [ProducesResponseType(typeof(InvoiceDetails), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> Post([FromBody]InvoiceDetails req)
         {
+            try
+            {
+                var invoice = new InvoiceDetails()
+                {
+                    invoiceNo = req.invoiceNo,
+                    date = req.date,
+                    billingMonth = req.billingMonth,
+                    clientName = req.clientName,
+                    projectName = req.projectName,
+                    projectId = req.projectId,
+                    totalAmount = req.totalAmount,
+                    totalHours = req.totalHours,
+
+                };
+
+                _context.invoiceDetails.Add(invoice);
+                await _context.SaveChangesAsync();
+                return Ok(invoice);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
-        
-        // PUT: api/Billing/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+
+        [HttpGet]
+        [Route("GetInvoiceCount")]
+        public int GetInvoiceNo()
         {
+            var count = _context.invoiceDetails.ToList().Count();
+            return count;
         }
-        
-        // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+
+        [HttpGet]
+        [Route("GetInvoiceList")]
+        public List<InvoiceDetails> GetInvoiceList(string projectid, string clientId)
         {
+            List<InvoiceDetails> invoiceDetails = new List<InvoiceDetails>();
+            if (!string.IsNullOrEmpty(clientId))
+            {
+                var projectdetails = _context.projectDetails.Where(x => x.id.ToString() == clientId).FirstOrDefault();
+                invoiceDetails = _context.invoiceDetails.Where(x => x.projectId == projectdetails.projectId).ToList();
+            }
+            else
+            {
+                invoiceDetails = _context.invoiceDetails.Where(x => x.projectId == projectid).ToList();
+            }
+            
+            return invoiceDetails;
+
         }
     }
 }

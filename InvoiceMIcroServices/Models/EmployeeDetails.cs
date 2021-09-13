@@ -17,6 +17,9 @@ namespace InvoiceMIcroServices.Models
         public string address { get; set; }
         public DateTime dob { get; set; }
         public string status { get; set; }
-        public int projectId { get; set; }
+        public string projectId { get; set; }
+        public int totalhr { get; set; }
+        public int ratePerHr { get; set; }
+
     }
 }

@@ -13,7 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebMVC", "WebMVC", "{80146B
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdminDashboard", "src\WebMVC\AdminDashboard\AdminDashboard.csproj", "{A86180B0-D2B0-47FC-AC3D-93491FACFA1F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthrizationMicroservice", "AuthrizationMicroservice\AuthrizationMicroservice.csproj", "{CC722CC9-0564-433D-956F-ACCAB483BA14}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthrizationMicroservice", "AuthrizationMicroservice\AuthrizationMicroservice.csproj", "{CC722CC9-0564-433D-956F-ACCAB483BA14}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

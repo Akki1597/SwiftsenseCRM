@@ -1,7 +1,8 @@
-﻿
+﻿@*@model InvoiceMicroServices.WebMVC.AdminDashboard.Models.billinginfo*@
+
 @{
     ViewData["Title"] = "InvoicePreview";
-   
+
 }
 
 <div class="container-xl">
@@ -16,23 +17,23 @@
                         <h4 style="margin:20px 0px 40px 20px;color:gray;">Invoice Preview</h4>
                     </div>
                     <div class="col-lg-2">
-                        <div style=" float: right; margin:20px 0px 40px 20px;"><button type="button" class="btn btnColor" onclick="location.href='@Url.Action("BillingRate", "Billing")'">Submit</button></div>
+                        <div style=" float: right; margin:20px 0px 40px 20px;"><button type="button" class="btn btnColor" onclick="location.href='@Url.Action("BillingRate", "Billing")'">Back</button></div>
                     </div>
                 </div>
 
 
+                <form class="form-row" role="form" method="post" asp-action="InvoicePreview" asp-controller="Billing" enctype="multipart/form-data">
 
-                @{
-                    Html.RenderPartial("PartialInvoiceTemplate");
-                }
+                    @{
+                        Html.RenderPartial("PartialInvoiceTemplate");
+                    }
 
-
-
-
-                <div class="">
-
-                    <button type="button" class="btn btnColor" onclick="location.href='@Url.Action("BillingRate", "Billing")'">Back</button>
-                </div>
+                    <div class="row">
+                        <div class="col-sm-1">
+                            <input type="submit" class="btn btnColor" value="Submit" />
+                        </div>
+                    </div>
+                </form>
 
             </div>
         </div>
