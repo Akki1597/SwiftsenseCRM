@@ -1,0 +1,80 @@
+﻿@model InvoiceMicroServices.WebMVC.AdminDashboard.Models.EditClientList
+@{
+    ViewData["Title"] = "EditClientListDetails";
+    Layout = "~/Views/Shared/PartialDashboardLayout.cshtml";
+}
+
+<div class="container-xl">
+    <div class="row">
+        @{
+            Html.RenderPartial("PartialLeftMenu");
+        }
+        <div class="col-md-10 menuMargin" style="margin-top:30px;">
+            <form role="form" class="needs-validation" method="post" enctype="multipart/form-data" novalidate>
+                <div class="card" style="margin-top:20px;">
+                    <div class="row">
+                        <div class="col-sm-11 col-12">
+                            <h4 style="margin:20px 0px 40px 20px;color:gray;">Edit Client Details</h4>
+                        </div>
+                        <div class="col-sm-1 col-12">
+                            <button type="button" class="btn btnColor btn-sm" onclick="location.href='@Url.Action("GetClientListDetails", "CRMDetails")'" style="margin-top:30px;text-align:right">
+                                <i class="fa fa-angle-double-left" aria-hidden="true"></i>&nbsp;Back
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-row" style="padding-left:20px">
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="clientName" class="control-label"></label>
+                                <input asp-for="clientName" type="text" placeholder="Enter Client Name" class="form-control" />
+                                <span asp-validation-for="clientName" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="address" class="control-label"></label>
+                                <input asp-for="address" type="text" placeholder="Enter Address" class="form-control" />
+                                <span asp-validation-for="address" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="phone" class="control-label"></label>
+                                <input asp-for="phone" type="number" placeholder="Enter Phone Number" class="form-control" />
+                                <span asp-validation-for="phone" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="email" class="control-label"></label>
+                                <input asp-for="email" type="email" placeholder="Enter Email Address" class="form-control" />
+                                <span asp-validation-for="email" class="text-danger"></span>
+                            </div>
+                        </div>
+                        @*<div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="project" class="control-label"></label>
+                                <input asp-for="project" type="text" placeholder="Enter Client Project" class="form-control" />
+                                <span asp-validation-for="project" class="text-danger"></span>
+                            </div>
+                        </div>*@
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="unbilledHours" class="control-label"></label>
+                                <input asp-for="unbilledHours" type="number" placeholder="Enter No of unbilled hours" class="form-control" />
+                                <span asp-validation-for="unbilledHours" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="padding-left:20px;padding-bottom:15px">
+                        <div class="col-sm-9">
+                            <button type="submit" class="btn btn-primary">Update</button>
+                        </div>
+                        <div class="col-sm-3">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

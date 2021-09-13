@@ -1,0 +1,82 @@
+﻿@model InvoiceMicroServices.WebMVC.AdminDashboard.Models.EditProjectList
+@{
+    ViewData["Title"] = "EditProjectListDetails";
+    Layout = "~/Views/Shared/PartialDashboardLayout.cshtml";
+
+}
+
+<div class="container-xl">
+    <div class="row">
+        @{
+            Html.RenderPartial("PartialLeftMenu");
+        }
+        <div class="col-md-10 menuMargin" style="margin-top:30px;">
+            <form role="form" class="needs-validation" method="post" enctype="multipart/form-data" novalidate>
+                <div class="card" style="margin-top:20px;">
+                    <div class="row">
+                        <div class="col-sm-11 col-12">
+                            <h4 style="margin:20px 0px 20px 20px;color:gray">Edit Project Details</h4>
+                        </div>
+                        <div class="col-sm-1 col-12">
+                            <button type="button" class="btn btnColor btn-sm" onclick="location.href='@Url.Action("GetProjectListDetails", "CRMDetails")'" style="margin-top:30px;text-align:right">
+                                <i class="fa fa-angle-double-left" aria-hidden="true"></i>&nbsp;Back
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-row" style="padding-left:20px">
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="name" class="control-label"></label>
+                                <input asp-for="name" type="text" placeholder="Enter Project Name" class="form-control" />
+                                <span asp-validation-for="name" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="pCode" class="control-label"></label>
+                                <input asp-for="pCode" type="text" placeholder="Enter Project Code" class="form-control" />
+                                <span asp-validation-for="pCode" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="projectId" class="control-label"></label>
+                                <input asp-for="projectId" type="text" placeholder="Enter Project Id" class="form-control" />
+                                <span asp-validation-for="projectId" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="clientId" class="control-label"></label>
+                                <input asp-for="clientId" type="text" placeholder="Enter Client Id" class="form-control" />
+                                <span asp-validation-for="clientId" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="status" class="control-label"></label>
+                                <input asp-for="status" type="text" placeholder="Enter Project State" class="form-control" />
+                                <span asp-validation-for="status" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="unbilledHours" class="control-label"></label>
+                                <input asp-for="unbilledHours" type="number" placeholder="Enter No of unbilled hours" class="form-control" />
+                                <span asp-validation-for="unbilledHours" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="padding-left:20px;padding-bottom:15px">
+                        <div class="col-sm-3">
+                            <button type="submit" class="btn btnColor">Update</button>
+                        </div>
+                        <div class="col-sm-9">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
