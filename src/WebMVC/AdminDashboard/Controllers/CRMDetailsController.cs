@@ -205,5 +205,13 @@ namespace AdminDashboard.Controllers
             return res;
 
         }
+        public IActionResult EditClientListDetails()
+        {
+            return View();
+        }
+        public IActionResult EditProjectListDetails()
+        {
+            return View();
+        }
     }
 }
