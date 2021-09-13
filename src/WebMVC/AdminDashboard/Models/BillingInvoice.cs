@@ -10,28 +10,28 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.Models
     public class BillingInvoice
     {
         [Display(Name = "Invoice")]
-        [Required(ErrorMessage = "Please enter Invoice")]
-        public int invoice { get; set; }
+        [Required(ErrorMessage = "Please select Invoice")]
+        public string invoice { get; set; }
         public List<SelectListItem> invoiceList { get; set; }
 
         [Display(Name = "projectWise")]
-        [Required(ErrorMessage = "Please enter Project Name")]
-        public int projectWise { get; set; }
+        [Required(ErrorMessage = "Please select Project Name")]
+        public string projectWise { get; set; }
         public List<SelectListItem> invoiceListProjectWise { get; set; }
 
         [Display(Name = "clientWise")]
-        [Required(ErrorMessage = "Please enter Client Name")]
-        public int clientWise { get; set; }
+        [Required(ErrorMessage = "Please select Client Name")]
+        public string clientWise { get; set; }
         public List<SelectListItem> invoiceListClientWise { get; set; }
 
         [Display(Name = "monthWise")]
-        [Required(ErrorMessage = "Please enter Month")]
-        public int monthWise { get; set; }
+        [Required(ErrorMessage = "Please select Month")]
+        public string monthWise { get; set; }
         public List<SelectListItem> invoiceListMonthWise { get; set; }
 
         [Display(Name = "yearWise")]
-        [Required(ErrorMessage = "Please enter Year")]
-        public int yearWise { get; set; }
+        [Required(ErrorMessage = "Please select Year")]
+        public string yearWise { get; set; }
         public List<SelectListItem> invoiceListYearWise { get; set; }
     }
 }

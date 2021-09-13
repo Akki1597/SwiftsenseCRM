@@ -13,9 +13,11 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.ViewModels
         public string companyId { get; set; }
 
         [Display(Name = "Company Name")]
+        [Required(ErrorMessage = "Please enter your Company Name")]
         public string companyName { get; set; }
 
         [Display(Name = "Address")]
+        [Required(ErrorMessage = "Please enter your Address")]
         public string address { get; set; }
 
         [Required(ErrorMessage = "Please enter your GST Number")]

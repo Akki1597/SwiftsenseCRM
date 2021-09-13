@@ -24,17 +24,17 @@ namespace AdminDashboard.Controllers
 
         public async Task<IActionResult> CRMDetails()
         {
-             var clientlist = await _clientInfosvc.Getclientlist("1");
-            var projectlist = await _projectInfosvc.Getprojectlist("1");
+            var clientlist = await _clientInfosvc.Getclientlist("1");
+            //var projectlist = await _projectInfosvc.Getprojectlist("1");
 
             CrmIndexViewModel model = new CrmIndexViewModel();
-            model.clientList = new List<SelectListItem>
+            model.clientStatusList = new List<SelectListItem>
             {
                 new SelectListItem {Text = "Select Client Status"},
                 new SelectListItem {Text = "Active", Value = "1"},
                 new SelectListItem {Text = "InActive", Value = "0"}
             };
-            model.projectList = new List<SelectListItem>
+            model.projectStatusList = new List<SelectListItem>
             {
                 new SelectListItem {Text = "Select Project Status "},
                 new SelectListItem {Text = "Active", Value = "1"},
@@ -91,15 +91,15 @@ namespace AdminDashboard.Controllers
             return View(vm);
         }
 
-        public async Task<IActionResult> GetClientDetails(int? id)
-        {
-            var info = await _clientInfosvc.GetClientInfo(id);
-            var vm = new CrmIndexViewModel()
-            {
-                client = info,
-            };
-            return View(vm);
-        }
+        //public async Task<IActionResult> GetClientDetails(int? id)
+        //{
+        //    var info = await _clientInfosvc.GetClientInfo(id);
+        //    var vm = new CrmIndexViewModel()
+        //    {
+        //        client = info,
+        //    };
+        //    return View(vm);
+        //}
 
         public async Task<IActionResult> GetClientListDetails(string status)
         {
@@ -140,15 +140,15 @@ namespace AdminDashboard.Controllers
         }
 
 
-        public async Task<IActionResult> GetProjectDetails(int? id)
-        {
-            var info = await _projectInfosvc.GetProjectInfo("");
-            var vm = new CrmIndexViewModel()
-            {
-                project = info,
-            };
-            return View(vm);
-        }
+        //public async Task<IActionResult> GetProjectDetails(int? id)
+        //{
+        //    var info = await _projectInfosvc.GetProjectInfo("");
+        //    var vm = new CrmIndexViewModel()
+        //    {
+        //        project = info,
+        //    };
+        //    return View(vm);
+        //}
 
         public async Task<IActionResult> GetProjectListDetails(string status)
         {

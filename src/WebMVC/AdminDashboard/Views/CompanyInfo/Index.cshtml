@@ -15,7 +15,7 @@
             Html.RenderPartial("PartialLeftMenu");
         }
         <div class="col-md-10 menuMargin" style="margin-top:30px">
-            <form role="form" class="needs-validation" method="post" enctype="multipart/form-data" novalidate>
+            <form role="form" class="needs-validation" method="post" enctype="multipart/form-data">
                 <input type="hidden" asp-for="companyId" />
                 <input type="hidden" asp-for="id" />
                 <div class="card" style="margin-top:10px">
@@ -65,7 +65,7 @@
                         <div class="col-sm-7">
                             <div class="form-group">
                                 @Html.LabelFor(m => m.email, new { @for = "email" })
-                                @Html.TextBoxFor(m => m.email, new { @class = "form-control", @placeholder = "Enter Email Address", @type = "email" })
+                                @Html.TextBoxFor(m => m.email, new { @class = "form-control", @placeholder = "Enter Email Address" })
                                 @Html.ValidationMessageFor(m => m.email, "", new { @class = "text-danger" })
                             </div>
                         </div>

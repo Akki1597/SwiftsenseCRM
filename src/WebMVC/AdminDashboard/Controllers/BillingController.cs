@@ -98,7 +98,6 @@ namespace AdminDashboard.Controllers
         }
         public IActionResult ViewInvoiceList(string id)
         {
-
             var res = _billingInfo.GetInvoiceList(id);
             return View();
         }

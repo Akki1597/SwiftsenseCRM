@@ -30,8 +30,8 @@
                         <div class="col-sm-5">
                             <div class="form-group">
                                 <label class="control-label">Client List</label>
-                                <select asp-for="client.status" asp-items="@Model.clientList" class="form-control"></select>
-                                <span asp-validation-for="client.status" class="text-danger"></span>
+                                <select asp-for="selectedCstatus" asp-items="@Model.clientStatusList" class="form-control"></select>
+                                <span asp-validation-for="selectedCstatus" class="text-danger"></span>
 
                             </div>
                         </div>
@@ -57,8 +57,8 @@
                         <div class="col-sm-5">
                             <div class="form-group">
                                 <label class="control-label">Project List</label>
-                                <select asp-for="project.status" asp-items="@Model.projectList" class="form-control"></select>
-                                <span asp-validation-for="project.status" class="text-danger"></span>
+                                <select asp-for="selectedPstatus" asp-items="@Model.projectStatusList" class="form-control"></select>
+                                <span asp-validation-for="selectedPstatus" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-sm-3">
@@ -67,48 +67,50 @@
                         <div class="offset-4"></div>
                     </div>
                 </div>
+            </form>
+            <form role="form" class="needs-validation" method="post" enctype="multipart/form-data" novalidate>
                 <div class="card" style="margin-top:20px;">
                     <h4 style="margin:20px 0px 20px 20px;color:gray">Employee Time Sheet</h4>
                     <div class="form-row" style="padding-left:20px">
                         <div class="col-sm-7">
                             <div class="form-group">
                                 <label class="control-label">Client List</label>
-                                <select asp-for="client.id" asp-items="@Model.empClientList" class="form-control"></select>
-                                <span asp-validation-for="client.id" class="text-danger"></span>
+                                <select asp-for="clientId" asp-items="@Model.empClientList" class="form-control"></select>
+                                <span asp-validation-for="clientId" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-sm-7">
                             <div class="form-group">
                                 <label class="control-label">Project List</label>
-                                <select asp-for="project.projectId" asp-items="@Model.empProjectList" class="form-control"></select>
-                                <span asp-validation-for="project.projectId" class="text-danger"></span>
+                                <select asp-for="projectId" asp-items="@Model.empProjectList" class="form-control"></select>
+                                <span asp-validation-for="projectId" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-sm-7">
                             <div class="form-group">
                                 <label class="control-label">Employee List</label>
-                                <select asp-for="employee.employeeId" asp-items="@Model.employeeList" class="form-control"></select>
-                                <span asp-validation-for="employee.employeeId" class="text-danger"></span>
+                                <select asp-for="employeeId" asp-items="@Model.employeeList" class="form-control"></select>
+                                <span asp-validation-for="employeeId" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-sm-7">
                             <div class="form-group">
-                                <label asp-for="year.yearId" class="control-label"></label>
-                                <select asp-for="year.yearId" asp-items="@Model.yearList" class="form-control"></select>
-                                <span asp-validation-for="year.yearId" class="text-danger"></span>
+                                <label asp-for="yearId" class="control-label"></label>
+                                <select asp-for="yearId" asp-items="@Model.yearList" class="form-control"></select>
+                                <span asp-validation-for="yearId" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-sm-7">
                             <div class="form-group">
-                                <label asp-for="month.monthId" class="control-label"></label>
-                                <select asp-for="month.monthId" asp-items="@Model.monthList" class="form-control"></select>
-                                <span asp-validation-for="month.monthId" class="text-danger"></span>
+                                <label asp-for="monthId" class="control-label"></label>
+                                <select asp-for="monthId" asp-items="@Model.monthList" class="form-control"></select>
+                                <span asp-validation-for="monthId" class="text-danger"></span>
                             </div>
                         </div>
                     </div>
                     <div class="row" style="padding-left:20px;padding-bottom:15px">
                         <div class="col-sm-3">
-                            <button type="button" onclick="location.href='@Url.Action("EmployeeTimeSheetView","CRMDetails")'" class="btn btnColor">View</button>
+                            <input type="submit" onclick="location.href='@Url.Action("EmployeeTimeSheetView","CRMDetails")'" class="btn btnColor" value="View" />
                         </div>
                         <div class="col-sm-9">
                         </div>
@@ -121,7 +123,7 @@
 @section Scripts{
     <script>
         function GetClientList() {
-            var selectedStatus = $("#client_status").val();
+            var selectedStatus = $("#selectedCstatus").val();
             if (selectedStatus == "1") {
                 window.location.href = '@Url.Action("GetClientListDetails", "CRMDetails",new {status = "1" })';
             } else if (selectedStatus == "2") {
@@ -132,7 +134,7 @@
             
         };
       function GetProjectList(){
-            var selectedStatus = $("#project_status").val();
+            var selectedStatus = $("#selectedPstatus").val();
          
             if (selectedStatus == "1") {
                 //alert(selectedStatus);
@@ -145,10 +147,10 @@
             
         };
 
-        $('#client_id').change(function () {
+        $('#clientId').change(function () {
 
-            var selectedClient = parseInt($("#client_id").val());
-            var Projectlist = $('#project_projectId');
+            var selectedClient = parseInt($("#clientId").val());
+            var Projectlist = $('#projectId');
             //alert(Projectlist);
             Projectlist.empty();
 
@@ -169,10 +171,10 @@
               }
         });
 
-        $('#project_projectId').change(function () {
+        $('#projectId').change(function () {
 
-            var selectedProject = parseInt($("#project_projectId").val());
-            var empList = $('#employee_employeeId');
+            var selectedProject = parseInt($("#projectId").val());
+            var empList = $('#employeeId');
             empList.empty();
 
             if (selectedProject != null && selectedProject != '') {

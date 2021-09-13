@@ -68,9 +68,9 @@ namespace InvoiceMIcroServices.Controllers
         }
 
         [HttpPost]
-        [ProducesResponseType(typeof(CompanyDetails), (int)HttpStatusCode.OK)]
+        //[ProducesResponseType(typeof(CompanyDetails), (int)HttpStatusCode.OK)]
         [Route("SaveCompanyDetails")]
-        public async Task<IActionResult> Post([FromForm]CompanyDetails req)
+        public async Task<IActionResult> Post([FromBody]CompanyDetails req)
         {
             try
             {

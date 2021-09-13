@@ -62,11 +62,13 @@
                             <div class="col-sm-3">
                                 <div class="form-group">
                                     <input asp-for="@Model.Employees[i].RatePerHr" type="text" placeholder="Enter Rate/hr" class="form-control" value="@Model.Employees[i].RatePerHr" />
+                                    <span asp-validation-for="@Model.Employees[i].RatePerHr" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="col-sm-3">
                                 <div class="form-group">
                                     <select asp-items="@Model.CurrencyType" asp-for="selectedCurrency" class="form-control"></select>
+                                    <span asp-validation-for="selectedCurrency" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="col-sm-3">
