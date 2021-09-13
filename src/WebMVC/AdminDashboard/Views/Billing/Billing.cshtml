@@ -78,7 +78,13 @@
 @section Scripts{
     <script>
             $(document).ready(function () {
-              
+
+                $("#projectWise").on("change", function () {
+                    projectId = $(this).val();
+                    $.get("/Billing/ViewInvoiceList", { id: projectId })
+                    
+                });
+                
                 $('#invoiceListSelect').on('change', function () {
                     if (this.value == '1') {
                         $("#invoiceProjectList").show();

@@ -1,4 +1,5 @@
-﻿using InvoiceMIcroServices.Models;
+﻿using InvoiceMicroServices.Models;
+using InvoiceMIcroServices.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -18,5 +19,8 @@ namespace InvoiceMIcroServices.Data
         public DbSet<EmployeeDetails> employeeDetails { get; set; }
         public DbSet<ProjectDetails> projectDetails { get; set; }
         public DbSet<BankDetails> bankDetails { get; set; }
+        public DbSet<InvoiceDetails> invoiceDetails { get; set; }
+
+
     }
 }

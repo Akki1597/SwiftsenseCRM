@@ -34,11 +34,11 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.Services
             return emplist;
         }
 
-        public async Task<IEnumerable<SelectListItem>> GetEmplist(string pId,string month,string year)
+        public async Task<List<EmployeeDetails>> GetEmplistDetails(string pId,string month,string year)
         {
-            var allinfourl = APIGateway.EmployeeInfo.GetEmpNamelistMonthWise(_remoteServiceBaseUri, pId);
+            var allinfourl = APIGateway.EmployeeInfo.GetEmpNamelistDetailsProjectWise(_remoteServiceBaseUri, pId);
             var datastring = await _apiclient.GetStringAsync(allinfourl);
-            var emplist = JsonConvert.DeserializeObject<IEnumerable<SelectListItem>>(datastring);
+            var emplist = JsonConvert.DeserializeObject<List<EmployeeDetails>>(datastring);
             return emplist;
         }
 

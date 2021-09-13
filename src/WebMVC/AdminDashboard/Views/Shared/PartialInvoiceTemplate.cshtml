@@ -1,5 +1,10 @@
-﻿@{
+﻿@model InvoiceMicroServices.WebMVC.AdminDashboard.Models.billinginfo
+
+@{
     ViewData["Title"] = "InvoiceTemplate";
+    var count = Int32.Parse(Model.invoiceCount.ToString());
+    count = count + 1;
+    var invoiceDate = DateTime.UtcNow.ToShortDateString();
 }
 
 <link href="~/css/InvoiceTemplate.css" rel="stylesheet" />
@@ -19,16 +24,18 @@
             </div>
             <br />
             <div class="row">
+
                 <div class="col-lg-3">
                     <h4 class="underline">DATE</h4>
-                    <h5>@DateTime.UtcNow.ToShortDateString()</h5>
+                    <h5>@invoiceDate</h5>
                 </div>
                 <div class="col-lg-4">
                     <h4 class="underline">INVOICE NO</h4>
-                    @{ double count = 1;}
+
                     <h5>SSIT @count.ToString().PadLeft(4, '0')</h5>
-                    @{count++;}
+
                     <br />
+
                     <h4 class="underline">PROJECT ID</h4>
 
                     <h5>@Model.clientDetails.projectId</h5>
@@ -53,11 +60,7 @@
                     </h5>
 
                     @Model.clientDetails.address
-                    <br />
-                    Arlington, VA,
-                    <br />
-                    USA - 22201
-                    <br />
+
                     Phone : @Model.clientDetails.phone
                     <br />
                     Email : @Model.clientDetails.email
@@ -103,20 +106,22 @@
                         </thead>
                         <tbody>
                             @{ int i = 0;}
-                            @{int sum = 0; }
-                            @foreach (var val in Model.billingRate.Employees)
+                            @{int? sum = 0; }
+                            @{ int? totalhrs = 0;}
+                            @for (int j = 0; j < Model.billingRate.Employees.Count; j++)
                             {
 
                                 <tr>
-                                    <td>@(i = i + 1) ) @val.employeeName</td>
-                                    <td class="center">@val.RatePerHr</td>
-                                    <td class="center">@val.NoofHours</td>
-                                    <td class="center">@(val.NoofHours * val.RatePerHr)</td>
+                                    <td>@(i = i + 1) ) @Model.billingRate.Employees[j].employeeName</td>
+                                    <td class="center"> @Model.billingRate.Employees[j].RatePerHr</td>
+                                    <td class="center"> @Model.billingRate.Employees[j].NoofHours</td>
+                                    <td class="center">@(Model.billingRate.Employees[j].NoofHours * Model.billingRate.Employees[j].RatePerHr)</td>
 
                                 </tr>
-                                sum += val.NoofHours * val.RatePerHr;
+                                sum += Model.billingRate.Employees[j].NoofHours * Model.billingRate.Employees[j].RatePerHr;
+                                totalhrs += Model.billingRate.Employees[j].NoofHours;
                             }
-                            
+
 
                             <tr class="center">
 
@@ -125,6 +130,14 @@
                                 </td>
                                 <td>
                                     <h6>@sum </h6>
+                                    <input type="hidden" asp-for="totalAmount" value="@sum" />
+                                    <input type="hidden" asp-for="invoiceCount" value="@count.ToString().PadLeft(4, '0')" />
+                                    <input type="hidden" asp-for="invoiceDate" value="@invoiceDate" />
+                                    <input type="hidden" asp-for="projectDetails.projectId" value="@Model.projectDetails.projectId" />
+                                    <input type="hidden" asp-for="projectDetails.name" value="@Model.projectDetails.name" />
+                                    <input type="hidden" asp-for="clientDetails.name" value="@Model.clientDetails.name" />
+                                    <input type="hidden" asp-for="totalhrs" value="@totalhrs" />
+                                    <input type="hidden" asp-for="billingMonth" value="" />
                                 </td>
                             </tr>
 

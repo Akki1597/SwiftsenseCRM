@@ -102,5 +102,23 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.GatewayToMicroServices
                 return res;
             }
         }
+        public static class Billinginfo
+        {
+            public static string setInvoicedetails(string baseuri)
+            {
+                var res = $"{baseuri}SaveInvoiceDetails";
+                return res;
+            }
+            public static string getInvoiceCount(string baseuri)
+            {
+                var res = $"{baseuri}GetInvoiceCount";
+                return res;
+            }
+            public static string getInvoiceList(string baseuri,string id)
+            {
+                var res = $"{baseuri}GetInvoiceList?id="+id;
+                return res;
+            }
+        }
     }
 }
