@@ -25,16 +25,39 @@
                     <div class="form-row" style="padding-left:20px">
                         <div class="col-sm-7">
                             <div class="form-group">
-                                <label asp-for="userId" class="control-label"></label>
-                                <input asp-for="userId" type="number" placeholder="Enter Your User Id" class="form-control" />
-                                <span asp-validation-for="userId" class="text-danger"></span>
+                                <label asp-for="fName" class="control-label"></label>
+                                <input asp-for="fName" type="text" placeholder="Enter Your First Name" class="form-control" />
+                                <span asp-validation-for="fName" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-sm-7">
                             <div class="form-group">
-                                <label asp-for="password" class="control-label"></label>
-                                <input asp-for="password" type="number" placeholder="Enter Your Password" class="form-control" />
-                                <span asp-validation-for="password" class="text-danger"></span>                            </div>
+                                <label asp-for="lName" class="control-label"></label>
+                                <input asp-for="lName" type="text" placeholder="Enter Your Last Name" class="form-control" />
+                                <span asp-validation-for="lName" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="email" class="control-label"></label>
+                                <input asp-for="email" type="email" placeholder="Enter Your Email Address" class="form-control" />
+                                <span asp-validation-for="email" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="gender" class="control-label"></label>
+                                <select asp-for="gender" asp-items="@Model.genderList" class="form-control"></select>
+                                <span asp-validation-for="gender" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="mobile" class="control-label"></label>
+                                <input asp-for="mobile" type="number" placeholder="Enter Your Mobile Number" class="form-control" />
+                                <span asp-validation-for="mobile" class="text-danger"></span>
+                            </div>
                         </div>
                     </div>
                     <div class="row" style="padding-left:20px;padding-bottom:15px">

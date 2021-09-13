@@ -22,6 +22,12 @@ namespace AdminDashboard.Controllers
                 new SelectListItem {Text = "Admin", Value = "4"},
 
             };
+            model.genderList = new List<SelectListItem>
+            {
+                new SelectListItem {Text = "Select Gender"},
+                new SelectListItem {Text = "Male", Value = "1"},
+                new SelectListItem {Text = "Female", Value = "2"},
+            };
             return View(model);
         }
         public IActionResult ViewUserType()
@@ -30,7 +36,14 @@ namespace AdminDashboard.Controllers
         }
         public IActionResult UserAccountType()
         {
-            return View();
+            UserManagement model = new UserManagement();
+            model.genderList = new List<SelectListItem>
+            {
+                new SelectListItem {Text = "Select Gender"},
+                new SelectListItem {Text = "Male", Value = "1"},
+                new SelectListItem {Text = "Female", Value = "2"},
+            };
+            return View(model);
         }
         public IActionResult ViewUserToken()
         {
