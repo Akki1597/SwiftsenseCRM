@@ -13,23 +13,23 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.ViewModels
         [Required(ErrorMessage = "Client is required.")]
         public int clientId { get; set; }
         public List<SelectListItem> clientStatusList { get; set; }
-        [Required(ErrorMessage = "Please select your client.")]
+        [Required(ErrorMessage = "Please select  client")]
         public List<SelectListItem> empClientList { get; set; }
         [Required(ErrorMessage = "Please enter your Project Id")]
         public string projectId { get; set; }
-        [Required(ErrorMessage = "Please select Project Status")]
+        [Required(ErrorMessage = "Please Select Project Status")]
         public string selectedPstatus { get; set; }
-        [Required(ErrorMessage = "Please select Client Status")]
+        [Required(ErrorMessage = "Please Select Client Status")]
         public string selectedCstatus { get; set; }
 
         public List<SelectListItem> projectStatusList { get; set; }
-        [Required(ErrorMessage = "Please select your project.")]
+        [Required(ErrorMessage = "Please Select Project")]
         public List<SelectListItem> empProjectList { get; set; }
-        [Required(ErrorMessage = "Employee is required.")]
+        [Required(ErrorMessage = "Employee is required")]
         [Display(Name = "Employee")]
         public int employeeId { get; set; }
         public List<SelectListItem> employeeList { get; set; }
-        [Required(ErrorMessage = "Year is required.")]
+        [Required(ErrorMessage = "Year is required")]
         [Display(Name = "Year")]
         public int yearId { get; set; }
         public List<SelectListItem> yearList { get; set; }

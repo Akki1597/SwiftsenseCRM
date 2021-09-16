@@ -30,13 +30,13 @@ namespace AdminDashboard.Controllers
             CrmIndexViewModel model = new CrmIndexViewModel();
             model.clientStatusList = new List<SelectListItem>
             {
-                new SelectListItem {Text = "Select Client Status"},
+                //new SelectListItem {Text = "Select Client Status",Value=""},
                 new SelectListItem {Text = "Active", Value = "1"},
                 new SelectListItem {Text = "InActive", Value = "0"}
             };
             model.projectStatusList = new List<SelectListItem>
             {
-                new SelectListItem {Text = "Select Project Status "},
+                //new SelectListItem {Text = "Select Project Status ",Value="" },
                 new SelectListItem {Text = "Active", Value = "1"},
                 new SelectListItem {Text = "InActive", Value = "0"}
             };
@@ -100,10 +100,10 @@ namespace AdminDashboard.Controllers
         //    };
         //    return View(vm);
         //}
-
-        public async Task<IActionResult> GetClientListDetails(string status)
+        [HttpGet]
+        public async Task<IActionResult> GetClientListDetails(string selectedCstatus)
         {
-            var info = await _clientInfosvc.Getclientlist(status);
+            var info = await _clientInfosvc.Getclientlist(selectedCstatus);
             List<ClientDetails> vm = new List<ClientDetails>();
             vm = info;
             return View(vm);
