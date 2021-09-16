@@ -8,6 +8,7 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.Models
 {
     public class EditClientList
     {
+        public int clientId { get; set; }
         [Required(ErrorMessage = "Please enter Client Name")]
         [Display(Name = "Client Name")]
         public string clientName{ get; set; }

@@ -205,13 +205,32 @@ namespace AdminDashboard.Controllers
             return res;
 
         }
-        public IActionResult EditClientListDetails()
+        public async Task<IActionResult> EditClientListDetails(int? clientId)
         {
-            return View();
+            var info = await _clientInfosvc.GetClientInfo(clientId);
+            EditClientList  editClient = new EditClientList();
+            editClient.clientId = info.id;
+            editClient.address = info.address;
+            editClient.clientName = info.name;
+            editClient.email = info.email;
+            editClient.phone = info.phone;
+            editClient.unbilledHours = info.unbilledHours;
+            //editClient.
+            return View(editClient);
         }
-        public IActionResult EditProjectListDetails()
+        public async Task<IActionResult> EditProjectListDetails(string projectId)
         {
-            return View();
+            var info = await _projectInfosvc.GetProjectInfo(projectId);
+            EditProjectList projectList = new EditProjectList();
+            projectList.projectId = info.projectId;
+            projectList.name = info.name;
+            projectList.status = info.status;
+            projectList.clientId = info.clientId;
+            projectList.pCode = info.pCode;
+            projectList.unbilledHours = info.unbilledHours;
+            return View(projectList);
         }
+
+        
     }
 }

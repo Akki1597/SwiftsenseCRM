@@ -11,14 +11,15 @@
             Html.RenderPartial("PartialLeftMenu");
         }
         <div class="col-md-10 menuMargin" style="margin-top:30px;">
-            <form role="form" class="needs-validation" method="post" enctype="multipart/form-data" novalidate>
+            <form role="form" class="needs-validation" method="post" enctype="multipart/form-data" novalidate asp-action="SaveProjectdetails" asp-controller="CRMDetails">
+                <input type="hidden" asp-for="projectId" value="@Model.projectId" />
                 <div class="card" style="margin-top:20px;">
                     <div class="row">
                         <div class="col-sm-11 col-12">
                             <h4 style="margin:20px 0px 20px 20px;color:gray">Edit Project Details</h4>
                         </div>
                         <div class="col-sm-1 col-12">
-                            <button type="button" class="btn btnColor btn-sm" onclick="location.href='@Url.Action("GetProjectListDetails", "CRMDetails")'" style="margin-top:30px;text-align:right">
+                            <button type="button" class="btn btnColor btn-sm" onclick="location.href='@Url.Action("GetProjectListDetails", "CRMDetails",new { status ="1"})'" style="margin-top:30px;text-align:right">
                                 <i class="fa fa-angle-double-left" aria-hidden="true"></i>&nbsp;Back
                             </button>
                         </div>
@@ -69,7 +70,7 @@
                     </div>
                     <div class="row" style="padding-left:20px;padding-bottom:15px">
                         <div class="col-sm-3">
-                            <button type="submit" class="btn btnColor">Update</button>
+                            <input type="submit" class="btn btnColor" value="Update" />
                         </div>
                         <div class="col-sm-9">
                         </div>

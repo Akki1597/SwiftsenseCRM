@@ -12,7 +12,7 @@ using InvoiceMicroServices.WebMVC.AdminDashboard.Models;
 
 namespace AdminDashboard.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class CompanyInfoController : Controller
     {
         private readonly ICompanyInfo _companyInfosvc;

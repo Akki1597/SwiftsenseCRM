@@ -61,7 +61,7 @@ namespace InvoiceMIcroServices
                 options.DescribeAllEnumsAsStrings();
                 options.SwaggerDoc("v1", new Info
                 {
-                    Title = "Inovice HTTP API",
+                    Title = "Invoice HTTP API",
                     Version = "v1",
                     Description = "The Admin Service HTTP API",
                     TermsOfService = "Terms Of Service"
