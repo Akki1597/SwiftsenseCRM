@@ -16,12 +16,12 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.Models
         public string address { get; set; }
 
         [Display(Name = "Phone")]
-        [Required(ErrorMessage = "Please enter your Mobile Number")]
+        [Required(ErrorMessage = "Please enter your Phone Number")]
         [RegularExpression(@"\d{10}", ErrorMessage = "Please enter 10 digit Mobile No.")]
         public string phone { get; set; }
 
         [Display(Name = "Email")]
-        [Required(ErrorMessage = "Email is required")]
+        [Required(ErrorMessage = "Please enter your Email Address")]
         [RegularExpression(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$", ErrorMessage = "Please enter a valid email address")]
         public string email { get; set; }
 

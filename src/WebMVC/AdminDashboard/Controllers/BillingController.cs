@@ -36,8 +36,8 @@ namespace AdminDashboard.Controllers
                 new SelectListItem {Text = "Select Invoice Filter", Value = "0"},
                 new SelectListItem {Text = "Project Wise", Value = "1"},
                 new SelectListItem {Text = "Client Wise", Value = "2"},
-                new SelectListItem {Text = "Month Wise", Value = "3"},
-                new SelectListItem {Text = "Year Wise", Value = "4"},
+                //new SelectListItem {Text = "Month Wise", Value = "3"},
+                //new SelectListItem {Text = "Year Wise", Value = "4"},
             };
 
             List<ClientDetails> clist = await GetCLientlist();

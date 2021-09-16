@@ -17,9 +17,9 @@ namespace AdminDashboard.Controllers
             {
                 new SelectListItem {Text = "Select Type"},
                 new SelectListItem {Text = "Employee", Value = "1"},
-                new SelectListItem {Text = "Payroll", Value = "2"},
-                new SelectListItem {Text = "Hr", Value = "3"},
-                new SelectListItem {Text = "Admin", Value = "4"},
+                //new SelectListItem {Text = "Payroll", Value = "2"},
+                //new SelectListItem {Text = "Hr", Value = "3"},
+                //new SelectListItem {Text = "Admin", Value = "4"},
 
             };
             model.genderList = new List<SelectListItem>
