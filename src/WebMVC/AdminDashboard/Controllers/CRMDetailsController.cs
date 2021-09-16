@@ -149,10 +149,10 @@ namespace AdminDashboard.Controllers
         //    };
         //    return View(vm);
         //}
-
-        public async Task<IActionResult> GetProjectListDetails(string status)
+        [HttpGet]
+        public async Task<IActionResult> GetProjectListDetails(string selectedPstatus)
         {
-            var info = await _projectInfosvc.Getprojectlist(status);
+            var info = await _projectInfosvc.Getprojectlist(selectedPstatus);
             List<ProjectDetails> vm = new List<ProjectDetails>();
             vm = info;
             return View(vm);

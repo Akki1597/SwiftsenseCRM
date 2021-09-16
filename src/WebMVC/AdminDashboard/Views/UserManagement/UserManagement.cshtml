@@ -11,9 +11,9 @@
             Html.RenderPartial("PartialLeftMenu");
         }
         <div class="col-md-10 menuMargin" style="margin-top:30px;">
-            <form role="form" class="needs-validation" method="post" novalidate>
-                <div class="row">
-                    <div class="col-sm-6">
+            <div class="row">
+                <div class="col-sm-6">
+                    <form role="form" class="needs-validation" method="Get" asp-action="UserAccountType" asp-controller="UserManagement" enctype="multipart/form-data" novalidate>
                         <div class="card" style="margin-top:10px">
                             <h4 style="margin:20px 0px 20px 20px;color:gray">Create User Account</h4>
                             <div class="form-row" style="padding-left:20px">
@@ -26,11 +26,13 @@
                                 </div>
                             </div>
                             <center style="padding-bottom:10px">
-                                <button type="button" class="btn btnColor" onclick="location.href='@Url.Action("UserAccountType", "UserManagement")'" >Create</button>
+                                <input type="submit" class="btn btnColor" value="Create" />
                             </center>
                         </div>
-                    </div>
-                    <div class="col-sm-6">
+                    </form>
+                </div>
+                <div class="col-sm-6">
+                    <form role="form" class="needs-validation" method="Get" asp-action="ViewUserType" asp-controller="UserManagement" enctype="multipart/form-data" novalidate>
                         <div class="card" style="margin-top:10px">
                             <h4 style="margin:20px 0px 20px 20px;color:gray">View User Account</h4>
                             <div class="form-row" style="padding-left:20px">
@@ -43,11 +45,13 @@
                                 </div>
                             </div>
                             <center style="padding-bottom:10px">
-                                <button type="button" class="btn btnColor" onclick="location.href='@Url.Action("ViewUserType", "UserManagement")'" >View</button>
+                                <input type="submit" class="btn btnColor" value="View" />
                             </center>
                         </div>
-                    </div>
+                    </form>
                 </div>
+            </div>
+            <form role="form" class="needs-validation" method="Get" enctype="multipart/form-data" novalidate>
                 <div class="card" style="margin-top:10px;">
                     <h4 style="margin:20px 0px 20px 20px;color:gray;text-align:center">User Tokens</h4>
                     <div class="form-row" style="padding-left:20px;padding-right:20px">
@@ -56,7 +60,7 @@
                                 <div class="list-group-item list-group-item-action">
                                     <div class="d-flex w-100 justify-content-between">
                                         <span class="mb-1">Abhinav&nbsp;&nbsp;&nbsp;<small>3.9.2012 , 4:30pm</small></span>
-                                        <button type="button" class="mb-1 btn btn-sm btnColor"  onclick="location.href='@Url.Action("ViewUserToken", "UserManagement")'">View</button>
+                                        <button type="button" class="mb-1 btn btn-sm btnColor" onclick="location.href='@Url.Action("ViewUserToken", "UserManagement")'">View</button>
                                     </div>
                                 </div>
                                 <div class="list-group-item list-group-item-action">

@@ -15,7 +15,7 @@ namespace AdminDashboard.Controllers
             UserManagement model = new UserManagement();
             model.employeeList = new List<SelectListItem>
             {
-                new SelectListItem {Text = "Select Type"},
+                new SelectListItem {Text = "Select Type",Value=""},
                 new SelectListItem {Text = "Employee", Value = "1"},
                 //new SelectListItem {Text = "Payroll", Value = "2"},
                 //new SelectListItem {Text = "Hr", Value = "3"},
@@ -24,16 +24,18 @@ namespace AdminDashboard.Controllers
             };
             model.genderList = new List<SelectListItem>
             {
-                new SelectListItem {Text = "Select Gender"},
+                new SelectListItem {Text = "Select Gender",Value=""},
                 new SelectListItem {Text = "Male", Value = "1"},
                 new SelectListItem {Text = "Female", Value = "2"},
             };
             return View(model);
         }
+        [HttpGet]
         public IActionResult ViewUserType()
         {
             return View();
         }
+        [HttpGet]
         public IActionResult UserAccountType()
         {
             UserManagement model = new UserManagement();

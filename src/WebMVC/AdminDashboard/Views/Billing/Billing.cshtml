@@ -11,7 +11,7 @@
             Html.RenderPartial("PartialLeftMenu");
         }
         <div class="col-md-10 menuMargin" style="margin-top:30px;">
-            <form role="form" class="needs-validation" asp-action="ViewInvoiceList" asp-controller="Billing" novalidate>
+            <form role="form" class="needs-validation" asp-action="ViewInvoiceList" asp-route-invoice="@Model.invoice" asp-controller="Billing" novalidate>
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="card" style="min-height:220px;margin-top:10px">

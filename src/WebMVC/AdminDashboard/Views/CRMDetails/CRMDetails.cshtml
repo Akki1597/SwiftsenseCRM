@@ -39,13 +39,13 @@
                             </div>
                         </div>
                         <div class="col-sm-3">
-                            <input type="submit" class="btn btnColor"  style="margin-top:30px" value="View" />
+                            <input type="submit" class="btn btnColor" style="margin-top:30px" value="View" />
                         </div>
                         <div class="offset-4"></div>
                     </div>
                 </div>
             </form>
-            <form role="form" class="needs-validation" method="post" enctype="multipart/form-data" novalidate>
+            <form role="form" class="needs-validation" method="Get" asp-action="GetProjectListDetails" asp-route-selectedPstatus="@Model.selectedPstatus" asp-controller="CRMDetails" enctype="multipart/form-data" novalidate>
                 <div class="card" style="margin-top:20px;">
                     <div class="row">
                         <div class="col-sm-10 col-12">
@@ -68,13 +68,13 @@
                             </div>
                         </div>
                         <div class="col-sm-3">
-                            <button type="button" class="btn btnColor" onclick="GetProjectList();" style="margin-top:30px">View</button>
+                            <input type="submit" class="btn btnColor" style="margin-top:30px" value="View" />
                         </div>
                         <div class="offset-4"></div>
                     </div>
                 </div>
             </form>
-            <form role="form" class="needs-validation" method="post" enctype="multipart/form-data" novalidate>
+            <form role="form" class="needs-validation" method="Get" enctype="multipart/form-data" novalidate>
                 <div class="card" style="margin-top:20px;">
                     <h4 style="margin:20px 0px 20px 20px;color:gray">Employee Time Sheet</h4>
                     <div class="form-row" style="padding-left:20px">

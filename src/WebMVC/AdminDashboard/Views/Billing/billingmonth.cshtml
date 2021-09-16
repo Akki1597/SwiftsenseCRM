@@ -16,7 +16,7 @@
                     <h4 style="margin:20px 0px 40px 20px;color:gray;">Select Month</h4>
                 </div>
 
-                <form role="form" class="needs-validation"  method="post" enctype="multipart/form-data" novalidate>
+                <form role="form" class="needs-validation"  method="post" asp-action="Selectedbillingmonth" asp-controller="Billing" enctype="multipart/form-data" novalidate>
                     <input type="hidden" asp-for="clientId" value="@Model.clientId" />
                     <div class="form-row" style="padding-left:20px">
                         <div class="col-sm-7">
@@ -39,7 +39,7 @@
 
 
                     <div class="">
-                        <input type="submit" class="btn btnColor" asp-action="Selectedbillingmonth" asp-controller="Billing" value="Next"/>
+                        <input type="submit" class="btn btnColor"  value="Next"/>
                         <button type="button" class="btn btnColor" onclick="location.href='@Url.Action("GenerateInvoice", "Billing")'">Back</button>
                     </div>
                 </form>

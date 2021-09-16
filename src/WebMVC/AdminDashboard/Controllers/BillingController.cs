@@ -33,7 +33,7 @@ namespace AdminDashboard.Controllers
             BillingInvoice model = new BillingInvoice();
             model.invoiceList = new List<SelectListItem>
             {
-                new SelectListItem {Text = "Select Invoice Filter", Value = "0"},
+                new SelectListItem {Text = "Select Invoice Filter", Value = ""},
                 new SelectListItem {Text = "Project Wise", Value = "1"},
                 new SelectListItem {Text = "Client Wise", Value = "2"},
                 //new SelectListItem {Text = "Month Wise", Value = "3"},
@@ -59,7 +59,7 @@ namespace AdminDashboard.Controllers
             }
             model.invoiceListMonthWise = new List<SelectListItem>
             {
-                new SelectListItem {Text = "Select Month",Value="0"},
+                new SelectListItem {Text = "Select Month",Value=""},
                 new SelectListItem {Text = "January", Value = "1"},
                 new SelectListItem {Text = "February", Value = "2"},
                 new SelectListItem {Text = "March", Value = "3"},
@@ -75,7 +75,7 @@ namespace AdminDashboard.Controllers
             };
             model.invoiceListYearWise = new List<SelectListItem>
             {
-                 new SelectListItem {Text = "Select Year", Value = "0"},
+                 new SelectListItem {Text = "Select Year", Value = ""},
                 new SelectListItem {Text = "2020-21", Value = "1"},
                 new SelectListItem {Text = "2021-22", Value = "2"},
                 new SelectListItem {Text = "2022-23", Value = "3"},
@@ -96,9 +96,10 @@ namespace AdminDashboard.Controllers
             //List<ProjectDetails> res = new List<ProjectDetails>();
             return View(res);
         }
-        public IActionResult ViewInvoiceList(string id)
+        [HttpGet]
+        public IActionResult ViewInvoiceList(string invoice)
         {
-            var res = _billingInfo.GetInvoiceList(id);
+            var res = _billingInfo.GetInvoiceList(invoice);
             return View();
         }
         public IActionResult billingmonth(int clientId)
@@ -107,7 +108,7 @@ namespace AdminDashboard.Controllers
             model.clientId = clientId;
             model.yearList = new List<SelectListItem>
             {
-                new SelectListItem {Text = "Select Year"},
+                new SelectListItem {Text = "Select Year",Value=""},
                 new SelectListItem {Text = "2020", Value = "1"},
                 new SelectListItem {Text = "2021", Value = "2"},
                 new SelectListItem {Text = "2022", Value = "3"},
