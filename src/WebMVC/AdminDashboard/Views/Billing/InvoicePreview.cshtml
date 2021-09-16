@@ -17,7 +17,7 @@
                         <h4 style="margin:20px 0px 40px 20px;color:gray;">Invoice Preview</h4>
                     </div>
                     <div class="col-lg-2">
-                        <div style=" float: right; margin:20px 0px 40px 20px;"><button type="button" class="btn btnColor" onclick="location.href='@Url.Action("BillingRate", "Billing")'">Back</button></div>
+                        <div style=" float: right; margin:20px 0px 40px 20px;"><button type="button" class="btn btnColor" onclick="location.href='@Url.Action("Rateperhr", "Billing")'">Back</button></div>
                     </div>
                 </div>
 
@@ -28,7 +28,7 @@
                         Html.RenderPartial("PartialInvoiceTemplate");
                     }
 
-                    <div class="row">
+                    <div class="row" style="margin-bottom:10px">
                         <div class="col-sm-1">
                             <input type="submit" class="btn btnColor" value="Submit" />
                         </div>

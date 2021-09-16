@@ -38,7 +38,7 @@
                                         <span asp-validation-for="clientWise" class="text-danger"></span>
                                     </div>
                                 </div>
-                                <div class="col-sm-6" id="invoiceYearList" style="display:none;">
+                                @*<div class="col-sm-6" id="invoiceYearList" style="display:none;">
                                     <div class="form-group">
                                         <label class="control-label">Year</label>
                                         <select asp-for="yearWise" asp-items="@Model.invoiceListYearWise" class="form-control"></select>
@@ -51,10 +51,10 @@
                                         <select asp-for="monthWise" asp-items="@Model.invoiceListMonthWise" class="form-control"></select>
                                         <span asp-validation-for="monthWise" class="text-danger"></span>
                                     </div>
-                                </div>
+                                </div>*@
                             </div>
 
-                            <span class="text-danger" id="errMsg" style="display:none">please select one of the invoice filter</span>
+                            @*<span class="text-danger" id="errMsg" style="display:none">please select one of the invoice filter</span>*@
 
                             <div class="col-sm-1">
                                 <input type="submit" id="btnInvoice" class="btn btnColor"/>

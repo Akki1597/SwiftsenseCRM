@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewData["Title"] = "PartialDeleteModelPopUp";
+}
+
+<!----modal starts here--->
+<div id="confirm" class="modal fade" role='dialog'>
+    <div class="modal-dialog">
+        <div class="modal-content" style="width:50%;margin:100px">
+            <input type="hidden" id="userId" />
+            <div class="modal-header text-center" style="background-color:none">
+                <button type="button" class="close" id="cancel" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 class="modal-title">Delete Account</h3>
+            </div>
+            <div class="modal-body text-center">
+                <h4>Are you sure ?</h4>
+            </div>
+            <div class="modal-footer">
+                <center>
+                    <button type="submit" class="btn btn-success yes" onclick="deleteuser()"> <i class="fa fa-check">&nbsp;&nbsp;</i>Yes&nbsp;</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">&nbsp;<i class="fa fa-times-circle">&nbsp;&nbsp;</i>No&nbsp;</button>
+                </center>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div id="deletionSuccess" class="modal fade hide" role='dialog'>
+    <div class="modal-dialog">
+        <div class="modal-content" style="width:50%;margin:200px">
+            <div class="modal-header text-center" style="background-color:none">
+                <button type="button" class="close" id="cancel" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 class="modal-title">Success</h3>
+            </div>
+            <div class="modal-body text-center">
+                <h4>Your Account Deleted Successfully</h4>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--Modal ends here--->
