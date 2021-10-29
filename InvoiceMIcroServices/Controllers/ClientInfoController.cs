@@ -99,6 +99,7 @@ namespace InvoiceMIcroServices.Controllers
                     res.email = clientInfo.email;
                     res.unbilledHours = clientInfo.unbilledHours;
                     res.phoneNo = clientInfo.phoneNo;
+                    res.status = clientInfo.status;
 
                     _context.clientDetails.Update(res);
                     await _context.SaveChangesAsync();
@@ -128,6 +129,40 @@ namespace InvoiceMIcroServices.Controllers
                 throw ex;
             }
         }
+
+        //[HttpPost]
+        //[Route("UpdateClientDetails")]
+        //[ProducesResponseType(typeof(ClientDetails), (int)HttpStatusCode.OK)]
+        //public async Task<IActionResult> Put([FromBody]ClientDetails clientInfo)
+        //{
+        //    try
+        //    {
+        //        if (clientInfo.id != 0)
+        //        {
+
+        //            var res = _context.clientDetails.Where(x => x.id == clientInfo.id).FirstOrDefault();
+
+        //            res.address = clientInfo.address;
+        //            res.name = clientInfo.name;
+        //            res.email = clientInfo.email;
+        //            res.unbilledHours = clientInfo.unbilledHours;
+        //            res.phoneNo = clientInfo.phoneNo;
+        //            res.status = clientInfo.status;
+
+        //            _context.clientDetails.Update(res);
+        //            await _context.SaveChangesAsync();
+        //            return Ok(res);
+        //        }
+        //        else
+        //        {
+        //            return NotFound("Id not found");
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
 
         //[HttpGet]
         //[Route("GetClientNameList")]

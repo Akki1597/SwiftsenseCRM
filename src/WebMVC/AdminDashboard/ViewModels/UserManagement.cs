@@ -9,27 +9,11 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.ViewModels
 {
     public class UserManagement
     {
-        [Display(Name = "Type")]
-        public int invoiceId { get; set; }
-        public List<SelectListItem> employeeList { get; set; }
+        [Required(ErrorMessage ="Please Select UserType")]
+        [Display(Name = "User Type")]
+        public int userTypeId { get; set; }
+        public List<SelectListItem> usertypeList { get; set; }
 
-        [Display(Name = "Email")]
-        [Required(ErrorMessage = "Email is required.")]
-        [RegularExpression(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$", ErrorMessage = "Please enter a valid User Id")]
-        public string email { get; set; }
-        [Display(Name = "Mobile")]
-        [RegularExpression(@"\d{10}", ErrorMessage = "Please enter 10 digit Mobile No.")]
-        [Required(ErrorMessage = "Mobile Number is required.")]
-        public string mobile { get; set; }
-        [Display(Name = "First Name")]
-        [Required(ErrorMessage = "First Name is required.")]
-        public string fName { get; set; }
-        [Display(Name = "Last Name")]
-        [Required(ErrorMessage = "Last Name is required.")]
-        public string lName { get; set; }
-        [Display(Name = "Gender")]
-        public List<SelectListItem> genderList { get; set; }
-        [Required(ErrorMessage = "Please select Gender")]
-        public string gender { get; set; }
+       
     }
 }

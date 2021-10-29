@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using InvoiceMIcroServices.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 
 namespace InvoiceMIcroServices.Controllers
 {
@@ -11,36 +13,54 @@ namespace InvoiceMIcroServices.Controllers
     [Route("api/Home")]
     public class HomeController : Controller
     {
-        // GET: api/Home
-        //[HttpGet]
-        //public IEnumerable<string> Get()
-        //{
-        //    return new string[] { "value1", "value2" };
-        //}
+        private readonly AdminDBContext _context;
+        private readonly IOptionsSnapshot<UrlSettings> _settings;
 
-        // GET: api/Home/5
-        //[HttpGet("{id}", Name = "Get")]
-        //public string Get(int id)
-        //{
-        //    return "value";
-        //}
-        
-        // POST: api/Home
-        [HttpPost]
-        public void Post([FromBody]string value)
+        public HomeController(IOptionsSnapshot<UrlSettings> settings, AdminDBContext context)
         {
+            _settings = settings;
+            _context = context;
+            string url = settings.Value.ExternalServiceBaseUrl;
         }
-        
-        // PUT: api/Home/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-        
+
         // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpGet]
+        [Route("Delete")]
+        public string Delete(string id)
         {
+            if(!string.IsNullOrEmpty(id.ToString()))
+            {
+               
+                var res = _context.clientDetails.Find(Convert.ToInt32(id));
+                if(res != null){
+                    _context.clientDetails.Remove(res);
+                    _context.SaveChanges();
+                    return "client";
+                }
+                else
+                if (res == null)
+                {
+                    var res2 = _context.projectDetails.Where(x => x.projectId == id).FirstOrDefault();
+                    if(res2 != null)
+                    {
+                        _context.projectDetails.Remove(res2);
+                        _context.SaveChanges();
+                        return "project";
+                    }else
+                    if (res2 == null)
+                    {
+                        var res3 = _context.invoiceDetails.Where(x => x.invoiceNo == id).FirstOrDefault();
+                        if(res3 != null)
+                        {
+                            _context.invoiceDetails.Remove(res3);
+                            _context.SaveChanges();
+                            return "invoice";
+                        }
+                    }
+                   
+                }
+            }
+                return null;
         }
     }
 }

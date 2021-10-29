@@ -1,13 +1,18 @@
 ﻿@model List<InvoiceMicroServices.WebMVC.AdminDashboard.Models.InvoiceDetails>
 @{
     ViewData["Title"] = "ViewInvoiceList";
+    Layout = "~/Views/Shared/PartialDashboardLayout.cshtml";
 }
 
 <div class="container-xl">
+    @{
+        Html.RenderPartial("PartialDeleteModelPopUp");
+    }
     <div class="row">
         @{
             Html.RenderPartial("PartialLeftMenu");
         }
+        @Html.Hidden("deletionId", "", new { id = "deletionId" });
         <div class="col-md-10 menuMargin" style="margin-top:30px;">
             <div class="card" style="min-height:220px;margin-top:10px;padding-left:10px;padding-right:10px">
                 <div class="row">
@@ -38,22 +43,36 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>SSIT0043</td>
-                            <td>13-09-2021</td>
-                            <td>September</td>
+                        @if (Model.Count > 0)
+                        {
+                            int i = 0;
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@(i = i + 1)</td>
+                                    <td>@item.invoiceNo</td>
+                                    <td>@item.date</td>
+                                    <td>@item.billingMonth</td>
+                                    <td>@item.clientName</td>
+                                    <td>@item.projectName</td>
+                                    <td>@item.projectId</td>
+                                    <td>@item.totalHours</td>
+                                    <td>@item.totalAmount</td>
+                                    <td><button class="btn btn-sm btn-primary">View</button></td>
+                                    @*<td><button class="btn btn-sm btn-success">Edit</button></td>*@
+                                    <td>
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.invoiceNo }, new { @class = "btn btn-sm btn-danger element", @data_toggle = "modal", @data_target = "#exampleModalCenter", @data_id = item.invoiceNo })
+                                    </td>
 
-                            <td>john</td>
-                            <td>abc</td>
-                            <td>42</td>
-                            <td>7654327689</td>
-                            <td>5437</td>
-                            <td><button class="btn btn-sm btn-primary">View</button></td>
-                            @*<td><button class="btn btn-sm btn-success">Edit</button></td>*@
-                            <td><button class="btn btn-sm btn-danger">Delete</button></td>
-
-                        </tr>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="11">No Record Found</td>
+                            </tr>
+                        }
                     </tbody>
                 </table>
             </div>

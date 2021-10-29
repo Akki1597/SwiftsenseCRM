@@ -1,7 +1,8 @@
-﻿@model InvoiceMicroServices.WebMVC.AdminDashboard.ViewModels.UserManagement
+﻿@model InvoiceMicroServices.WebMVC.AdminDashboard.Models.UserDetails
 
 @{
-    ViewData["Title"] = "UserAccountType";
+    ViewData["Title"] = "EditUserDetails";
+    Layout = "~/Views/Shared/PartialDashboardLayout.cshtml";
 }
 
 <div class="container-xl">
@@ -11,62 +12,60 @@
             Html.RenderPartial("PartialLeftMenu");
         }
         <div class="col-md-10 menuMargin" style="margin-top:30px;">
-            <form role="form" class="needs-validation" method="Get" asp-action="UserAccountType" asp-controller="UserManagement" enctype="multipart/form-data" novalidate>
+            <form role="form" class="needs-validation" method="Post" asp-action="UpdateUserDetails" asp-controller="UserManagement" enctype="multipart/form-data" novalidate>
+                <input type="hidden" asp-for="id" value="@Model.id" />
                 <div class="card" style="margin-top:20px;">
                     <div class="row">
                         <div class="col-sm-11 col-12">
-                            <h4 style="margin:20px 0px 40px 20px;color:gray;">User Account</h4>
+                            <h4 style="margin:20px 0px 40px 20px;color:gray;">Edit User Account</h4>
                         </div>
                         <div class="col-sm-1 col-12">
-                            <button type="button" class="btn btnColor btn-sm" onclick="location.href='@Url.Action("UserManagement", "UserManagement")'" style="margin-top:30px;text-align:right">
+                            <button type="button" class="btn btnColor btn-sm" onclick="location.href='@Url.Action("Index", "UserManagement")'" style="margin-top:30px;text-align:right">
                                 <i class="fa fa-angle-double-left" aria-hidden="true"></i>&nbsp;Back
                             </button>
                         </div>
                     </div>
                     <div class="form-row" style="padding-left:20px">
-                        <div class="col-sm-7">
+                        @*<div class="col-sm-7">
                             <div class="form-group">
                                 <label asp-for="fName" class="control-label"></label>
                                 <input asp-for="fName" type="text" placeholder="Enter Your First Name" class="form-control" />
                                 <span asp-validation-for="fName" class="text-danger"></span>
                             </div>
-                        </div>
+                        </div>*@
                         <div class="col-sm-7">
                             <div class="form-group">
-                                <label asp-for="lName" class="control-label"></label>
-                                <input asp-for="lName" type="text" placeholder="Enter Your Last Name" class="form-control" />
-                                <span asp-validation-for="lName" class="text-danger"></span>
+                                <label asp-for="name" class="control-label"></label>
+                                <input asp-for="name" type="text" placeholder="Enter Your Last Name" readonly class="form-control" />
+                                <span asp-validation-for="name" class="text-danger"></span>
                             </div>
                         </div>
 
                         <div class="col-sm-7">
                             <div class="form-group">
                                 <label asp-for="email" class="control-label"></label>
-                                <input asp-for="email" type="email" placeholder="Enter Your Email Address" class="form-control" />
+                                <input asp-for="email" type="email" placeholder="Enter Your Email Address" readonly class="form-control" />
                                 <span asp-validation-for="email" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-sm-7">
                             <div class="form-group">
-                                <label asp-for="gender" class="control-label"></label>
-                                <select asp-for="gender" asp-items="@Model.genderList" class="form-control"></select>
-                                <span asp-validation-for="gender" class="text-danger"></span>
+                                <label asp-for="roleId" class="control-label"></label>
+                                <select asp-for="roleId" asp-items="@Model.roles" class="form-control"></select>
+                                <span asp-validation-for="roleId" class="text-danger"></span>
                             </div>
                         </div>
-                        <div class="col-sm-7">
+                        @*<div class="col-sm-7">
                             <div class="form-group">
                                 <label asp-for="mobile" class="control-label"></label>
                                 <input asp-for="mobile" type="number" placeholder="Enter Your Mobile Number" class="form-control" />
                                 <span asp-validation-for="mobile" class="text-danger"></span>
                             </div>
-                        </div>
+                        </div>*@
                     </div>
                     <div class="row" style="padding-left:20px;padding-bottom:15px">
                         <div class="col-sm-9">
-                            <input type="submit" class="btn btn-success" value="Save" />
-                            <button type="submit" class="btn btnColor">Update</button>
-                            <button type="submit" class="btn btn-danger">Delete</button>
-
+                            <input type="submit" class="btn btn-primary" value="Update" />
                         </div>
                         <div class="col-sm-3">
                         </div>
@@ -76,3 +75,4 @@
         </div>
     </div>
 </div>
+

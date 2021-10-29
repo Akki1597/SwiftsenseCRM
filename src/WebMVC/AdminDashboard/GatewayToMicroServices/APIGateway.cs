@@ -36,6 +36,11 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.GatewayToMicroServices
                 var res = $"{baseuri}SaveClientDetails";
                 return res;
             }
+            public static string UpdateClientInfo(string baseuri)
+            {
+                var res = $"{baseuri}UpdateClientDetails";
+                return res;
+            }
             public static string GetClientList(string baseuri, string status)
             {
                 var res = $"{baseuri}GetClientList?status=" + status;
@@ -117,6 +122,41 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.GatewayToMicroServices
             public static string getInvoiceList(string baseuri,string id)
             {
                 var res = $"{baseuri}GetInvoiceList?id="+id;
+                return res;
+            }
+        }
+        public static class deleteInfo
+        {
+            public static string deleteItem(string baseuri, string id)
+            {
+                var res = $"{baseuri}Delete?id=" + id;
+                return res;
+            }
+        }
+
+        public static class accountInfo
+        {
+            public static string Register(string baseuri)
+            {
+                var res = $"{baseuri}";
+                return res;
+            }
+
+            public static string GetUserList(string baseuri,int typeid)
+            {
+                var res = $"{baseuri}?userTypeId="+ typeid;
+                return res;
+            }
+
+            public static string UpdatRole(string baseuri)
+            {
+                var res = $"{baseuri}";
+                return res;
+            }
+
+            public static string DelteUser(string baseuri, string userId)
+            {
+                var res = $"{baseuri}?UserId=" +userId; 
                 return res;
             }
         }

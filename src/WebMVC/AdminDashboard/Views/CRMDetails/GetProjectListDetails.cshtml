@@ -1,9 +1,14 @@
 ﻿@model  List<InvoiceMicroServices.WebMVC.AdminDashboard.Models.ProjectDetails>
 @{
     ViewData["Title"] = "GetProjectListDetails";
+    Layout = "~/Views/Shared/PartialDashboardLayout.cshtml";
 }
 
 <div class="container-xl">
+    @{
+        Html.RenderPartial("PartialDeleteModelPopUp");
+    }
+    @Html.Hidden("deletionId", "", new { id = "deletionId" });
     <div class="row">
         @{
             Html.RenderPartial("PartialLeftMenu");
@@ -40,23 +45,25 @@
                             int i = 0;
                             @foreach (var data in Model)
                             {
-                        <tr>
-                            <td>@(i = i + 1)</td>
-                            <td>@data.name</td>
-                            <td>@data.pCode</td>
-                            <td>@data.projectId</td>
-                            <td>@data.clientId</td>
-                            <td>@data.status</td>
-                            <td>@data.unbilledHours</td>
-                            <td><button class="btn btn-sm btn-success" onclick="location.href='@Url.Action("EditProjectListDetails", "CRMDetails",new {projectId = data.projectId })'">Edit</button></td>
-                            <td><button class="btn btn-sm btn-danger">Delete</button></td>
-                        </tr>
+                                <tr>
+                                    <td>@(i = i + 1)</td>
+                                    <td>@data.name</td>
+                                    <td>@data.pCode</td>
+                                    <td>@data.projectId</td>
+                                    <td>@data.clientId</td>
+                                    <td>@data.status</td>
+                                    <td>@data.unbilledHours</td>
+                                    <td><button class="btn btn-sm btn-success" onclick="location.href='@Url.Action("EditProjectListDetails", "CRMDetails",new {projectId = data.projectId })'">Edit</button></td>
+                                    <td>
+                                        @Html.ActionLink("Delete", "Delete", new { id = data.projectId }, new { @class = "btn btn-sm btn-danger element", @data_toggle = "modal", @data_target = "#exampleModalCenter", @data_id = data.projectId })
+                                    </td>
+                                </tr>
                             }
                         }
                         else
                         {
                             <tr>
-                                <td colspan="8">No Record Found</td>
+                                <td colspan="8" class="text-center">No Record Found</td>
                             </tr>
                         }
 

@@ -17,6 +17,10 @@ using IdentityServerHost.Quickstart.UI;
 using IdentityServer4.Services;
 using Microsoft.AspNetCore.Http;
 using IdentityServer4.Quickstart.UI;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using AuthrizationMicroservice.Data;
+using static System.Net.WebRequestMethods;
 
 namespace AuthrizationMicroservice.Controllers
 {
@@ -31,18 +35,19 @@ namespace AuthrizationMicroservice.Controllers
         IHttpContextAccessor httpContextAccessor;
         private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
-
+        private readonly ApplicationDbContext _dbContext;
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
              IIdentityServerInteractionService interaction,
-            IEmailSender emailSender,
+            IEmailSender emailSender, ApplicationDbContext context,
             ILogger<AccountController> logger)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _logger = logger;
+            _dbContext = context;
             _account = new AccountService(interaction, httpContextAccessor);
         }
 
@@ -54,7 +59,8 @@ namespace AuthrizationMicroservice.Controllers
         public async Task<IActionResult> Login(string returnUrl = null)
         {
             // Clear the existing external cookie to ensure a clean login process
-            await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
+            await HttpContext.SignOutAsync(IdentityConstants.ApplicationScheme);
+
 
             ViewData["ReturnUrl"] = returnUrl;
             return View();
@@ -70,10 +76,18 @@ namespace AuthrizationMicroservice.Controllers
             {
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
+                //ApplicationUser user = new ApplicationUser();
+                var user = await _userManager.FindByEmailAsync(model.Email);
+                IList<string> rolename = await _userManager.GetRolesAsync(user);
+
+                var result = await _signInManager.PasswordSignInAsync(user.UserName, model.Password, model.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
+
+                    if (string.IsNullOrEmpty(returnUrl))
+                        return Redirect("http://localhost:57235/");
+
                     return RedirectToLocal(returnUrl);
                 }
                 if (result.RequiresTwoFactor)
@@ -223,16 +237,18 @@ namespace AuthrizationMicroservice.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl = null)
+        //[ValidateAntiForgeryToken]
+        public async Task<bool> Register([FromBody]RegisterViewModel model)
         {
-            ViewData["ReturnUrl"] = returnUrl;
+            //ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Name, Email = model.Email };
                 var result = await _userManager.CreateAsync(user, model.Password);
+
                 if (result.Succeeded)
                 {
+                    await _userManager.AddToRoleAsync(await _userManager.FindByNameAsync(user.UserName), "Employee");
                     _logger.LogInformation("User created a new account with password.");
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
@@ -241,21 +257,38 @@ namespace AuthrizationMicroservice.Controllers
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     _logger.LogInformation("User created a new account with password.");
-                    return RedirectToLocal(returnUrl);
+                    //return RedirectToLocal(returnUrl);
+                    return true;
                 }
                 AddErrors(result);
             }
 
             // If we got this far, something failed, redisplay form
-            return View(model);
+            return false;
         }
+
+        //[HttpGet]
+        //[AllowAnonymous]
+        //public IActionResult Logout(string returnUrl = null)
+        //{
+        //    ViewData["ReturnUrl"] = returnUrl;
+        //    return View();
+        //}
 
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult Logout(string returnUrl = null)
+        //[ValidateAntiForgeryToken]
+        public async Task<IActionResult> Logout(string LogoutId)
         {
-            ViewData["ReturnUrl"] = returnUrl;
-            return View();
+            await _signInManager.SignOutAsync();
+            _logger.LogInformation("User logged out.");
+            //var redirecturl = Request.Headers["Referer"].ToString();
+            //Uri baseUri = new Uri(redirecturl);
+            //var res = baseUri.AbsolutePath;
+            //await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            //await HttpContext.SignOutAsync(OpenIdConnectDefaults.AuthenticationScheme);
+            await HttpContext.SignOutAsync(IdentityConstants.ApplicationScheme);
+            return RedirectToAction(nameof(AccountController.Login), "Account");
         }
 
         [HttpPost]
@@ -264,7 +297,7 @@ namespace AuthrizationMicroservice.Controllers
         {
             await _signInManager.SignOutAsync();
             _logger.LogInformation("User logged out.");
-            return RedirectToAction(nameof(HomeController.Index), "Home");
+            return RedirectToAction(nameof(AccountController.Login), "Account");
         }
 
         [HttpPost]
@@ -454,27 +487,129 @@ namespace AuthrizationMicroservice.Controllers
             return View();
         }
 
+        [HttpGet]
+        [AllowAnonymous]
+        public List<UserDetails> GetUserList(int userTypeId)
+        {
+            List<UserDetails> users = new List<UserDetails>();
+           
+
+            var allUsers = (from user in _dbContext.Users
+                            join userrole in _dbContext.UserRoles on user.Id equals userrole.UserId
+                            join role in _dbContext.Roles on userrole.RoleId equals role.Id
+                            where role.Name == (userTypeId == 1? "Employee": userTypeId == 2?"Hr":null)
+                            select new UserDetails()
+                            {
+                                Email = user.Email,
+                                Name = user.UserName,
+                                id = user.Id,
+                                roleId = userrole.RoleId
+                            }).ToList();
+
+            var res = _dbContext.Roles.ToList();
+
+            foreach (var item in allUsers)
+            {
+                UserDetails registereduser = new UserDetails();
+                registereduser.Email = item.Email;
+                registereduser.Name = item.Name;
+                registereduser.id = item.id;
+                registereduser.roleId = item.roleId;
+                registereduser.roles = new List<SelectListItem>()
+                {
+                 new SelectListItem { Text = "Select User Role", Value = "", Selected = true }
+                };
+                for (int i = 0; i < res.Count; i++)
+                {
+                    registereduser.roles.Add(new SelectListItem { Text = res[i].Name, Value = res[i].Id });
+                }
+                users.Add(registereduser);
+            }
+
+            return users;
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<bool> UpdateUserRole([FromBody]UserDetails userDetails)
+        {
+            var res = _dbContext.Roles.Where(x => x.Id == userDetails.roleId).FirstOrDefault();
+
+            
+              var oldrole = (from userroles in _dbContext.UserRoles
+                          join roles in _dbContext.Roles on userroles.RoleId equals roles.Id
+                          where userroles.UserId == userDetails.id
+                          select roles.Name).FirstOrDefault();
+            try
+            {
+                if (res != null && !string.IsNullOrEmpty(oldrole))
+                {
+                    await _userManager.RemoveFromRoleAsync(await _userManager.FindByEmailAsync(userDetails.Email),oldrole);
+                    await _userManager.AddToRoleAsync(await _userManager.FindByEmailAsync(userDetails.Email), res.Name);
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+            
+            
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<string> DeleteUser(string UserId)
+        {
+            try
+            {
+                var res = _dbContext.Users.Where(x => x.Id == UserId).FirstOrDefault();
+                var userrole = _dbContext.UserRoles.Where(x => x.UserId == UserId).FirstOrDefault();
+                if (res != null && userrole != null)
+                {
+                    _dbContext.Users.Remove(res);
+                    _dbContext.UserRoles.Remove(userrole);
+                    await _dbContext.SaveChangesAsync();
+                    return "user";
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+
+        }
+
         #region Helpers
 
         private void AddErrors(IdentityResult result)
-        {
-            foreach (var error in result.Errors)
-            {
-                ModelState.AddModelError(string.Empty, error.Description);
-            }
-        }
+{
+    foreach (var error in result.Errors)
+    {
+        ModelState.AddModelError(string.Empty, error.Description);
+    }
+}
 
-        private IActionResult RedirectToLocal(string returnUrl)
-        {
-            if (Url.IsLocalUrl(returnUrl))
-            {
-                return Redirect(returnUrl);
-            }
-            else
-            {
-                return RedirectToAction(nameof(HomeController.Index), "Home");
-            }
-        }
+private IActionResult RedirectToLocal(string returnUrl)
+{
+    if (Url.IsLocalUrl(returnUrl))
+    {
+        return Redirect(returnUrl);
+    }
+    else
+    {
+        return RedirectToAction(nameof(HomeController.Index), "Home");
+    }
+}
 
         #endregion
     }

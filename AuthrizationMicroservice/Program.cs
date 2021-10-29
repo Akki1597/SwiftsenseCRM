@@ -16,30 +16,35 @@ namespace AuthrizationMicroservice
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static  void Main(string[] args)
         {
-            var host = BuildWebHost(args);
-            using (var scope = host.Services.CreateScope())
+            Task.Run(async () =>
             {
-                var services = scope.ServiceProvider;
-
-                try
+                var host = BuildWebHost(args);
+                using (var scope = host.Services.CreateScope())
                 {
+                    var services = scope.ServiceProvider;
 
-                    var context = services.GetRequiredService<ApplicationDbContext>();
+                    try
+                    {
 
-                    var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
-                    // var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+                        var context = services.GetRequiredService<ApplicationDbContext>();
 
-                    IdentityDbInit.Initialize(context, userManager);
+                        var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
+                        var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+
+                      await  IdentityDbInit.Initialize(context, userManager, roleManager);
+                    }
+                    catch (Exception ex)
+                    {
+                        var logger = services.GetRequiredService<ILogger<Program>>();
+                        logger.LogError(ex, "An error occurred while seeding the AuthorizationServer database.");
+                    }
                 }
-                catch (Exception ex)
-                {
-                    var logger = services.GetRequiredService<ILogger<Program>>();
-                    logger.LogError(ex, "An error occurred while seeding the AuthorizationServer database.");
-                }
-            }
-            host.Run();
+                host.Run();
+                // Do any async anything you need here without worry
+            }).GetAwaiter().GetResult();
+           
         }
 
         public static IWebHost BuildWebHost(string[] args) =>

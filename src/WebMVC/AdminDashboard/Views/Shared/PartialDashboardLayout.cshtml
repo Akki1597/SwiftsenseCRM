@@ -30,17 +30,20 @@
                     <img class="menulogo" alt="" />CompanyLogo
                 </a>
             </div>
-            <div class="navbar-right">
-                <button class="btn btnColor dropdown-toggle" style="margin-top:11px;margin-bottom:11px;border-color: transparent;" type="button" data-toggle="dropdown">
-                    Logout
-                </button>
-            </div>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <div class="navbar-right">
+                    <form asp-controller="Account" asp-action="Signout" method="post" asp-route-returnurl="@ViewData["ReturnUrl"]">
+                        <input class="btn btnColor" style="margin-top:11px;margin-bottom:11px;border-color: transparent;" type="submit" value="Logout" />
+                    </form>
+                </div>
+            }
         </div>
     </div>
     <div class="container-fluid">
         @RenderBody()
-        <footer>
-        </footer>
+        <footer></footer>
+
     </div>
 
     <environment include="Development">
@@ -49,6 +52,83 @@
         <script src="~/js/site.js" asp-append-version="true"></script>
         <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
         <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+        <script>
+            $(document).ready(function () {
+
+                    $('.element').click(function (e) {
+                    e.preventDefault();
+                    $('#exampleModalCenter').modal('show');
+                        var id = $(this).data('id');
+                        $('#deletionId').val(id);
+                        getUrlVars();
+
+                    });
+                        var vars = [], hash;
+                        function getUrlVars() {
+
+                            var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                            for (var i = 0; i < hashes.length; i++) {
+                                hash = hashes[i].split('=');
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                            }
+                            return vars;
+                        }
+                    $('#delete').click(function () {
+                        var deletionId = $('#deletionId').val();
+                        var usertypeId = $('#userTypeId').val();
+                      
+                        if (usertypeId != 0) {
+                            $.post('@Url.Action("Delete", "UserManagement")', {userId: deletionId }, function (data) {
+                                // do something after calling delete action method
+                                // this alert box just an example
+
+                                $('#deletionSuccess').modal('show');
+                                setTimeout(function () {
+                                    $('#deletionSuccess').modal('hide');
+                                }, 1500);
+
+                                $('#exampleModalCenter').modal('hide');
+                                alert(data);
+                                if (data != null && data == "user") {
+                                    debugger;
+                                    location.href = '@Url.Action("ViewUserList", "UserManagement")?userTypeId=' + usertypeId;
+                                }
+                            });
+                        }
+                        else {
+                            $.post('@Url.Action("Delete", "Home")', { id: deletionId }, function (data) {
+                            // do something after calling delete action method
+                            // this alert box just an example
+                           
+                            $('#deletionSuccess').modal('show');
+                            setTimeout(function () {
+                                $('#deletionSuccess').modal('hide');
+                            }, 1500);
+
+                            $('#exampleModalCenter').modal('hide');
+
+                            if (data !=null && data == "client") {
+                                
+                                location.href = '@Url.Action("GetClientListDetails", "CRMDetails")?selectedCstatus=' + getUrlVars()["selectedCstatus"];
+                            }
+                            if (data != null && data == "project") {
+                                location.href = '@Url.Action("GetProjectListDetails", "CRMDetails")?selectedPstatus=' + getUrlVars()["selectedPstatus"];
+                            }
+                        if (data != null && data == "invoice") {
+                            location.href = '@Url.Action("ViewInvoiceList", "Billing")?id=' + getUrlVars()["response"];
+                            }
+                          
+                    });
+
+                        }
+                        
+
+                    });
+                    });
+        </script>
+
+
     </environment>
     <environment exclude="Development">
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
@@ -69,6 +149,8 @@
     </environment>
 
     @RenderSection("Scripts", required: false)
+
+
 </body>
 </html>
 

@@ -65,19 +65,25 @@ namespace InvoiceMIcroServices.Controllers
 
         [HttpGet]
         [Route("GetInvoiceList")]
-        public List<InvoiceDetails> GetInvoiceList(string projectid, string clientId)
+        public List<InvoiceDetails> GetInvoiceList(string id)
         {
             List<InvoiceDetails> invoiceDetails = new List<InvoiceDetails>();
-            if (!string.IsNullOrEmpty(clientId))
+            if (!string.IsNullOrEmpty(id))
             {
-                var projectdetails = _context.projectDetails.Where(x => x.id.ToString() == clientId).FirstOrDefault();
-                invoiceDetails = _context.invoiceDetails.Where(x => x.projectId == projectdetails.projectId).ToList();
+
+                var projectdetails = _context.projectDetails.Where(x => x.clientId.ToString() == id).FirstOrDefault();
+                if(projectdetails == null)
+                {
+                    invoiceDetails = _context.invoiceDetails.Where(x => x.projectId == id).ToList();
+                    return invoiceDetails;
+                }
+                else
+                {
+                    invoiceDetails = _context.invoiceDetails.Where(x => x.projectId == projectdetails.projectId).ToList();
+                    return invoiceDetails;
+                }
+                
             }
-            else
-            {
-                invoiceDetails = _context.invoiceDetails.Where(x => x.projectId == projectid).ToList();
-            }
-            
             return invoiceDetails;
 
         }

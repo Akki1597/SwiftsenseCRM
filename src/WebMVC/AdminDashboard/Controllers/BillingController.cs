@@ -6,6 +6,7 @@ using System.Web.Script.Serialization;
 using InvoiceMicroServices.WebMVC.AdminDashboard.Models;
 using InvoiceMicroServices.WebMVC.AdminDashboard.Services;
 using InvoiceMicroServices.WebMVC.AdminDashboard.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -13,6 +14,7 @@ using Newtonsoft.Json;
 
 namespace AdminDashboard.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class BillingController : Controller
     {
         private readonly IClientInfo _clientInfosvc;
@@ -43,7 +45,7 @@ namespace AdminDashboard.Controllers
             List<ClientDetails> clist = await GetCLientlist();
 
             model.invoiceListClientWise = new List<SelectListItem>();
-            model.invoiceListClientWise.Add(new SelectListItem { Text = "Select Client Name", Value = "0", Selected = true });
+            model.invoiceListClientWise.Add(new SelectListItem { Text = "Select Client Name", Value = "", Selected = true });
             for (int i = 0; i < clist.Count; i++)
             {
                 model.invoiceListClientWise.Add(new SelectListItem { Text = clist[i].name, Value = clist[i].id.ToString() });
@@ -52,7 +54,7 @@ namespace AdminDashboard.Controllers
             List<ProjectDetails> plist = await _projectInfosvc.Getprojectlist("1");
 
             model.invoiceListProjectWise = new List<SelectListItem>();
-            model.invoiceListProjectWise.Add(new SelectListItem { Text = "Select Project Name", Value = "0", Selected = true });
+            model.invoiceListProjectWise.Add(new SelectListItem { Text = "Select Project Name", Value = "", Selected = true });
             for (int i = 0; i < plist.Count; i++)
             {
                 model.invoiceListProjectWise.Add(new SelectListItem { Text = plist[i].name, Value = plist[i].projectId.ToString() });
@@ -96,11 +98,18 @@ namespace AdminDashboard.Controllers
             //List<ProjectDetails> res = new List<ProjectDetails>();
             return View(res);
         }
-        [HttpGet]
-        public IActionResult ViewInvoiceList(string invoice)
+
+        public IActionResult ViewInvoiceList(string response)
         {
-            var res = _billingInfo.GetInvoiceList(invoice);
-            return View();
+            List<InvoiceDetails> invoicelist = new List<InvoiceDetails>();
+            invoicelist = JsonConvert.DeserializeObject<List<InvoiceDetails>>(response);
+            return View(invoicelist);
+        }
+
+        public async Task<string> GetInvoiceList(string id)
+        {
+            var res = await _billingInfo.GetInvoiceList(id);
+            return res;
         }
         public IActionResult billingmonth(int clientId)
         {
@@ -124,7 +133,7 @@ namespace AdminDashboard.Controllers
             };
             model.monthList = new List<SelectListItem>
             {
-                new SelectListItem {Text = "Select Month"},
+                new SelectListItem {Text = "Select Month",Value=""},
                 new SelectListItem {Text = "January", Value = "2"},
                 new SelectListItem {Text = "February", Value = "3"},
                 new SelectListItem {Text = "March", Value = "4"},
@@ -160,8 +169,8 @@ namespace AdminDashboard.Controllers
 
             model.CurrencyType = new List<SelectListItem>()
             {
-                new SelectListItem {Text = "Currency Type"},
-                new SelectListItem {Text = "USD", Value = "1"},
+                new SelectListItem {Text = "Currency Type",Value=""},
+                new SelectListItem {Text = "USD", Value = "1",Selected = true},
 
                 };
             var cdetails = await GetClientDetails(Convert.ToInt32(clientId));

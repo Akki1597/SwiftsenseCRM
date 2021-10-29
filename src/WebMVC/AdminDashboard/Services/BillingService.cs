@@ -1,5 +1,6 @@
 ﻿using InvoiceMicroServices.WebMVC.AdminDashboard.GatewayToMicroServices;
 using InvoiceMicroServices.WebMVC.AdminDashboard.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
@@ -38,13 +39,13 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.Services
             var datastring = await _apiclient.GetStringAsync(allinfourl);
             return Convert.ToInt32(datastring);
         }
-        public async Task<List<InvoiceDetails>> GetInvoiceList(string id)
+        public async Task<string> GetInvoiceList(string id)
         {
             var allinfourl = APIGateway.Billinginfo.getInvoiceList(_remoteServiceBaseUri,id);
             var datastring = await _apiclient.GetStringAsync(allinfourl);
-            List<InvoiceDetails> invoicelist = new List<InvoiceDetails>();
-            invoicelist = JsonConvert.DeserializeObject<List<InvoiceDetails>>(datastring);
-            return invoicelist;
+            //List<InvoiceDetails> invoicelist = new List<InvoiceDetails>();
+            //invoicelist = JsonConvert.DeserializeObject<List<InvoiceDetails>>(datastring);
+            return datastring;
         }
     }
 }

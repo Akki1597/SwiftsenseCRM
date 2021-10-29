@@ -1,0 +1,72 @@
+﻿@model List<InvoiceMicroServices.WebMVC.AdminDashboard.Models.UserDetails>
+@{
+    ViewData["Title"] = "ViewUserType";
+    Layout = "~/Views/Shared/PartialDashboardLayout.cshtml";
+    ViewBag.usertypeid = ViewData["userTypeId"];
+}
+
+<div class="container-xl">
+    @{
+        Html.RenderPartial("PartialDeleteModelPopUp");
+    }
+    @Html.Hidden("deletionId", "", new { id = "deletionId" });
+    <div class="row">
+        @{
+            Html.RenderPartial("PartialLeftMenu");
+        }
+        <div class="col-md-10 menuMargin" style="margin-top:30px;">
+            <input type="hidden" id="userTypeId" value="@ViewBag.usertypeid" />
+            <div class="card" style="min-height:220px;margin-top:10px;padding-left:10px;padding-right:10px">
+                <div class="row">
+                    <div class="col-sm-11 col-12">
+                        <h4 style="margin:20px 0px 40px 20px;color:gray;">User Type List</h4>
+                    </div>
+                    <div class="col-sm-1 col-12">
+                        <button type="button" class="btn btnColor btn-sm" onclick="location.href='@Url.Action("Index", "UserManagement")'" style="margin-top:30px;text-align:right">
+                            <i class="fa fa-angle-double-left" aria-hidden="true"></i>&nbsp;Back
+                        </button>
+                    </div>
+                </div>
+                <table class="table table-bordered table-sm">
+                    <thead>
+                        <tr>
+                            <th>S.No.</th>
+                            <th colspan="2">Full Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.Count > 0)
+                        {
+                            int i = 0;
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@(i = i + 1)</td>
+                                    @*<td>@string.Format("{0},{1}",@item.firstName, @item.lastName) </td>*@
+                                    <td colspan="2">@item.name</td>
+                                    <td>@item.email</td>
+                                    <td></td>
+                                    <td>@Html.ActionLink("Edit", "EditUserDetails", "UserManagement", new { id = ViewBag.usertypeid, userId = item.id }, new { @class = "btn btn-sm btn-success" })</td>
+                                    <td>
+                                        @Html.ActionLink("Delete", "UserManagement", new { userTypeId = ViewBag.usertypeid, userId = item.id }, new { @class = "btn btn-sm btn-danger element", @data_toggle = "modal", @data_target = "#exampleModalCenter", @data_id = item.id })
+                                    </td>
+
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="7" class="text-center">No Result Found</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

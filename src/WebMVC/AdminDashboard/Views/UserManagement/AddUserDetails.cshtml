@@ -1,0 +1,68 @@
+﻿@model InvoiceMicroServices.WebMVC.AdminDashboard.ViewModels.RegisterViewModel
+
+@{
+    ViewData["Title"] = "UserAccountType";
+}
+
+<div class="container-xl">
+    <div class="row">
+
+        @{
+            Html.RenderPartial("PartialLeftMenu");
+        }
+        <div class="col-md-10 menuMargin" style="margin-top:30px;">
+            <form role="form" class="needs-validation" method="post" asp-route-returnUrl="@ViewData["ReturnUrl"]" asp-action="AddUserDetails" asp-controller="UserManagement" enctype="multipart/form-data" novalidate>
+                <div class="card" style="margin-top:20px;">
+                    <div class="row">
+                        <div class="col-sm-11 col-12">
+                            <h4 style="margin:20px 0px 40px 20px;color:gray;">Profile Details</h4>
+                        </div>
+                        <div class="col-sm-1 col-12">
+                            <button type="button" class="btn btnColor btn-sm" onclick="location.href='@Url.Action("Index", "UserManagement")'" style="margin-top:30px;text-align:right">
+                                <i class="fa fa-angle-double-left" aria-hidden="true"></i>&nbsp;Back
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-row" style="padding-left:20px">
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="Name" class="control-label"></label>
+                                <input asp-for="Name" type="text" placeholder="Enter Your First Name" class="form-control" />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                        </div>
+                      
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="Email" class="control-label"></label>
+                                <input asp-for="Email" type="email" placeholder="Enter Your Email Address" class="form-control" />
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="Password" class="control-label"></label>
+                                <input asp-for="Password" type="password" placeholder="Enter Your Password" class="form-control" />
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="ConfirmPassword" class="control-label"></label>
+                                <input asp-for="ConfirmPassword" type="password" placeholder="Enter Your Confirm Password" class="form-control" />
+                                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="padding-left:20px;padding-bottom:15px">
+                        <div class="col-sm-9">
+                            <input type="submit" class="btn btn-success" value="Submit" />
+                        </div>
+                        <div class="col-sm-3">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

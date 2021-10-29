@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -12,8 +13,8 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.Models
         [Required(ErrorMessage = "Please enter your Project Id")]
         public string projectId { get; set; }
 
-        [Display(Name = "Client Id")]
-        [Required(ErrorMessage = "Please enter your Client Id")]
+        [Display(Name = "Client Name")]
+        [Required(ErrorMessage = "Please select client")]
         public int clientId { get; set; }
       
         [Display(Name = "Project Name")]
@@ -27,9 +28,12 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.Models
         [Display(Name = "Status")]
         [Required(ErrorMessage = "Please enter Status")]
         public string status { get; set; }
+        public List<SelectListItem> projectStatusList { get; set; }
 
         [Display(Name = "Number of unbilled hours")]
         [Required(ErrorMessage = "Please enter your No.of unbilled hours")]
         public string unbilledHours { get; set; }
+
+        public List<SelectListItem> clientlist { get; set; }
     }
 }

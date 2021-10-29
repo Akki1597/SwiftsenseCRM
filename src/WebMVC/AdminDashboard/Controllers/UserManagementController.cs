@@ -2,54 +2,112 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using InvoiceMicroServices.WebMVC.AdminDashboard.Models;
+using InvoiceMicroServices.WebMVC.AdminDashboard.Services;
 using InvoiceMicroServices.WebMVC.AdminDashboard.ViewModels;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AdminDashboard.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class UserManagementController : Controller
     {
-        public IActionResult UserManagement()
+        private readonly IAccount _accountInfosvc;
+        public UserManagementController(IAccount accountInfo)
+        {
+            _accountInfosvc = accountInfo;
+        }
+
+        public IActionResult Index()
         {
             UserManagement model = new UserManagement();
-            model.employeeList = new List<SelectListItem>
+            model.usertypeList = new List<SelectListItem>
             {
                 new SelectListItem {Text = "Select Type",Value=""},
                 new SelectListItem {Text = "Employee", Value = "1"},
-                //new SelectListItem {Text = "Payroll", Value = "2"},
-                //new SelectListItem {Text = "Hr", Value = "3"},
-                //new SelectListItem {Text = "Admin", Value = "4"},
+                new SelectListItem {Text = "Hr", Value = "2"}
+            };
+           
+            return View(model);
+        }
 
-            };
-            model.genderList = new List<SelectListItem>
+        [HttpGet]
+        public async Task<IActionResult> ViewUserList(int userTypeId, UserManagement user)
+        {
+            if (userTypeId != 0)
             {
-                new SelectListItem {Text = "Select Gender",Value=""},
-                new SelectListItem {Text = "Male", Value = "1"},
-                new SelectListItem {Text = "Female", Value = "2"},
-            };
-            return View(model);
+                ViewData["userTypeId"] = userTypeId;
+                var res = await _accountInfosvc.GetUserList(userTypeId);
+                return View(res);
+            }
+            else
+            {
+                ViewData["userTypeId"] = user.userTypeId;
+                var res = await _accountInfosvc.GetUserList(user.userTypeId);
+                return View(res);
+            }
         }
         [HttpGet]
-        public IActionResult ViewUserType()
+        public async Task<IActionResult> EditUserDetails(int id,string userId)
         {
-            return View();
-        }
-        [HttpGet]
-        public IActionResult UserAccountType()
-        {
-            UserManagement model = new UserManagement();
-            model.genderList = new List<SelectListItem>
+            UserDetails model = new UserDetails();
+
+            var users = await _accountInfosvc.GetUserList(id);
+
+            foreach(var user in users)
             {
-                new SelectListItem {Text = "Select Gender"},
-                new SelectListItem {Text = "Male", Value = "1"},
-                new SelectListItem {Text = "Female", Value = "2"},
-            };
+                if(user.id == userId)
+                {
+                    model.id = user.id;
+                    model.name = user.name;
+                    model.email = user.email;
+                    model.roles = user.roles;
+                    model.roleId = user.roleId;
+                }
+            }
             return View(model);
         }
+
+
+        [HttpPost]
+        public ActionResult UpdateUserDetails(UserDetails userDetails)
+        {
+            var res = _accountInfosvc.UpdateUserDetails(userDetails);
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult AddUserDetails()
+        {
+            RegisterViewModel model = new RegisterViewModel();
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddUserDetails(RegisterViewModel req)
+        {
+            var res = await _accountInfosvc.Register(req);
+            return RedirectToAction("Index");
+        }
+
         public IActionResult ViewUserToken()
         {
             return View();
         }
+
+       
+        [HttpPost]
+        public async Task<string> Delete(string userId)
+        {
+            var res = await _accountInfosvc.Delete(userId);
+            return res;
+        }
+
     }
 }

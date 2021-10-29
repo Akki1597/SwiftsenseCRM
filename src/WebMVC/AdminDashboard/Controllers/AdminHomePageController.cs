@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AdminDashboard.Controllers
 {
-    public class UserController : Controller
+    public class AdminHomePageController : Controller
     {
         public IActionResult Index()
         {

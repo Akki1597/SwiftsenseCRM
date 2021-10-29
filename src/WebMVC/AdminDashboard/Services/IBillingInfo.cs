@@ -10,6 +10,6 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.Services
     {
         Task<bool> SaveInvoiceDetails(InvoiceDetails invocieDetails);
         Task<int> GetInvoiceCount();
-        Task<List<InvoiceDetails>> GetInvoiceList(string id);
+        Task<string> GetInvoiceList(string id);
     }
 }

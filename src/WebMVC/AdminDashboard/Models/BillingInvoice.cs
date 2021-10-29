@@ -16,22 +16,22 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.Models
 
         [Display(Name = "projectWise")]
         [Required(ErrorMessage = "Please select Project Name")]
-        public string projectWise { get; set; }
+        public string selectedProject { get; set; }
         public List<SelectListItem> invoiceListProjectWise { get; set; }
 
         [Display(Name = "clientWise")]
         [Required(ErrorMessage = "Please select Client Name")]
-        public string clientWise { get; set; }
+        public string selectedClient { get; set; }
         public List<SelectListItem> invoiceListClientWise { get; set; }
 
         [Display(Name = "monthWise")]
         [Required(ErrorMessage = "Please select Month")]
-        public string monthWise { get; set; }
+        public string selectedMonth { get; set; }
         public List<SelectListItem> invoiceListMonthWise { get; set; }
 
         [Display(Name = "yearWise")]
         [Required(ErrorMessage = "Please select Year")]
-        public string yearWise { get; set; }
+        public string selectedYear { get; set; }
         public List<SelectListItem> invoiceListYearWise { get; set; }
     }
 }

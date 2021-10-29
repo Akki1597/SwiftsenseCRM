@@ -139,7 +139,7 @@ namespace InvoiceMIcroServices.Controllers
         {
             try
             {
-                if (projectInfo.id != 0)
+                if (!string.IsNullOrEmpty(projectInfo.projectId))
                 {
 
                     var res = _context.projectDetails.Where(x => x.id == projectInfo.id).FirstOrDefault();
