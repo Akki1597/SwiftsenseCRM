@@ -69,5 +69,13 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.Services
             var projectlist = JsonConvert.DeserializeObject<IEnumerable<SelectListItem>>(datastring);
             return projectlist;
         }
+
+        public async Task<List<ProjectDetails>> GetprojectListDetailsClientWise(int clientId)
+        {
+            var allinfourl = APIGateway.ProjectInfo.GetProjectListClientWise(_remoteServiceBaseUri, clientId);
+            var datastring = await _apiclient.GetStringAsync(allinfourl);
+            var projectlist = JsonConvert.DeserializeObject<List<ProjectDetails>>(datastring);
+            return projectlist;
+        }
     }
 }

@@ -6,9 +6,18 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace InvoiceMicroServices.WebMVC.AdminDashboard.Models
+namespace InvoiceMIcroServices.Models
 {
-    
+    public class BillingRate
+    {
+        [Key]
+        public int id { get; set; }
+        public string employeeName { get; set; }
+        public int? noofHours { get; set; }
+        public int? rateperHr { get; set; } 
+        public string projectId { get; set; }
+    }
+
     public class billingRate
     {
         public List<SelectListItem> CurrencyType { get; set; }
@@ -27,19 +36,5 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.Models
         [DisplayName("Rate/hr")]
         [Required(ErrorMessage = "Rate/Hr is required")]
         public int? RatePerHr { get; set; }
-        //public string projectId { get; set; }
     }
-
-    public class ResBillingRate
-    {
-
-        public int id { get; set; }
-        public string employeeName { get; set; }
-
-        public int? NoofHours { get; set; }
-        public string projectId { get; set; }
-
-        public int? RatePerHr { get; set; }
-    }
-
 }

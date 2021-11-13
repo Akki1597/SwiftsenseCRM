@@ -20,6 +20,7 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.Services
         private readonly string _remoteServiceGetuserListUri;
         private readonly string _remoteServiceUpdateuserUri;
         private readonly string _remoteServiceDeleteuserUri;
+        private readonly string _remoteServiceAddnewRoleUri;
 
         public AccountInfo(ILogger<CompanyInfoService> logger, IOptionsSnapshot<AppSettings> appsettings, IHttpClient httpClient)
         {
@@ -30,6 +31,8 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.Services
             _remoteServiceGetuserListUri = $"{_appsettings.Value.IdentityURL}/Account/GetUserList";
             _remoteServiceUpdateuserUri = $"{_appsettings.Value.IdentityURL}/Account/UpdateUserRole/";
             _remoteServiceDeleteuserUri = $"{_appsettings.Value.IdentityURL}/Account/DeleteUser";
+            _remoteServiceAddnewRoleUri = $"{_appsettings.Value.IdentityURL}/Account/AddUserRole";
+
         }
 
         
@@ -54,6 +57,17 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.Services
             var response = await _apiclient.PostAsync(allinfourl, userDetails);
             return response.IsSuccessStatusCode;
         }
+
+        public async Task<bool> AddUserRole(string name)
+        {
+            var allinfourl = APIGateway.accountInfo.AddNewRole(_remoteServiceAddnewRoleUri,name);
+            var response = await _apiclient.GetStringAsync(allinfourl);
+            if (response == "true")
+                return true;
+            else
+                return false;
+        }
+
         public async Task<string> Delete(string userId)
         {
             var allinfourl = APIGateway.accountInfo.DelteUser(_remoteServiceDeleteuserUri,userId);

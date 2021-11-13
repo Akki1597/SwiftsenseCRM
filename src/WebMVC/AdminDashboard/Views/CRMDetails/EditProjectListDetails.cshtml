@@ -13,6 +13,8 @@
         <div class="col-md-10 menuMargin" style="margin-top:30px;">
             <form role="form" class="needs-validation" method="post" enctype="multipart/form-data" novalidate asp-action="UpdateProjectdetails" asp-controller="CRMDetails">
                 <input type="hidden" asp-for="projectId" value="@Model.projectId" />
+                <input type="hidden" asp-for="id" value="@Model.id" />
+                <input type="hidden" asp-for="status" value="@Model.status" />
                 <div class="card" style="margin-top:20px;">
                     <div class="row">
                         <div class="col-sm-11 col-12">

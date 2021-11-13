@@ -12,6 +12,7 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.Services
         Task<bool> Register(RegisterViewModel req);
         Task<List<UserDetails>> GetUserList(int userTypeId);
         Task<bool> UpdateUserDetails(UserDetails userDetails);
+        Task<bool> AddUserRole(string name);
         Task<string> Delete(string userId);
     }
 }

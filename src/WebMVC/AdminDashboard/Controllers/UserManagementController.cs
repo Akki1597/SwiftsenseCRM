@@ -90,6 +90,13 @@ namespace AdminDashboard.Controllers
         }
 
         [HttpPost]
+        public async Task<bool> AddUserRole(UserManagement userrole)
+        {
+            var res = await _accountInfosvc.AddUserRole(userrole.name);
+            return res;
+        }
+
+        [HttpPost]
         public async Task<IActionResult> AddUserDetails(RegisterViewModel req)
         {
             var res = await _accountInfosvc.Register(req);

@@ -2,10 +2,8 @@
 
 @{
     ViewData["Title"] = "InvoiceTemplate";
-    var count = Int32.Parse(Model.invoiceCount.ToString());
-    count = count + 1;
-    var invoiceDate = DateTime.UtcNow.ToShortDateString();
-  
+
+
 }
 
 <link href="~/css/InvoiceTemplate.css" rel="stylesheet" />
@@ -28,12 +26,12 @@
 
                 <div class="col-lg-3">
                     <h4 class="underline">DATE</h4>
-                    <h5>@invoiceDate</h5>
+                    <h5>@Model.invoiceDate</h5>
                 </div>
                 <div class="col-lg-4">
                     <h4 class="underline">INVOICE NO</h4>
 
-                    <h5>SSIT @count.ToString().PadLeft(4, '0')</h5>
+                    <h5>SSIT @Model.invoiceCount</h5>
 
                     <br />
 
@@ -57,7 +55,7 @@
             <div class="row">
                 <div class="col-lg-6">
                     <h5>
-                      @Model.clientDetails.name
+                        @Model.clientDetails.name
                     </h5>
 
                     @Model.clientDetails.address
@@ -131,18 +129,7 @@
                                 </td>
                                 <td>
                                     <h6>@sum </h6>
-                                    <input type="hidden" asp-for="totalAmount" value="@sum" />
-                                    <input type="hidden" asp-for="invoiceCount" value="@count.ToString().PadLeft(4, '0')" />
-                                    <input type="hidden" asp-for="invoiceDate" value="@invoiceDate" />
-                                    <input type="hidden" asp-for="projectDetails.projectId" value="@Model.projectDetails.projectId" />
-                                    <input type="hidden" asp-for="projectDetails.name" value="@Model.projectDetails.name" />
-                                    <input type="hidden" asp-for="clientDetails.name" value="@Model.clientDetails.name" />
-                                    <input type="hidden" asp-for="totalhrs" value="@totalhrs" />
-                                    <input type="hidden" asp-for="clientDetails.id" value="@Model.clientDetails.id" />
-                                    <input type="hidden" asp-for="companydetails.companyId" value="@Model.companydetails.companyId" />
-                                    <input type="hidden" asp-for="billingMonth" value="@Model.billingMonth" />
-                                    <input type="hidden" asp-for="billingYear" value="@Model.billingYear" />
-
+                                  
                                 </td>
                             </tr>
 

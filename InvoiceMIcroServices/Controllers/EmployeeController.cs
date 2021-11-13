@@ -33,7 +33,7 @@ namespace InvoiceMIcroServices.Controllers
             try
             {
                 List<SelectListItem> emplist = _context.employeeDetails.AsNoTracking()
-             .OrderBy(x => x.firstName)
+               .OrderBy(x => x.firstName)
               .Where(x => x.projectId == pId)
                  .Select(x =>
                  new SelectListItem

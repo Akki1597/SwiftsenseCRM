@@ -8,8 +8,11 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.Services
 {
    public interface IBillingInfo
     {
+        Task<InvoiceDetails> GetInvoiceDetails(string invoiceNumber);
         Task<bool> SaveInvoiceDetails(InvoiceDetails invocieDetails);
         Task<int> GetInvoiceCount();
+        Task<int> GetUnbilledHours();
         Task<string> GetInvoiceList(string id);
+        Task<List<ResBillingRate>> GetBillingRate(string projectId);
     }
 }

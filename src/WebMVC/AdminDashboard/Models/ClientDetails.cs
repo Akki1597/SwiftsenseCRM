@@ -20,7 +20,7 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.Models
         [Display(Name = "Phone")]
         [Required(ErrorMessage = "Please enter your Phone Number")]
         [RegularExpression(@"\d{10}", ErrorMessage = "Please enter 10 digit Mobile No.")]
-        public string phone { get; set; }
+        public string phoneNo { get; set; }
 
         [Display(Name = "Email")]
         [Required(ErrorMessage = "Please enter your Email Address")]

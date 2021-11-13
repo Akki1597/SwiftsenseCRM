@@ -44,7 +44,7 @@ namespace AdminDashboard.Controllers
             };
 
             List<ClientDetails> clist = await GetCLientlist();
-
+            ViewBag.clistcount = clist.Count();
             model.empClientList = new List<SelectListItem>();
             model.empClientList.Add(new SelectListItem { Text = "Select Client", Value ="", Selected = true  });
             for (int i=0;i< clist.Count;i++)
@@ -149,7 +149,7 @@ namespace AdminDashboard.Controllers
             clientDetails.id = req.clientId;
             clientDetails.name = req.clientName;
             clientDetails.projectId = req.projectId;
-            clientDetails.phone = req.phone;
+            clientDetails.phoneNo = req.phone;
             clientDetails.status = req.status == "1"?"Active": req.status == "0" ? "InActive":null ;
             clientDetails.unbilledHours = req.unbilledHours;
             clientDetails.email = req.email;
@@ -225,6 +225,7 @@ namespace AdminDashboard.Controllers
             ProjectDetails projectDetails = new ProjectDetails()
             {
                 projectId = req.projectId,
+                id = req.id,
                 clientId = req.clientId,
                 name = req.name,
                 pCode = req.pCode,
@@ -274,8 +275,14 @@ namespace AdminDashboard.Controllers
             IEnumerable<SelectListItem> response = await _projectInfosvc.GetprojectNamelistClientWise(clientId);
             var res = Json(response);
             return res;
-
         }
+
+        public async Task<IActionResult> GetProjectListClientWise(int clientId)
+        {
+            var response = await _projectInfosvc.GetprojectListDetailsClientWise(clientId);
+            return View(response);
+        }
+
         public async Task<IActionResult> EditClientListDetails(int? clientId)
         {
             var info = await _clientInfosvc.GetClientInfo(clientId);
@@ -286,7 +293,7 @@ namespace AdminDashboard.Controllers
             editClient.address = info.address;
             editClient.clientName = info.name;
             editClient.email = info.email;
-            editClient.phone = info.phone;
+            editClient.phone = info.phoneNo;
             editClient.unbilledHours = info.unbilledHours;
             editClient.status = info.status == "Active" ? "1" : info.status == "InActive" ? "0" : null;
             editClient.clientStatusList = new List<SelectListItem>
@@ -316,6 +323,7 @@ namespace AdminDashboard.Controllers
             projectList.status = info.status == "Active" ? "1" : info.status == "InActive" ? "0" : null;
             projectList.clientId = info.clientId;
             projectList.pCode = info.pCode;
+            projectList.id = info.id;
             projectList.unbilledHours = info.unbilledHours;
             projectList.projectStatusList =  new List<SelectListItem>
             {

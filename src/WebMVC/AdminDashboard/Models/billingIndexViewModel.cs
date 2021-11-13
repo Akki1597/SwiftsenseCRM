@@ -22,6 +22,7 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.Models
         [Required(ErrorMessage = "Month is required.")]
         public string selectedMonth { get; set; }
         public int clientId { get; set; }
+        public string projectId { get; set; }
         public List<SelectListItem> monthList { get; set; }
     }
 }

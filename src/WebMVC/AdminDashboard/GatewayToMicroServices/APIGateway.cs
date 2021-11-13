@@ -83,6 +83,12 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.GatewayToMicroServices
                 var res = $"{baseuri}GetProjectNamelistClientWise?clientId=" + clientId;
                 return res;
             }
+
+            public static string GetProjectListClientWise(string baseuri, int clientId)
+            {
+                var res = $"{baseuri}GetProjectListClientWise?clientId=" + clientId;
+                return res;
+            }
         }
         public static class EmployeeInfo
         {
@@ -119,9 +125,28 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.GatewayToMicroServices
                 var res = $"{baseuri}GetInvoiceCount";
                 return res;
             }
+
+            public static string GetUnbilledHours(string baseuri)
+            {
+                var res = $"{baseuri}GetUnbilledHours";
+                return res;
+            }
+
             public static string getInvoiceList(string baseuri,string id)
             {
                 var res = $"{baseuri}GetInvoiceList?id="+id;
+                return res;
+            }
+
+            public static string getBillingrate(string baseuri, string projectId)
+            {
+                var res = $"{baseuri}GetBillingRate?projectId=" + projectId;
+                return res;
+            }
+
+            public static string getInvoiceDetails(string baseuri, string invoiceNumber)
+            {
+                var res = $"{baseuri}GetInvoiceDetails?invoiceNumber=" + invoiceNumber;
                 return res;
             }
         }
@@ -145,6 +170,12 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.GatewayToMicroServices
             public static string GetUserList(string baseuri,int typeid)
             {
                 var res = $"{baseuri}?userTypeId="+ typeid;
+                return res;
+            }
+
+            public static string AddNewRole(string baseuri, string name)
+            {
+                var res = $"{baseuri}?name=" + name;
                 return res;
             }
 

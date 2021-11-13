@@ -12,8 +12,12 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.Models
         public string date { get; set; }
         public int? totalHours { get; set; }
         public string billingMonth { get; set; }
+        public string billingYear { get; set; }
         public string projectName { get; set; }
         public string clientName { get; set; }
         public string projectId { get; set; }
+        public int clientId { get; set; }
+        public string companyId { get; set; }
+        public billingRate billingRate { get; set; }
     }
 }

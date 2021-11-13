@@ -24,7 +24,7 @@ namespace AdminDashboard.Controllers
         //}
 
         [Authorize]
-        public async Task<IActionResult> SignIn()
+        public IActionResult SignIn()
         {
             //var user = User as ClaimsPrincipal;
 

@@ -26,6 +26,15 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.Services
             _remoteServiceBaseUri = $"{_appsettings.Value.ServiceBaseURl}/api/Billing/";
         }
 
+        public async Task<InvoiceDetails> GetInvoiceDetails(string invoiceNumber)
+        {
+            var allinfourl = APIGateway.Billinginfo.getInvoiceDetails(_remoteServiceBaseUri, invoiceNumber);
+            var datastring = await _apiclient.GetStringAsync(allinfourl);
+            InvoiceDetails invoiceDetails = new InvoiceDetails();
+            invoiceDetails = JsonConvert.DeserializeObject<InvoiceDetails>(datastring);
+            return invoiceDetails;
+        }
+
         public async Task<bool> SaveInvoiceDetails(InvoiceDetails req)
         {
             var allinfourl = APIGateway.Billinginfo.setInvoicedetails(_remoteServiceBaseUri);
@@ -39,6 +48,14 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.Services
             var datastring = await _apiclient.GetStringAsync(allinfourl);
             return Convert.ToInt32(datastring);
         }
+
+        public async Task<int> GetUnbilledHours()
+        {
+            var allinfourl = APIGateway.Billinginfo.GetUnbilledHours(_remoteServiceBaseUri);
+            var datastring = await _apiclient.GetStringAsync(allinfourl);
+            return Convert.ToInt32(datastring);
+        }
+
         public async Task<string> GetInvoiceList(string id)
         {
             var allinfourl = APIGateway.Billinginfo.getInvoiceList(_remoteServiceBaseUri,id);
@@ -46,6 +63,15 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.Services
             //List<InvoiceDetails> invoicelist = new List<InvoiceDetails>();
             //invoicelist = JsonConvert.DeserializeObject<List<InvoiceDetails>>(datastring);
             return datastring;
+        }
+
+        public async Task<List<ResBillingRate>> GetBillingRate(string projectId)
+        {
+            var allinfourl = APIGateway.Billinginfo.getBillingrate(_remoteServiceBaseUri, projectId);
+            var datastring = await _apiclient.GetStringAsync(allinfourl);
+            List<ResBillingRate> billingratelist = new List<ResBillingRate>();
+            billingratelist = JsonConvert.DeserializeObject<List<ResBillingRate>>(datastring);
+            return billingratelist;
         }
     }
 }

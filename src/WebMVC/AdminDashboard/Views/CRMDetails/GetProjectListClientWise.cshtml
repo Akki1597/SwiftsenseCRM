@@ -1,6 +1,6 @@
 ﻿@model List<InvoiceMicroServices.WebMVC.AdminDashboard.Models.ProjectDetails>
 @{
-    ViewData["Title"] = "Generateinvoice";
+    ViewData["Title"] = "ProjectList";
 }
 
 <div class="container-xl">
@@ -17,7 +17,7 @@
                         <h4 style="margin:20px 0px 40px 20px;color:gray;">Active Project List</h4>
                     </div>
                     <div class="col-sm-1 col-12">
-                        <button type="button" class="btn btnColor btn-sm" onclick="location.href='@Url.Action("Billing", "Billing")'" style="margin-top:30px;text-align:right">
+                        <button type="button" class="btn btnColor btn-sm" onclick="location.href='@Url.Action("GetClientListDetails", "CRMDetails",new {selectedCstatus = 1 })'" style="margin-top:30px;text-align:right">
                             <i class="fa fa-angle-double-left" aria-hidden="true"></i>&nbsp;Back
                         </button>
                     </div>
@@ -32,7 +32,7 @@
                             <th>Project State</th>
                             @*<th hidden>Invoice generated</th>*@
                             <th>No of unbilled hours</th>
-                            <th>Generate Invoice</th>
+                           @* <th>Generate Invoice</th>*@
                         </tr>
                     </thead>
                     <tbody>
@@ -41,25 +41,16 @@
                             int i = 0;
                             @foreach (var data in Model)
                             {
-                        <tr>
-                            <td>@(i = i + 1)</td>
-                            <td>@data.name</td>
-                            <td>@data.pCode</td>
-                            <td>@data.projectId</td>
-                            <td>@data.status</td>
-                            @*<td hidden>@data.clientId</td>*@
-                            <td>@data.unbilledHours</td>
-                            @if (Convert.ToInt32(data.unbilledHours) > 0)
-                            {
-                                <td><button class="btn btn-sm btn-primary" id="btnGenerate" onclick="location.href='@Url.Action("billingmonth","Billing",new { projectId= data.projectId})'">Generate</button></td>
-
-                            }
-                            else
-                            {
-                                <td class="text-primary">Generated</td>
-
-                            }
-                        </tr>
+                                <tr>
+                                    <td>@(i = i + 1)</td>
+                                    <td>@data.name</td>
+                                    <td>@data.pCode</td>
+                                    <td>@data.projectId</td>
+                                    <td>@data.status</td>
+                                    @*<td hidden>@data.clientId</td>*@
+                                    <td>@data.unbilledHours</td>
+                                    @*<td><button class="btn btn-sm btn-primary" id="btnGenerate" onclick="location.href='@Url.Action("billingmonth","Billing",new { projectId= data.projectId})'">Generate</button></td>*@
+                                </tr>
                             }
                         }
                         else
@@ -74,15 +65,3 @@
         </div>
     </div>
 </div>
-@section Scripts{
-    <script>
-        $(document).ready(function () {
-            $("#btnGenerate").click(function (e) {
-
-                $('#btnGenerate').prop('disabled', true);
-
-            });
-        });
-
-    </script>
-}

@@ -13,7 +13,9 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.ViewModels
         [Display(Name = "User Type")]
         public int userTypeId { get; set; }
         public List<SelectListItem> usertypeList { get; set; }
+        [Required(ErrorMessage = "Please Type RoleName")]
+        [Display(Name = "Role Name")]
+        public string name { get; set; }
 
-       
     }
 }
