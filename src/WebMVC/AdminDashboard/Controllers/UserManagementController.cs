@@ -51,5 +51,12 @@ namespace AdminDashboard.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            // other stuff
+
+            return View();
+        }
     }
 }

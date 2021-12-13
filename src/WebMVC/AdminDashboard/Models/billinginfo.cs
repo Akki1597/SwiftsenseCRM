@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace InvoiceMicroServices.WebMVC.AdminDashboard.Models
 {
-    public class billinginfo
+    public class EducationalDetails
     {
         public CompanyIndexViewModel companydetails { get; set; } = new CompanyIndexViewModel();
         public ClientDetails clientDetails { get; set; } = new ClientDetails();

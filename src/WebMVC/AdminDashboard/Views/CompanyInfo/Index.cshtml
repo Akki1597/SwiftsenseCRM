@@ -1,4 +1,4 @@
-﻿@model InvoiceMicroServices.WebMVC.AdminDashboard.ViewModels.CompanyIndexViewModel
+﻿ @model InvoiceMicroServices.WebMVC.AdminDashboard.ViewModels.CompanyIndexViewModel
 
 @{
     /**/
@@ -19,7 +19,16 @@
                 <input type="hidden" asp-for="companyId" />
                 <input type="hidden" asp-for="id" />
                 <div class="card" style="margin-top:10px">
-                    <h4 style="margin:20px 0px 20px 20px;color:gray">Company Details</h4>
+                    <div class="row">
+                        <div class="col-sm-10 col-12">
+                            <h4 style="margin:20px 0px 20px 20px;color:gray">Company Details</h4>
+                        </div>
+                        <div class="col-sm-2 col-12">
+                            <button type="button" class="btn btnColor btn-sm" onclick="location.href='@Url.Action("ViewCompanyInfo", "CompanyInfo",new { status ="1"})'" style="margin-top:30px;text-align:right">
+                                <i class="fa fa-angle-double-left" aria-hidden="true"></i>&nbsp;Back
+                            </button>
+                        </div>
+                    </div>
                     <div class="form-row" style="padding-left:20px">
                         <div class="col-sm-7">
                             <div class="form-group">
@@ -36,18 +45,18 @@
                             </div>
                         </div>
                         @*<div class="col-sm-7">
-                    <div class="form-group">
+                <div class="form-group">
 
-                        @Html.TextBoxFor(m => m.address2, new { @class = "form-control", @placeholder = "Enter Address2" })
-                        @Html.ValidationMessageFor(m => m.address2, "", new { @class = "text-danger" })
-                    </div>
+                    @Html.TextBoxFor(m => m.address2, new { @class = "form-control", @placeholder = "Enter Address2" })
+                    @Html.ValidationMessageFor(m => m.address2, "", new { @class = "text-danger" })
                 </div>
-                <div class="col-sm-7">
-                    <div class="form-group">
-                        @Html.TextBoxFor(m => m.address3, new { @class = "form-control", @placeholder = "Enter Address3" })
-                        @Html.ValidationMessageFor(m => m.address3, "", new { @class = "text-danger" })
-                    </div>
-                </div>*@
+            </div>
+            <div class="col-sm-7">
+                <div class="form-group">
+                    @Html.TextBoxFor(m => m.address3, new { @class = "form-control", @placeholder = "Enter Address3" })
+                    @Html.ValidationMessageFor(m => m.address3, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
                         <div class="col-sm-7">
                             <div class="form-group">
                                 @Html.LabelFor(m => m.gstNo, new { @for = "gstnumber" })
@@ -72,8 +81,8 @@
                     </div>
                     <div class="row" style="padding-left:20px;padding-bottom:15px">
                         @*<div class="col-sm-3">
-                            <input type="submit" class="btn btnColor" asp-action="SaveCompanyDetails" asp-controller="CompanyInfo" value="Update" />
-                        </div>*@
+                <input type="submit" class="btn btnColor" asp-action="SaveCompanyDetails" asp-controller="CompanyInfo" value="Update" />
+            </div>*@
 
                         <div class="col-sm-9">
                         </div>
@@ -116,7 +125,7 @@
                     </div>
                     <div class="row" style="padding-left:20px;padding-bottom:15px">
                         <div class="col-sm-3">
-                            <input type="submit" class="btn btnColor" asp-action="SaveCompanyDetails" asp-controller="CompanyInfo" value="Update" />
+                            <input type="submit" class="btn btnColor" asp-action="SaveCompanyDetails" asp-controller="CompanyInfo" value="Save" />
                         </div>
                         <div class="col-sm-9">
                         </div>

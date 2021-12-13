@@ -9,7 +9,7 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.Models
 {
     public class billingIndexViewModel
     {
-        public billinginfo billinginfo { get; set; }
+        public EducationalDetails billinginfo { get; set; }
 
         
         public PaginationInfo paginationInfo { get; set; }

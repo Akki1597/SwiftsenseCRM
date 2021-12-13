@@ -1,0 +1,182 @@
+﻿@model InvoiceMicroServices.WebMVC.AdminDashboard.ViewModels.ProjectDetailsViewModel
+
+@{
+    ViewData["Title"] = "AddProjectDetails";
+    Layout = "~/Views/Shared/PartialDashboardLayout.cshtml";
+
+}
+
+<div class="container-xl">
+    <div class="row">
+        @{
+            Html.RenderPartial("PartialLeftMenu");
+        }
+        <div class="col-md-10 menuMargin" style="margin-top:30px;">
+            <form role="form" class="needs-validation" method="post" asp-action="Saveprojectdetails" asp-controller="CRMDetails" enctype="multipart/form-data" novalidate>
+                <div class="card" style="margin-top:20px;">
+                    <div class="row">
+                        <div class="col-sm-11 col-12">
+                            <h4 style="margin:20px 0px 20px 20px;color:gray">Add Project</h4>
+                        </div>
+                        <div class="col-sm-1 col-12">
+                            <button type="button" class="btn btnColor btn-sm" onclick="location.href='@Url.Action("CRMDetails", "CRMDetails")'" style="margin-top:30px;text-align:right">
+                                <i class="fa fa-angle-double-left" aria-hidden="true"></i>&nbsp;Back
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-row" style="padding-left:20px">
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="name" class="control-label"></label>
+                                <input asp-for="name" type="text" placeholder="Enter Project Name" class="form-control" />
+                                <span asp-validation-for="name" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="projectId" class="control-label"></label>
+                                <input asp-for="projectId" type="text" placeholder="Enter Project Id" class="form-control" />
+                                <span asp-validation-for="projectId" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="pCode" class="control-label"></label>
+                                <input asp-for="pCode" type="text" placeholder="Enter Project Code" class="form-control" />
+                                <span asp-validation-for="pCode" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="row">
+                                <div class="col-sm-9 col-12">
+                                    <div class="form-group">
+                                        <label asp-for="client" class="control-label"></label>
+                                        <select asp-for="client" asp-items="@Model.clientList" class="form-control"></select>
+                                        <span asp-validation-for="client" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 col-12">
+                                    <button type="button" class="btn btnColor btn-sm" onclick="location.href='@Url.Action("CRMDetails", "CRMDetails")'" style="margin-top:30px;text-align:right">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Add New Client
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="status" class="control-label"></label>
+                                <select asp-for="status" asp-items="@Model.statusList" class="form-control"></select>
+                                <span asp-validation-for="status" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-sm-9 col-12">
+                                    <h4 style="margin:20px 0px 20px 20px;color:gray;">Employee</h4>
+                                </div>
+                                <div class="col-sm-3 col-12">
+                                    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("AddProjectDetails", "CRMDetails")'" style="margin-top:30px;text-align:right">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Add New Employee
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card" style="margin:10px;border-radius:40px">
+                                <div class="form-row" style="padding-left:20px;padding-right:20px">
+                                    <div class="col-sm-12">
+                                        <div class="list-group list-group-flush">
+                                            <div class="list-group-item list-group-item-action">
+                                                <div class="d-flex w-100 justify-content-between">
+                                                    <div class="md-1">
+                                                        <span>
+                                                            @Html.Label("Employee Name")
+                                                        </span>
+                                                    </div>
+                                                    <div class="md-1">
+                                                        <span>
+                                                            @Html.Label("Employee Id:")
+                                                        </span>
+                                                        <span>EID</span>
+                                                    </div>
+                                                    <div class="md-1">
+                                                        <button type="button" class="btn-sm btn-danger">Remove</button>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="card" style="margin:10px;border-radius:40px">
+                                <div class="form-row" style="padding-left:20px;padding-right:20px">
+                                    <div class="col-sm-12">
+                                        <div class="list-group list-group-flush">
+                                            <div class="list-group-item list-group-item-action">
+                                                <div class="d-flex w-100 justify-content-between">
+                                                    <div class="md-1">
+                                                        <span>
+                                                            @Html.Label("Employee Name")
+                                                        </span>
+                                                    </div>
+                                                    <div class="md-1">
+                                                        <span>
+                                                            @Html.Label("Employee Id:")
+                                                        </span>
+                                                        <span>EID</span>
+                                                    </div>
+                                                    <div class="md-1">
+                                                        <button type="button" class="btn-sm btn-danger">Remove</button>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="card" style="margin:10px;border-radius:40px">
+                                <div class="form-row" style="padding-left:20px;padding-right:20px">
+                                    <div class="col-sm-12">
+                                        <div class="list-group list-group-flush">
+                                            <div class="list-group-item list-group-item-action">
+                                                <div class="d-flex w-100 justify-content-between">
+                                                    <div class="md-1">
+                                                        <span>
+                                                            @Html.Label("Employee Name")
+                                                        </span>
+                                                    </div>
+                                                    <div class="md-1">
+                                                        <span>
+                                                            @Html.Label("Employee Id:")
+                                                        </span>
+                                                        <span>EID</span>
+                                                    </div>
+                                                    <div class="md-1">
+                                                        <button type="button" class="btn-sm btn-danger">Remove</button>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row" style="padding-left:20px;padding-bottom:15px">
+                        <div class="col-sm-3">
+                            <button type="submit" class="btn btn-success">Submit</button>
+                            <button type="submit" class="btn btn-danger">Cancel</button>
+                        </div>
+                        <div class="col-sm-9">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,203 @@
+﻿
+@{
+    ViewData["Title"] = "ViewTimeSheetDemo";
+}
+<style>
+.table-wrapper {
+    width: auto;
+    margin: auto;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+}
+.table-title {
+    padding-bottom: 10px;
+    margin: 0 0 10px;
+}
+.table-title h2 {
+    margin: 6px 0 0;
+    font-size: 22px;
+}
+.table-title .add-new {
+    float: right;
+    height: 30px;
+    font-weight: bold;
+    font-size: 12px;
+    text-shadow: none;
+    min-width: 100px;
+    border-radius: 50px;
+    line-height: 13px;
+}
+.table-title .add-new i {
+    margin-right: 4px;
+}
+table.table {
+    table-layout: fixed;
+}
+table.table tr th, table.table tr td {
+    border-color: #e9e9e9;
+}
+table.table th i {
+    font-size: 13px;
+    margin: 0 5px;
+    cursor: pointer;
+}
+table.table th:last-child {
+    width: 100px;
+}
+table.table td a {
+    cursor: pointer;
+    display: inline-block;
+    margin: 0 5px;
+    min-width: 24px;
+}
+table.table td a.add {
+    color: #27C46B;
+}
+table.table td a.edit {
+    color: #FFC107;
+}
+table.table td a.delete {
+    color: #E34724;
+}
+table.table td i {
+    font-size: 19px;
+}
+table.table td a.add i {
+    font-size: 24px;
+    margin-right: -1px;
+    position: relative;
+    top: 3px;
+}
+table.table .form-control {
+    height: 32px;
+    line-height: 32px;
+    box-shadow: none;
+    border-radius: 2px;
+}
+table.table .form-control.error {
+    border-color: #f50000;
+}
+table.table td .add {
+    display: none;
+}
+</style>
+<div class="container-fluid">
+    <div class="row">
+        @{
+            Html.RenderPartial("_PartialEmployeeLeftMenu");
+        }
+        <div class="col-md-10 menuMargin" style="margin-top:30px;">
+            <div class="card" style="min-height:220px;margin-top:10px;padding-left:10px;padding-right:10px">
+                <div class="table-responsive">
+                    <div class="table-wrapper">
+                        <div class="table-title">
+                            <div class="row">
+                                <div class="col-sm-8"><h2>Time Sheet <b></b></h2></div>
+                                <div class="col-sm-2">
+                                    <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New</button>
+                                </div>
+                                <div class="col-sm-2">
+                                    <button type="button" class="btn btn-info btn-sm" onclick="location.href='@Url.Action("TimeSheet", "TimeSheet")'" style="text-align:right">
+                                        <i class="fa fa-angle-double-left" aria-hidden="true"></i>&nbsp;Back
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>S.No.</th>
+                                    <th>Date</th>
+                                    <th>Day</th>
+                                    <th>Status</th>
+                                    <th>Hours</th>
+                                    <th>Tag</th>
+                                    <th>Comment</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>1-3-2021</td>
+                                    <td>Monday</td>
+                                    <td>WFH</td>
+                                    <td>9</td>
+                                    <td>1</td>
+                                    <td>adsbfjhngkmhjmbjgnhgnfgh</td>
+                                            <td>
+                                                <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
+                                                <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                                                <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @section Scripts{
+            <script>
+                $(document).ready(function () {
+                    $('[data-toggle="tooltip"]').tooltip();
+                    var actions = $("table td:last-child").html();
+                    // Append table with add row form on add new button click
+                    $(".add-new").click(function () {
+                        $(this).attr("disabled", "disabled");
+                        var index = $("table tbody tr:last-child").index();
+                        var num = $('.table tr').length;
+                        var row = '<tr>' +
+                            '<td>' + num +'</td>' +
+                            '<td><input type="text" class="form-control" name="date" id="date"></td>' +
+                            '<td><input type="text" class="form-control" name="day" id="day"></td>' +
+                            '<td><input type="text" class="form-control" name="status" id="status"></td>' +
+                            '<td><input type="text" class="form-control" name="hours" id="hours"></td>' +
+                            '<td><input type="text" class="form-control" name="tag" id="tag"></td>' +
+                            '<td><input type="text" class="form-control" name="comment" id="comment"></td>' +
+                            '<td>' + actions + '</td>' +
+                            '</tr>';
+                        $("table").append(row);
+                        $("table tbody tr").eq(index + 1).find(".add, .edit").toggle();
+                        $('[data-toggle="tooltip"]').tooltip();
+                    });
+                    // Add row on add button click
+                    $(document).on("click", ".add", function () {
+                        var empty = false;
+                        var input = $(this).parents("tr").find('input[type="text"]');
+                        input.each(function () {
+                            if (!$(this).val()) {
+                                $(this).addClass("error");
+                                empty = true;
+                            } else {
+                                $(this).removeClass("error");
+                            }
+                        });
+                        $(this).parents("tr").find(".error").first().focus();
+                        if (!empty) {
+                            input.each(function () {
+                                $(this).parent("td").html($(this).val());
+                            });
+                            $(this).parents("tr").find(".add, .edit").toggle();
+                            $(".add-new").removeAttr("disabled");
+                        }
+                    });
+                    // Edit row on edit button click
+                    $(document).on("click", ".edit", function () {
+                        $(this).parents("tr").find("td:not(:last-child)").each(function () {
+                            $(this).html('<input type="text" class="form-control" value="' + $(this).text() + '">');
+                        });
+                        $(this).parents("tr").find(".add, .edit").toggle();
+                        $(".add-new").attr("disabled", "disabled");
+                    });
+                    // Delete row on delete button click
+                    $(document).on("click", ".delete", function () {
+                        $(this).parents("tr").remove();
+                        $(".add-new").removeAttr("disabled");
+                    });
+                });
+            </script>
+        }

@@ -9,6 +9,14 @@
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="~/css/site.css" />
+       
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -26,7 +34,8 @@
                 </a>
             </div>
             <div class="navbar-right">
-                <a asp-controller="EmployeeHomePage" asp-action="EmployeeHomePage" style="padding:20px;color:white">Home</a>
+                <a asp-controller="AdminHomePage" asp-action="AdminDashboardHomePage" style="padding:20px;color:white">Home</a>
+                <a asp-controller="EmployeeHomePage" asp-action="EmployeeHomePage" style="padding:20px;color:white">Employee DashBoard</a>
                 <a href="#contact" style="padding:20px;color:white">Service Offered</a>
                 <a asp-controller="Home" asp-action="About" style="padding:20px;color:white">About Us</a>
                 <a href="#contact" style="padding:20px;color:white">Contact</a>

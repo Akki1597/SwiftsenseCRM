@@ -1,0 +1,92 @@
+﻿
+@{
+    ViewData["Title"] = "ViewTimeSheet";
+}
+
+<div class="container-xl">
+    <div class="row">
+        @{
+            Html.RenderPartial("_PartialEmployeeLeftMenu");
+        }
+        <div class="col-md-10 menuMargin" style="margin-top:30px;">
+            <div class="card" style="min-height:220px;margin-top:10px;padding-left:10px;padding-right:10px">
+                <div class="row">
+                    <div class="col-sm-9 col-12">
+                        <h4 style="margin:20px 0px 40px 20px;color:gray;">Time Sheet</h4>
+                    </div>
+                    <div class="col-sm-2 col-12">
+                        <button type="button" onclick="addfaqs()" class="btn btn-info btn-sm" style="margin-top:30px;text-align:right;">
+                            <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Add New
+                        </button>
+                    </div>
+                    <div class="col-sm-1 col-12">
+                        <button type="button" class="btn btnColor btn-sm" onclick="location.href='@Url.Action("TimeSheet", "TimeSheet")'" style="margin-top:30px;text-align:right">
+                            <i class="fa fa-angle-double-left" aria-hidden="true"></i>&nbsp;Back
+                        </button>
+                    </div>
+                </div>
+                <table id="faqs" class="table table-bordered table-sm">
+                    <thead>
+                        <tr>
+                            <th>S.No.</th>
+                            <th>Date</th>
+                            <th>Day</th>
+                            <th>Status</th>
+                            <th>Hours</th>
+                            <th>Tag</th>
+                            <th>Comment</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td><input type="date" class="form-control" placeholder="Date"></td>
+                            <td><input type="text" placeholder="day" class="form-control"></td>
+                            <td><input type="text" class="form-control" placeholder="Status"></td>
+                            <td><input type="text" placeholder="Hours" class="form-control"></td>
+                            <td><input type="text" placeholder="Tag" class="form-control"></td>
+                            <td><input type="text" placeholder="Tag" class="form-control"></td>
+                            <td class="mt-10"><button class="badge badge-danger"><i class="fa fa-trash"></i> Delete</button>
+                            @*<td>1</td>
+                            <td class="tabledit-view-mode" style="cursor: pointer;">
+                                <span class="tabledit-span">13-09-2021</span><input class="tabledit-input form-control input-sm" type="text" value="Date" style="display: none;" disabled="">
+                            </td>
+                            <td>Monday</td>
+                            <td>WFH</td>
+                            <td>9</td>
+                            <td>1</td>
+                            <td>adsbfjhngkmhjmbjgnhgnfgh</td>
+                            <td><a asp-controller="" asp-action="" style="color:green"><i class="fa fa-edit" aria-hidden="true"></i>Edit</a></td>
+                            <td><a asp-controller="" asp-action="" style="color:red"><i class="fa fa-trash" aria-hidden="true"></i>Delete</a></td>*@
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script>
+            var faqs_row = 0;
+            function addfaqs() {
+                html = '<tr id="faqs-row' + faqs_row + '">';
+                html += '<td>1</td>';
+                html += '<td><input type="date" class="form-control" placeholder="Date"></td>';
+                html += '<td><input type="text" placeholder="day" class="form-control"></td>';
+                html += '<td><input type="text" class="form-control" placeholder="Status"></td>';
+                html += '<td><input type="text" placeholder="Hours" class="form-control"></td>';
+                html += '<td><input type="text" placeholder="Tag" class="form-control"></td>';
+                html += '<td><input type="text" placeholder="Tag" class="form-control"></td>';
+                html += '<td class="mt-10"><button class="badge badge-danger" onclick="$(\'#faqs-row' + faqs_row + '\').remove();"><i class="fa fa-trash"></i> Delete</button></td>';
+                html += '</tr>';
+
+                $('#faqs tbody').append(html);
+
+                faqs_row++;
+            }
+          
+        
+
+    </script>
+}

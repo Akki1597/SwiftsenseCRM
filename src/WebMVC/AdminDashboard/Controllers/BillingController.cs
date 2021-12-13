@@ -225,7 +225,7 @@ namespace AdminDashboard.Controllers
 
         public async Task<ActionResult> InvoicePreview()
         {
-            billinginfo model = new billinginfo();
+            EducationalDetails model = new EducationalDetails();
             model.invoiceCount = await GetLastInvoiceNo();
 
             if (TempData["billingrate"] is string s)
@@ -243,7 +243,7 @@ namespace AdminDashboard.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> InvoicePreview(billinginfo req)
+        public async Task<ActionResult> InvoicePreview(EducationalDetails req)
         {
             InvoiceDetails invoice = new InvoiceDetails()
             {

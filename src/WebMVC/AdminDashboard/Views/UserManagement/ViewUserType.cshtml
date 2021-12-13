@@ -4,6 +4,9 @@
 }
 
 <div class="container-xl">
+    @{
+        Html.RenderPartial("PartialDeleteModelPopUp");
+    }
     <div class="row">
         @{
             Html.RenderPartial("PartialLeftMenu");
@@ -29,6 +32,8 @@
                             <th>Gender</th>
                             <th>Email</th>
                             <th>Mobile</th>
+                            <th>Delete</th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -39,6 +44,12 @@
                             <td>7654327689</td>
                             <td>john@example.com</td>
                             <td>abc</td>
+                            <td>
+                                @Html.ActionLink("Delete", "UserManagement", new {  }, new { @class="element",
+                                         @data_toggle = "modal", @data_target = "#exampleModalCenter",
+                                          })
+                            </td>
+
                         </tr>
                     </tbody>
                 </table>
@@ -46,3 +57,20 @@
         </div>
     </div>
 </div>
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+          $('.element').click(function (e) {
+    e.preventDefault();
+    $('#exampleModalCenter').modal('show');
+            });
+            $('#Delete').click(function (e) {
+                e.preventDefault();
+                $('#deletionSuccess').modal('show');
+                $('#exampleModalCenter').modal('hide');
+            });
+
+        });
+    </script>
+    }
+       
