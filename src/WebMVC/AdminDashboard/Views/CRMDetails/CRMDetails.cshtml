@@ -32,7 +32,7 @@
                             <div class="form-group">
                                 <label class="control-label">Client List</label>
                                 <select asp-for="selectedCstatus" asp-items="@Model.clientStatusList" class="form-control">
-                                    <option value="">Pick one</option>
+                                    <option value="">Select Client Status</option>
                                 </select>
                                 <span asp-validation-for="selectedCstatus" class="text-danger"></span>
 
@@ -51,18 +51,22 @@
                         <div class="col-sm-10 col-12">
                             <h4 style="margin:20px 0px 20px 20px;color:gray">Project Management</h4>
                         </div>
-                        <div class="col-sm-2 col-12">
-                            <button type="button" class="btn btnColor" onclick="location.href='@Url.Action("AddNewProject", "CRMDetails")'" style="margin-top:30px;text-align:right">
-                                <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Add New
-                            </button>
-                        </div>
+                        @if (ViewBag.clistcount > 0)
+                        {
+                            <div class="col-sm-2 col-12">
+                                <button type="button" class="btn btnColor" onclick="location.href='@Url.Action("AddNewProject", "CRMDetails")'" style="margin-top:30px;text-align:right">
+                                    <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Add New
+                                </button>
+                            </div>
+                        }
+
                     </div>
                     <div class="form-row" style="padding-left:20px">
                         <div class="col-sm-5">
                             <div class="form-group">
                                 <label class="control-label">Project List</label>
                                 <select asp-for="selectedPstatus" asp-items="@Model.projectStatusList" class="form-control">
-                                    <option value="">Pick one</option>
+                                    <option value="">Select Project Status</option>
                                 </select>
                                 <span asp-validation-for="selectedPstatus" class="text-danger"></span>
                             </div>
@@ -74,7 +78,7 @@
                     </div>
                 </div>
             </form>
-            <form role="form" class="needs-validation" method="Get" enctype="multipart/form-data" novalidate>
+            <form role="form" class="needs-validation" method="Get" asp-action="EmployeeTimeSheetView" asp-controller="CRMDetails" enctype="multipart/form-data" novalidate>
                 <div class="card" style="margin-top:20px;">
                     <h4 style="margin:20px 0px 20px 20px;color:gray">Employee Time Sheet</h4>
                     <div class="form-row" style="padding-left:20px">
@@ -116,7 +120,7 @@
                     </div>
                     <div class="row" style="padding-left:20px;padding-bottom:15px">
                         <div class="col-sm-3">
-                            <input type="submit" onclick="location.href='@Url.Action("EmployeeTimeSheetView","CRMDetails")'" class="btn btnColor" value="View" />
+                            <input type="submit"  class="btn btnColor" value="View" />
                         </div>
                         <div class="col-sm-9">
                         </div>

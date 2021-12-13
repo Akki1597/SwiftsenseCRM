@@ -15,5 +15,6 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.Services
         Task<List<ProjectDetails>> Getprojectlist(string status);
         Task<List<string>> GetprojectNamelist(string status);
         Task<IEnumerable<SelectListItem>> GetprojectNamelistClientWise(int clientId);
+        Task<List<ProjectDetails>> GetprojectListDetailsClientWise(int clientId);
     }
 }

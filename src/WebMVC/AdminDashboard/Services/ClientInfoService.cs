@@ -57,5 +57,12 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.Services
             response.EnsureSuccessStatusCode();
             return true;
         }
+        //public async Task<bool> Updateclientdetails(ClientDetails req)
+        //{
+        //    var allinfourl = APIGateway.ClientInfo.UpdateClientInfo(_remoteServiceBaseUri);
+        //    var response = await _apiclient.PostAsync(allinfourl, req);
+        //    response.EnsureSuccessStatusCode();
+        //    return true;
+        //}
     }
 }

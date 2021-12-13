@@ -20,7 +20,7 @@ namespace InvoiceMIcroServices.Data
         public DbSet<ProjectDetails> projectDetails { get; set; }
         public DbSet<BankDetails> bankDetails { get; set; }
         public DbSet<InvoiceDetails> invoiceDetails { get; set; }
-
+        public DbSet<BillingRate> billingRate { get; set; }
 
     }
 }

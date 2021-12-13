@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewData["Title"] = "AccessDenied";
+    Layout = "~/Views/Shared/PartialDashboardLayout.cshtml";
+}
+
+<div class="container-xl">
+    <div class="row">
+        @{
+            Html.RenderPartial("PartialLeftMenu");
+        }
+        <div class="col-md-10 menuMargin" style="margin-top:30px;">
+            <form method="post" asp-controller="Account" asp-action="Signout">
+
+
+                <div class="alert alert-danger" role="alert">
+
+                    <h1>
+                        <i class="fa fa-warning"></i>
+                        AccessDenied
+                    </h1>
+                    <h3>You are not authorized to view this page.</h3>
+                    <p>
+                        You can always <input type="submit" class="btn-link" value="log in as someone else"/>.
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>
+

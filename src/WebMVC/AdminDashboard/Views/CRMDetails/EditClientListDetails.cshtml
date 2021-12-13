@@ -10,15 +10,16 @@
             Html.RenderPartial("PartialLeftMenu");
         }
         <div class="col-md-10 menuMargin" style="margin-top:30px;">
-            <form role="form" class="needs-validation" method="post" enctype="multipart/form-data" novalidate asp-controller="CRMDetails" asp-action="Saveclientdetails">
+            <form role="form" class="needs-validation" method="post" enctype="multipart/form-data" novalidate asp-controller="CRMDetails" asp-action="Updateclientdetails">
                 <input type="hidden" asp-for="clientId" value="@Model.clientId" />
+                <input type="hidden" asp-for="projectId" value="@Model.projectId" />
                 <div class="card" style="margin-top:20px;">
                     <div class="row">
                         <div class="col-sm-11 col-12">
                             <h4 style="margin:20px 0px 40px 20px;color:gray;">Edit Client Details</h4>
                         </div>
                         <div class="col-sm-1 col-12">
-                            <button type="button" class="btn btnColor btn-sm" onclick="location.href='@Url.Action("GetClientListDetails", "CRMDetails",new { status ="1"})'" style="margin-top:30px;text-align:right">
+                            <button type="button" class="btn btnColor btn-sm" onclick="location.href='@Url.Action("GetClientListDetails", "CRMDetails",new {  selectedCstatus = Model.status})'" style="margin-top:30px;text-align:right">
                                 <i class="fa fa-angle-double-left" aria-hidden="true"></i>&nbsp;Back
                             </button>
                         </div>
@@ -52,6 +53,15 @@
                                 <span asp-validation-for="email" class="text-danger"></span>
                             </div>
                         </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="status" class="control-label"></label>
+                                <select asp-for="status" asp-items="@Model.clientStatusList" class="form-control">
+                                    <option value="">Select Client Status</option>
+                                </select>
+                                <span asp-validation-for="status" class="text-danger"></span>
+                            </div>
+                        </div>
                         @*<div class="col-sm-7">
                     <div class="form-group">
                         <label asp-for="project" class="control-label"></label>
@@ -69,7 +79,7 @@
                     </div>
                     <div class="row" style="padding-left:20px;padding-bottom:15px">
                         <div class="col-sm-9">
-                            <button type="submit" class="btn btn-primary">Update</button>
+                            <input type="submit" class="btn btn-primary" value="Update" />
                         </div>
                         <div class="col-sm-3">
                         </div>

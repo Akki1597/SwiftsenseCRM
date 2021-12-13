@@ -5,11 +5,13 @@ using System.Threading.Tasks;
 using InvoiceMicroServices.WebMVC.AdminDashboard.Models;
 using InvoiceMicroServices.WebMVC.AdminDashboard.Services;
 using InvoiceMicroServices.WebMVC.AdminDashboard.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AdminDashboard.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class CRMDetailsController : Controller
     {
         private readonly IClientInfo _clientInfosvc;
@@ -43,7 +45,7 @@ namespace AdminDashboard.Controllers
             };
 
             List<ClientDetails> clist = await GetCLientlist();
-
+            ViewBag.clistcount = clist.Count();
             model.empClientList = new List<SelectListItem>();
             model.empClientList.Add(new SelectListItem { Text = "Select Client", Value ="0", Selected = true  });
             //for (int i=0;i< clist.Count;i++)
@@ -53,7 +55,7 @@ namespace AdminDashboard.Controllers
            
             model.yearList = new List<SelectListItem>
             {
-                new SelectListItem {Text = "Select Year"},
+                new SelectListItem {Text = "Select Year",Value=""},
                 new SelectListItem {Text = "2020", Value = "1"},
                 new SelectListItem {Text = "2021", Value = "2"},
                 new SelectListItem {Text = "2022", Value = "3"},
@@ -69,7 +71,7 @@ namespace AdminDashboard.Controllers
             };
             model.monthList = new List<SelectListItem>
             {
-                new SelectListItem {Text = "Select Month"},
+                new SelectListItem {Text = "Select Month",Value=""},
                 new SelectListItem {Text = "January", Value = "2"},
                 new SelectListItem {Text = "February", Value = "3"},
                 new SelectListItem {Text = "March", Value = "4"},
@@ -122,6 +124,13 @@ namespace AdminDashboard.Controllers
         public IActionResult AddNewClient()
         {
             ClientDetails vm  = new ClientDetails();
+            //var info = await _projectInfosvc.Getprojectlist("1");
+            //vm.project = new List<SelectListItem>();
+            //vm.project.Add(new SelectListItem { Text = "Select Client", Value = "", Selected = true });
+            //for (int i = 0; i < info.Count; i++)
+            //{
+            //    vm.project.Add(new SelectListItem { Text = info[i].name, Value = info[i].projectId.ToString() });
+            //}
             return View(vm);
         }
 
@@ -152,6 +161,7 @@ namespace AdminDashboard.Controllers
         [HttpPost]
         public async Task<IActionResult> Saveclientdetails(ClientDetails req)
         {
+            //req.status = req.status == "1" ? "Active" : req.status == "0" ? "InActive" : null;
             var res = await _clientInfosvc.Saveclientdetails(req);
             if(res == true)
             {
@@ -165,11 +175,46 @@ namespace AdminDashboard.Controllers
 
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Updateclientdetails(EditClientList req)
+        {
+           
+            ClientDetails clientDetails = new ClientDetails();
+            clientDetails.id = req.clientId;
+            clientDetails.name = req.clientName;
+            clientDetails.projectId = req.projectId;
+            clientDetails.phoneNo = req.phone;
+            clientDetails.status = req.status == "1"?"Active": req.status == "0" ? "InActive":null ;
+            clientDetails.unbilledHours = req.unbilledHours;
+            clientDetails.email = req.email;
+            clientDetails.address = req.address;
+
+            var res = await _clientInfosvc.Saveclientdetails(clientDetails);
+            if (res == true)
+            {
+                return RedirectToAction("CRMDetails");
+            }
+            else
+            {
+                return RedirectToAction("ClientList");
+            }
+
+
+        }
+
         /* Project Details */
 
         public IActionResult AddNewProject()
         {
             ProjectDetails vm = new ProjectDetails();
+            //List<ClientDetails> clist = await GetCLientlist();
+            //vm.client = new List<SelectListItem>();
+            //vm.client.Add(new SelectListItem { Text = "Select Client", Value = "", Selected = true });
+            //for (int i = 0; i < clist.Count; i++)
+            //{
+            //    vm.client.Add(new SelectListItem { Text = clist[i].name, Value = clist[i].id.ToString() });
+            //}
+
             return View(vm);
         }
 
@@ -207,6 +252,33 @@ namespace AdminDashboard.Controllers
 
 
         }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateProjectdetails(EditProjectList req)
+        {
+            ProjectDetails projectDetails = new ProjectDetails()
+            {
+                projectId = req.projectId,
+                id = req.id,
+                clientId = req.clientId,
+                name = req.name,
+                pCode = req.pCode,
+                status = req.status == "1" ? "Active" : req.status == "0" ? "InActive" : null,
+                unbilledHours = req.unbilledHours,
+            };
+            var res = await _projectInfosvc.Saveprojectdetails(projectDetails);
+            if (res == true)
+            {
+                return RedirectToAction("CRMDetails");
+            }
+            else
+            {
+                return RedirectToAction("ProjectList");
+            }
+
+
+        }
+
         public IActionResult EmployeeTimeSheetView()
         {
             return View();
@@ -237,31 +309,62 @@ namespace AdminDashboard.Controllers
             IEnumerable<SelectListItem> response = await _projectInfosvc.GetprojectNamelistClientWise(clientId);
             var res = Json(response);
             return res;
-
         }
+
+        public async Task<IActionResult> GetProjectListClientWise(int clientId)
+        {
+            var response = await _projectInfosvc.GetprojectListDetailsClientWise(clientId);
+            return View(response);
+        }
+
         public async Task<IActionResult> EditClientListDetails(int? clientId)
         {
             var info = await _clientInfosvc.GetClientInfo(clientId);
+
             EditClientList  editClient = new EditClientList();
             editClient.clientId = info.id;
+            editClient.projectId = info.projectId;
             editClient.address = info.address;
             editClient.clientName = info.name;
             editClient.email = info.email;
-            editClient.phone = info.phone;
+            editClient.phone = info.phoneNo;
             editClient.unbilledHours = info.unbilledHours;
+            editClient.status = info.status == "Active" ? "1" : info.status == "InActive" ? "0" : null;
+            editClient.clientStatusList = new List<SelectListItem>
+            {
+                //new SelectListItem {Text = "Select Client Status",Value=""},
+                new SelectListItem {Text = "Active", Value = "1"},
+                new SelectListItem {Text = "InActive", Value = "0"}
+            };
             //editClient.
             return View(editClient);
         }
         public async Task<IActionResult> EditProjectListDetails(string projectId)
         {
             var info = await _projectInfosvc.GetProjectInfo(projectId);
+            var clientlist = await GetCLientlist();
+
             EditProjectList projectList = new EditProjectList();
+
+            projectList.clientlist = new List<SelectListItem>();
+            projectList.clientlist.Add(new SelectListItem { Text = "Select Client Name", Value = "", Selected = true });
+            for (int i = 0; i < clientlist.Count; i++)
+            {
+                projectList.clientlist.Add(new SelectListItem { Text = clientlist[i].name, Value = clientlist[i].id.ToString() });
+            }           
             projectList.projectId = info.projectId;
             projectList.name = info.name;
-            projectList.status = info.status;
+            projectList.status = info.status == "Active" ? "1" : info.status == "InActive" ? "0" : null;
             projectList.clientId = info.clientId;
             projectList.pCode = info.pCode;
+            projectList.id = info.id;
             projectList.unbilledHours = info.unbilledHours;
+            projectList.projectStatusList =  new List<SelectListItem>
+            {
+                //new SelectListItem {Text = "Select Client Status",Value=""},
+                new SelectListItem {Text = "Active", Value = "1"},
+                new SelectListItem {Text = "InActive", Value = "0"}
+            };
             return View(projectList);
         }
         public IActionResult AddClientDetails()
@@ -273,5 +376,6 @@ namespace AdminDashboard.Controllers
             return View();
         }
 
+        
     }
 }

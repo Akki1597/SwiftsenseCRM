@@ -27,6 +27,19 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.Models
         [DisplayName("Rate/hr")]
         [Required(ErrorMessage = "Rate/Hr is required")]
         public int? RatePerHr { get; set; }
+        //public string projectId { get; set; }
+    }
+
+    public class ResBillingRate
+    {
+
+        public int id { get; set; }
+        public string employeeName { get; set; }
+
+        public int? NoofHours { get; set; }
+        public string projectId { get; set; }
+
+        public int? RatePerHr { get; set; }
     }
 
 }

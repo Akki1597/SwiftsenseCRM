@@ -1,5 +1,4 @@
 ﻿@model InvoiceMicroServices.WebMVC.AdminDashboard.ViewModels.UserManagement
-
 @{
     ViewData["Title"] = "UserManagement";
     Layout = "~/Views/Shared/PartialDashboardLayout.cshtml";
@@ -13,15 +12,15 @@
         <div class="col-md-10 menuMargin" style="margin-top:30px;">
             <div class="row">
                 <div class="col-sm-6">
-                    <form role="form" class="needs-validation" method="Get" asp-action="UserAccountType" asp-controller="UserManagement" enctype="multipart/form-data" novalidate>
+                    <form role="form" class="needs-validation" method="Get" asp-action="AddUserDetails" asp-controller="UserManagement" enctype="multipart/form-data" novalidate>
                         <div class="card" style="margin-top:10px">
                             <h4 style="margin:20px 0px 20px 20px;color:gray">Create User Account</h4>
                             <div class="form-row" style="padding-left:20px">
                                 <div class="col-sm-9">
                                     <div class="form-group">
-                                        <label asp-for="invoiceId" class="control-label"></label>
-                                        <select asp-for="invoiceId" asp-items="@Model.employeeList" class="form-control"></select>
-                                        <span asp-validation-for="invoiceId" class="text-danger"></span>
+                                        <label asp-for="userTypeId" class="control-label"></label>
+                                        <select asp-for="userTypeId" asp-items="@Model.usertypeList" class="form-control"></select>
+                                        <span asp-validation-for="userTypeId" class="text-danger"></span>
                                     </div>
                                 </div>
                             </div>
@@ -32,15 +31,34 @@
                     </form>
                 </div>
                 <div class="col-sm-6">
-                    <form role="form" class="needs-validation" method="Get" asp-action="ViewUserType" asp-controller="UserManagement" enctype="multipart/form-data" novalidate>
+                    <form role="form" class="needs-validation" method="Post" asp-action="AddUserRole" asp-controller="UserManagement"  novalidate>
+                        <div class="card" style="margin-top:10px">
+                            <h4 style="margin:20px 0px 20px 20px;color:gray">Create User Role</h4>
+                            <div class="form-row" style="padding-left:20px">
+                                <div class="col-sm-9">
+                                    <div class="form-group">
+                                        <label class="control-label"  asp-for="name"></label>
+                                        <input asp-for="name" class="form-control"/>
+                                        <span asp-validation-for="name" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <center style="padding-bottom:10px">
+                                <input type="submit" class="btn btnColor" value="Create" />
+                            </center>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-sm-6">
+                    <form role="form" class="needs-validation" method="Get" asp-action="ViewUserList" asp-controller="UserManagement" enctype="multipart/form-data" novalidate>
                         <div class="card" style="margin-top:10px">
                             <h4 style="margin:20px 0px 20px 20px;color:gray">View User Account</h4>
                             <div class="form-row" style="padding-left:20px">
                                 <div class="col-sm-9">
                                     <div class="form-group">
-                                        <label asp-for="invoiceId" class="control-label"></label>
-                                        <select asp-for="invoiceId" asp-items="@Model.employeeList" method="post" class="form-control"></select>
-                                        <span asp-validation-for="invoiceId" class="text-danger"></span>
+                                        <label asp-for="userTypeId" class="control-label"></label>
+                                        <select asp-for="userTypeId" asp-items="@Model.usertypeList" method="post" class="form-control"></select>
+                                        <span asp-validation-for="userTypeId" class="text-danger"></span>
                                     </div>
                                 </div>
                             </div>

@@ -1,6 +1,7 @@
 ﻿
+
 @{
-    ViewData["Title"] = "HomePage";
+    ViewData["Title"] = "Login";
 }
 <style>
     #cardAligns {
@@ -8,16 +9,17 @@
         margin-right: 30px;*/
         box-shadow: 2px 5px 5px 0px #080808;
         margin-top: 10px;
-        background-color:white;
-        
+        background-color: white;
     }
+
     .loginBtn {
         margin-bottom: 10px;
         margin-top: 30px;
     }
+
     #headerAligns {
         text-align: center;
-        font-size:30px;
+        font-size: 30px;
         margin-top: 10px;
     }
 </style>
@@ -42,26 +44,26 @@
                         </div>
                         <div class="col-sm-12">
                             <center>
-                                <button type="button" class="btn btn-sm btnColor loginBtn">Login</button>
+                                <button type="button" onclick="location.href='@Url.Action("SignIn", "Account")'" class="btn btn-sm btnColor loginBtn">Login</button>
                             </center>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-2"></div>
 
-                    <div class="col-md-5">
-                        <div class="row" id="cardAligns">
-                            <div class="col-sm-12">
-                                <div id="headerAligns">PAYROLL</div>
-                            </div>
-                            <div class="col-sm-12">
-                                <center>
-                                    <button type="button" class="btn btn-sm btnColor loginBtn">Login</button>
-                                </center>
-                            </div>
+                <div class="col-md-5">
+                    <div class="row" id="cardAligns">
+                        <div class="col-sm-12">
+                            <div id="headerAligns">PAYROLL</div>
+                        </div>
+                        <div class="col-sm-12">
+                            <center>
+                                <button type="button" onclick="location.href='@Url.Action("SignIn", "Account")'" class="btn btn-sm btnColor loginBtn">Login</button>
+                            </center>
                         </div>
                     </div>
                 </div>
+            </div>
             <div class="row">
                 <div class="col-md-5">
                     <div class="row" id="cardAligns">
@@ -70,7 +72,7 @@
                         </div>
                         <div class="col-sm-12">
                             <center>
-                                <button type="button" class="btn btn-sm btnColor loginBtn">Login</button>
+                                <button type="button" onclick="location.href='@Url.Action("SignIn", "Account")'" class="btn btn-sm btnColor loginBtn">Login</button>
                             </center>
                         </div>
                     </div>
@@ -83,13 +85,14 @@
                         </div>
                         <div class="col-sm-12">
                             <center>
-                                <button type="button" onclick="location.href='@Url.Action("LoginPage", "Login")'" class="btn btn-sm btnColor loginBtn">Login</button>
+                                <button type="button" onclick="location.href='@Url.Action("SignIn", "Account")'" class="btn btn-sm btnColor loginBtn">Login</button>
                             </center>
                         </div>
                     </div>
                 </div>
             </div>
-            </div>
+        </div>
         <div class="col-md-3"></div>
     </div>
 </div>
+

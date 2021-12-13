@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdminDashboard", "src\WebMV
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthrizationMicroservice", "AuthrizationMicroservice\AuthrizationMicroservice.csproj", "{CC722CC9-0564-433D-956F-ACCAB483BA14}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeAPI", "EmployeeAPI\EmployeeAPI.csproj", "{4FC59789-559E-486B-848A-BB130D8FFED6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{CC722CC9-0564-433D-956F-ACCAB483BA14}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC722CC9-0564-433D-956F-ACCAB483BA14}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC722CC9-0564-433D-956F-ACCAB483BA14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4FC59789-559E-486B-848A-BB130D8FFED6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FC59789-559E-486B-848A-BB130D8FFED6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FC59789-559E-486B-848A-BB130D8FFED6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FC59789-559E-486B-848A-BB130D8FFED6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -43,6 +49,7 @@ Global
 		{80146BE2-89FD-40BE-8423-D8D715E7548C} = {A9A8805C-8A94-47AF-BE75-E76805140924}
 		{A86180B0-D2B0-47FC-AC3D-93491FACFA1F} = {80146BE2-89FD-40BE-8423-D8D715E7548C}
 		{CC722CC9-0564-433D-956F-ACCAB483BA14} = {419A4959-AAA6-401F-B562-AA844ECA6160}
+		{4FC59789-559E-486B-848A-BB130D8FFED6} = {419A4959-AAA6-401F-B562-AA844ECA6160}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5124433E-64E6-4B66-98ED-84C297271BB5}

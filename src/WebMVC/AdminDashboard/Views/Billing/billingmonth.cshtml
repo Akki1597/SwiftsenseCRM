@@ -13,24 +13,25 @@
         <div class="col-md-10 menuMargin" style="margin-top:30px;">
             <div class="card" style="min-height:220px;margin-top:10px;padding-left:10px;padding-right:10px">
                 <div class="row">
-                    <h4 style="margin:20px 0px 40px 20px;color:gray;">Select Month</h4>
+                    <h4 style="margin:20px 0px 20px 20px;color:gray;">Select Month</h4>
                 </div>
 
-                <form role="form" class="needs-validation"  method="post" asp-action="Selectedbillingmonth" asp-controller="Billing" enctype="multipart/form-data" novalidate>
-                    <input type="hidden" asp-for="clientId" value="@Model.clientId" />
+                <form role="form" class="needs-validation" method="get" asp-action="Selectedbillingmonth" asp-controller="Billing" enctype="multipart/form-data" novalidate>
+                    @*<input type="hidden" asp-for="clientId" value="@Model.clientId" />*@
+                    <input type="hidden" asp-for="projectId" value="@Model.projectId" />
                     <div class="form-row" style="padding-left:20px">
                         <div class="col-sm-7">
                             <div class="form-group">
                                 <label class="control-label"></label>
                                 <select asp-items="@Model.yearList" asp-for="@Model.selectedYear" class="form-control"></select>
-                                <span asp-validation-for="yearList" class="text-danger"></span>
+                                <span asp-validation-for="@Model.selectedYear" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-sm-7">
                             <div class="form-group">
                                 <label class="control-label"></label>
                                 <select asp-items="@Model.monthList" asp-for="@Model.selectedMonth" class="form-control"></select>
-                                <span asp-validation-for="monthList" class="text-danger"></span>
+                                <span asp-validation-for="@Model.selectedMonth" class="text-danger"></span>
                             </div>
                         </div>
 
@@ -38,8 +39,8 @@
                     </div>
 
 
-                    <div class="">
-                        <input type="submit" class="btn btnColor"  value="Next"/>
+                    <div class="" style="margin-bottom:10px">
+                        <input type="submit" class="btn btnColor" value="Next" />
                         <button type="button" class="btn btnColor" onclick="location.href='@Url.Action("GenerateInvoice", "Billing")'">Back</button>
                     </div>
                 </form>

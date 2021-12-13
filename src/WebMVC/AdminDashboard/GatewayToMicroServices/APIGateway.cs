@@ -36,6 +36,11 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.GatewayToMicroServices
                 var res = $"{baseuri}SaveClientDetails";
                 return res;
             }
+            public static string UpdateClientInfo(string baseuri)
+            {
+                var res = $"{baseuri}UpdateClientDetails";
+                return res;
+            }
             public static string GetClientList(string baseuri, string status)
             {
                 var res = $"{baseuri}GetClientList?status=" + status;
@@ -78,6 +83,12 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.GatewayToMicroServices
                 var res = $"{baseuri}GetProjectNamelistClientWise?clientId=" + clientId;
                 return res;
             }
+
+            public static string GetProjectListClientWise(string baseuri, int clientId)
+            {
+                var res = $"{baseuri}GetProjectListClientWise?clientId=" + clientId;
+                return res;
+            }
         }
         public static class EmployeeInfo
         {
@@ -114,9 +125,69 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.GatewayToMicroServices
                 var res = $"{baseuri}GetInvoiceCount";
                 return res;
             }
+
+            public static string GetUnbilledHours(string baseuri)
+            {
+                var res = $"{baseuri}GetUnbilledHours";
+                return res;
+            }
+
             public static string getInvoiceList(string baseuri,string id)
             {
                 var res = $"{baseuri}GetInvoiceList?id="+id;
+                return res;
+            }
+
+            public static string getBillingrate(string baseuri, string projectId)
+            {
+                var res = $"{baseuri}GetBillingRate?projectId=" + projectId;
+                return res;
+            }
+
+            public static string getInvoiceDetails(string baseuri, string invoiceNumber)
+            {
+                var res = $"{baseuri}GetInvoiceDetails?invoiceNumber=" + invoiceNumber;
+                return res;
+            }
+        }
+        public static class deleteInfo
+        {
+            public static string deleteItem(string baseuri, string id)
+            {
+                var res = $"{baseuri}Delete?id=" + id;
+                return res;
+            }
+        }
+
+        public static class accountInfo
+        {
+            public static string Register(string baseuri)
+            {
+                var res = $"{baseuri}";
+                return res;
+            }
+
+            public static string GetUserList(string baseuri,int typeid)
+            {
+                var res = $"{baseuri}?userTypeId="+ typeid;
+                return res;
+            }
+
+            public static string AddNewRole(string baseuri, string name)
+            {
+                var res = $"{baseuri}?name=" + name;
+                return res;
+            }
+
+            public static string UpdatRole(string baseuri)
+            {
+                var res = $"{baseuri}";
+                return res;
+            }
+
+            public static string DelteUser(string baseuri, string userId)
+            {
+                var res = $"{baseuri}?UserId=" +userId; 
                 return res;
             }
         }

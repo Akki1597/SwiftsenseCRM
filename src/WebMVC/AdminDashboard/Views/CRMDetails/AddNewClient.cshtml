@@ -47,20 +47,27 @@
                                 <span asp-validation-for="email" class="text-danger"></span>
                             </div>
                         </div>
-                        <div class="col-sm-7">
+                        @*<div class="col-sm-7">
+            <div class="form-group">
+                <label asp-for="projectId" class="control-label">Employee List</label>
+                <select asp-for="projectId" asp-items="@Model.project" class="form-control"></select>
+                <span asp-validation-for="projectId" class="text-danger"></span>
+            </div>
+        </div>*@
+                        @*<div class="col-sm-7">
                             <div class="form-group">
-                                <label asp-for="project" class="control-label"></label>
-                                <input asp-for="project" type="text" placeholder="Enter Client Project" class="form-control" />
-                                <span asp-validation-for="project" class="text-danger"></span>
+                                <label asp-for="status" class="control-label"></label>
+                                <input asp-for="status" type="text" placeholder="Enter Project State" class="form-control" />
+                                <span asp-validation-for="status" class="text-danger"></span>
                             </div>
-                        </div>
-                        <div class="col-sm-7">
+                        </div>*@
+                        @*<div class="col-sm-7">
                             <div class="form-group">
                                 <label asp-for="unbilledHours" class="control-label"></label>
                                 <input asp-for="unbilledHours" type="number" placeholder="Enter No of unbilled hours" class="form-control" />
                                 <span asp-validation-for="unbilledHours" class="text-danger"></span>
                             </div>
-                        </div>
+                        </div>*@
                     </div>
                     <div class="row" style="padding-left:20px;padding-bottom:15px">
                         <div class="col-sm-9">

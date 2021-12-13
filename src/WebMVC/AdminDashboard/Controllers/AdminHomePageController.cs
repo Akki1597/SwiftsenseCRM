@@ -8,7 +8,7 @@ namespace AdminDashboard.Controllers
 {
     public class AdminHomePageController : Controller
     {
-        public IActionResult AdminDashboardHomePage()
+        public IActionResult Index()
         {
             return View();
         }

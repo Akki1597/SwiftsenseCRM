@@ -8,6 +8,6 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard
     public class AppSettings
     {
         public string ServiceBaseURl { get; set; }
-
+        public string IdentityURL { get; set; }
     }
 }

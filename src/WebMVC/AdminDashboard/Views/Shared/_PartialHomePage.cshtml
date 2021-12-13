@@ -1,0 +1,99 @@
+﻿
+@{
+    ViewData["Title"] = "_PartialHomePage";
+}
+
+<style>
+    #cardAligns {
+        /*margin-left: 30px;
+        margin-right: 30px;*/
+        box-shadow: 2px 5px 5px 0px #080808;
+        margin-top: 10px;
+        background-color: white;
+    }
+
+    .loginBtn {
+        margin-bottom: 10px;
+        margin-top: 30px;
+    }
+
+    #headerAligns {
+        text-align: center;
+        font-size: 30px;
+        margin-top: 10px;
+    }
+</style>
+<div class="container-xl">
+    <div>
+        <center>
+            <h1 style="  text-align: center;margin-top:30px;">CRM</h1>
+            <h2 style="  text-align: center;margin-bottom:30px;font-style: oblique;">SWIFTSENSE</h2>
+        </center>
+    </div>
+    <div class="row" style="background-color:darkblue;min-height:400px">
+        <div class="col-sm-12">
+            <h2 style="text-align:center;margin-bottom:30px;margin-top:10px;color:white;font-family:ui-serif">LOGIN</h2>
+        </div>
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="row" id="cardAligns">
+                        <div class="col-sm-12">
+                            <div id="headerAligns">EMPLOYEE</div>
+                        </div>
+                        <div class="col-sm-12">
+                            <center>
+                                <button type="button" onclick="location.href='@Url.Action("SignIn", "Account")'" class="btn btn-sm btnColor loginBtn">Login</button>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2"></div>
+
+                <div class="col-md-5">
+                    <div class="row" id="cardAligns">
+                        <div class="col-sm-12">
+                            <div id="headerAligns">PAYROLL</div>
+                        </div>
+                        <div class="col-sm-12">
+                            <center>
+                                <button type="button" onclick="location.href='@Url.Action("SignIn", "Account")'" class="btn btn-sm btnColor loginBtn">Login</button>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="row" id="cardAligns">
+                        <div class="col-sm-12">
+                            <div id="headerAligns">HR</div>
+                        </div>
+                        <div class="col-sm-12">
+                            <center>
+                                <button type="button" onclick="location.href='@Url.Action("SignIn", "Account")'" class="btn btn-sm btnColor loginBtn">Login</button>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2"></div>
+                <div class="col-md-5">
+                    <div class="row" id="cardAligns">
+                        <div class="col-sm-12">
+                            <div id="headerAligns">ADMIN</div>
+                        </div>
+                        <div class="col-sm-12">
+                            <center>
+                                <button type="button" onclick="location.href='@Url.Action("SignIn", "Account")'" class="btn btn-sm btnColor loginBtn">Login</button>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>
+
+

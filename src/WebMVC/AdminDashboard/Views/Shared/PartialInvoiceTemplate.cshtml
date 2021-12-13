@@ -5,6 +5,7 @@
     var count = Int32.Parse(Model.invoiceCount.ToString());
     count = count + 1;
     var invoiceDate = DateTime.UtcNow.ToShortDateString();
+  
 }
 
 <link href="~/css/InvoiceTemplate.css" rel="stylesheet" />
@@ -38,7 +39,7 @@
 
                     <h4 class="underline">PROJECT ID</h4>
 
-                    <h5>@Model.clientDetails.projectId</h5>
+                    <h5>@Model.projectDetails.projectId</h5>
                 </div>
                 <div class="col-lg-5">
                     <h4>@Model.companydetails.companyName</h4>
@@ -56,12 +57,12 @@
             <div class="row">
                 <div class="col-lg-6">
                     <h5>
-                        @Model.clientDetails.name
+                      @Model.clientDetails.name
                     </h5>
 
                     @Model.clientDetails.address
-
-                    Phone : @Model.clientDetails.phone
+                    <br />
+                    Phone : @Model.clientDetails.phoneNo
                     <br />
                     Email : @Model.clientDetails.email
 
@@ -137,7 +138,11 @@
                                     <input type="hidden" asp-for="projectDetails.name" value="@Model.projectDetails.name" />
                                     <input type="hidden" asp-for="clientDetails.name" value="@Model.clientDetails.name" />
                                     <input type="hidden" asp-for="totalhrs" value="@totalhrs" />
-                                    <input type="hidden" asp-for="billingMonth" value="" />
+                                    <input type="hidden" asp-for="clientDetails.id" value="@Model.clientDetails.id" />
+                                    <input type="hidden" asp-for="companydetails.companyId" value="@Model.companydetails.companyId" />
+                                    <input type="hidden" asp-for="billingMonth" value="@Model.billingMonth" />
+                                    <input type="hidden" asp-for="billingYear" value="@Model.billingYear" />
+
                                 </td>
                             </tr>
 

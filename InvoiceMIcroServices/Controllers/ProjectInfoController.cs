@@ -131,6 +131,26 @@ namespace InvoiceMIcroServices.Controllers
 
         }
 
+
+        [HttpGet]
+        [Route("GetProjectListClientWise")]
+        public List<ProjectDetails> GetProjectListClientWise(int clientId)
+        {
+            try
+            {
+                List<ProjectDetails> prolist = _context.projectDetails.Where(x => x.clientId == clientId).ToList();
+                if(prolist != null)
+                    return prolist;
+               
+                return null;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+        }
+
         // POST: api/ProjectInfo
         [HttpPost]
         [Route("SaveProjectInfo")]
@@ -139,40 +159,42 @@ namespace InvoiceMIcroServices.Controllers
         {
             try
             {
-                if (projectInfo.id != 0)
+                if (!string.IsNullOrEmpty(projectInfo.projectId))
                 {
 
                     var res = _context.projectDetails.Where(x => x.id == projectInfo.id).FirstOrDefault();
-
-                    res.name = projectInfo.name;
-                    res.pCode = projectInfo.pCode;
-                    res.status = projectInfo.status;
-                    res.clientId = projectInfo.clientId;
-                    res.projectId = projectInfo.projectId;
-                    res.unbilledHours = projectInfo.unbilledHours;
-
-                    _context.projectDetails.Update(res);
-                    await _context.SaveChangesAsync();
-
-                    return Ok(res);
-                }
-                else
-                {
-
-                    var newProject = new ProjectDetails()
+                    if (res != null)
                     {
-                       name = projectInfo.name,
-                       pCode = projectInfo.pCode,
-                       status = "Active",
-                       clientId = projectInfo.clientId,
-                       projectId = projectInfo.projectId,
-                      unbilledHours = projectInfo.unbilledHours,
-                };
+                        res.name = projectInfo.name;
+                        res.pCode = projectInfo.pCode;
+                        res.status = projectInfo.status;
+                        res.clientId = projectInfo.clientId;
+                        res.projectId = projectInfo.projectId;
+                        res.unbilledHours = projectInfo.unbilledHours;
 
-                    _context.projectDetails.Add(newProject);
-                    await _context.SaveChangesAsync();
-                    return Ok(newProject);
+                        _context.projectDetails.Update(res);
+                        await _context.SaveChangesAsync();
+
+                        return Ok(res);
+                    }
+                    else
+                    {
+                        var newProject = new ProjectDetails()
+                        {
+                            name = projectInfo.name,
+                            pCode = projectInfo.pCode,
+                            status = "Active",
+                            clientId = projectInfo.clientId,
+                            projectId = projectInfo.projectId,
+                            unbilledHours = projectInfo.unbilledHours,
+                        };
+
+                        _context.projectDetails.Add(newProject);
+                        await _context.SaveChangesAsync();
+                        return Ok(newProject);
+                    }
                 }
+                return Ok();
             }
             catch (Exception ex)
             {

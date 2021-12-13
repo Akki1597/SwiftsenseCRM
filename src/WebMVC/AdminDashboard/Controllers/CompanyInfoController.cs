@@ -12,7 +12,7 @@ using InvoiceMicroServices.WebMVC.AdminDashboard.Models;
 
 namespace AdminDashboard.Controllers
 {
-   // [Authorize]
+    [Authorize(Roles = "Administrator")]
     public class CompanyInfoController : Controller
     {
         private readonly ICompanyInfo _companyInfosvc;
@@ -66,7 +66,6 @@ namespace AdminDashboard.Controllers
             return View();
         }
       
-
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";

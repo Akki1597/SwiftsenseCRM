@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -9,9 +10,10 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.Models
     public class EditClientList
     {
         public int clientId { get; set; }
+        public string projectId { get; set; }
         [Required(ErrorMessage = "Please enter Client Name")]
         [Display(Name = "Client Name")]
-        public string clientName{ get; set; }
+        public string clientName { get; set; }
 
         [Display(Name = "Address")]
         [Required(ErrorMessage = "Please enter your Address")]
@@ -31,6 +33,11 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.Models
         [Required(ErrorMessage = "Please enter your Email Address")]
         [RegularExpression(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$", ErrorMessage = "Please enter a valid email address")]
         public string email { get; set; }
+
+        [Display(Name = "Status")]
+        [Required(ErrorMessage = "Please enter Status")]
+        public string status { get; set; }
+        public List<SelectListItem> clientStatusList{ get; set; }
 
         //[Display(Name = "Project")]
         //[Required(ErrorMessage = "Please enter your Project")]
