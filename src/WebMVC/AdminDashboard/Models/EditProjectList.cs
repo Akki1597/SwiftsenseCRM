@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace InvoiceMicroServices.WebMVC.AdminDashboard.Models
 {
     public class EditProjectList
-    {
+    { /* ProjectDetails id*/
         [Display(Name = "Project Id")]
         [Required(ErrorMessage = "Please enter your Project Id")]
         public string projectId { get; set; }
