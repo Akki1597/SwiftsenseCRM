@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewData["Title"] = "_PartialEmployeeLeftMenu";
+}
+
+<div class="col-md-2">
+    <div class="sidebar-container">
+        <div class="sidebar-logo">
+            SWIFTSENSE
+            <hr />
+        </div>
+        <ul class="sidebar-navigation">
+            <li>
+                <a asp-controller="EmployeeHomePage" asp-action="EmployeeHomePage">
+                    <i class="fa fa-home iconColor" aria-hidden="true"></i> Home
+                </a>
+            </li>
+            <li>
+                <a asp-controller="PersonalDetails" asp-action="PersonalDetails">
+                    <i class="fa fa-paper-plane iconColor" aria-hidden="true"></i> Personal Details
+                </a>
+            </li>
+            <li>
+                <a asp-controller="EducationalDetails" asp-action="EducationalDetails">
+                    <i class="fa fa-500px iconColor" aria-hidden="true"></i> Educational Details
+                </a>
+            </li>
+            <li>
+                <a asp-controller="ProfessionalDetails" asp-action="ProfessionalDetails">
+                    <i class="fa fa-file iconColor" aria-hidden="true"></i> Professional Details
+                </a>
+            </li>
+            <li>
+                <a asp-controller="SalaryDetails" asp-action="SalaryDetails">
+                    <i class="fa fa-user iconColor" aria-hidden="true"></i> Salary Details
+                </a>
+            </li>
+            <li>
+                <a asp-controller="BankDetails" asp-action="BankDetails">
+                    <i class="fa fa-user iconColor" aria-hidden="true"></i> Bank Details
+                </a>
+            </li>
+            <li>
+                <a asp-controller="timeSheet" asp-action="timeSheet">
+                    <i class="fa fa-user iconColor" aria-hidden="true"></i> Update time sheet
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

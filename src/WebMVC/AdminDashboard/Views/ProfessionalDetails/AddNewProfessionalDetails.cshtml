@@ -1,0 +1,115 @@
+﻿@model InvoiceMicroServices.WebMVC.AdminDashboard.EmpModels.AddProfessionalDetails
+
+@{
+    ViewData["Title"] = "AddNewProfessionalDetails";
+    Layout = "~/Views/Shared/PartialDashboardLayout.cshtml";
+}
+
+<div class="container-xl">
+    <div class="row">
+        @{
+            Html.RenderPartial("_PartialEmployeeLeftMenu");
+        }
+        <div class="col-md-10 menuMargin" style="margin-top:30px">
+            <form role="form" class="needs-validation" asp-action="ProfessionalDetails" asp-controller="ProfessionalDetails" novalidate>
+                <div class="card" style="margin-top:10px">
+                    <div class="row">
+                        <div class="col-sm-10 col-12">
+                            <h4 style="margin:20px 0px 20px 20px;color:gray;">Add Professional Details</h4>
+                        </div>
+                        <div class="col-sm-2 col-12">
+                            <button type="button" class="btn btnColor btn-sm" onclick="location.href='@Url.Action("ProfessionalDetails", "ProfessionalDetails")'" style="margin-top:30px;text-align:right">
+                                <i class="fa fa-angle-double-left" aria-hidden="true"></i>&nbsp;Back
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-row" style="padding-left:20px">
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="jobTitle" class="control-label"></label>
+                                <input asp-for="jobTitle" type="text" placeholder="Enter Job Title" class="form-control" />
+                                <span asp-validation-for="jobTitle" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="companyName" class="control-label"></label>
+                                <input asp-for="companyName" type="text" placeholder="Enter Company Name" class="form-control" />
+                                <span asp-validation-for="companyName" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="responsibilities" class="control-label"></label>
+                                <textarea asp-for="responsibilities" class="form-control"></textarea>
+                                <span asp-validation-for="responsibilities" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="startDate" class="control-label"></label>
+                                <input class="form-control" type="date" asp-for="startDate" value="Enter Start date" asp-format="{0:yyyy-MM-dd}" />
+                                <span asp-validation-for="startDate" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="endDate" class="control-label"></label>
+                                <input class="form-control" type="date" asp-for="endDate" value="Enter End date" asp-format="{0:yyyy-MM-dd}" />
+                                <span asp-validation-for="endDate" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="comments" class="control-label"></label>
+                                <textarea asp-for="comments" class="form-control"></textarea>
+                                <span asp-validation-for="comments" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="padding-left:20px;padding-bottom:15px">
+                        <div class="col-sm-3">
+                            <input type="submit" class="btn btnColor" value="Submit" />
+                        </div>
+
+                        <div class="col-sm-9">
+                        </div>
+                    </div>
+                </div>
+                <div class="card" style="margin-top:20px;">
+                    <h4 style="margin:20px 0px 20px 20px;color:gray">Skills</h4>
+                    <div class="form-row" style="padding-left:20px">
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <input asp-for="skill" type="text" placeholder="Enter Skill" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <input type="submit" class="btn btnColor" value="Edit" />
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <input asp-for="skill2" type="text" placeholder="Enter Skill2" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <input type="submit" class="btn btnColor" value="Edit" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="padding-left:20px;padding-bottom:15px">
+                        <div class="col-sm-3">
+                            <input type="submit" class="btn btnColor" value="Save" />
+                        </div>
+                        <div class="col-sm-9">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

@@ -31,6 +31,7 @@ namespace AuthrizationMicroservice.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly AccountService _account;
+        private readonly RoleManager<IdentityRole> _roleManager;
         IIdentityServerInteractionService _interaction;
         IHttpContextAccessor httpContextAccessor;
         private readonly IEmailSender _emailSender;
@@ -41,13 +42,14 @@ namespace AuthrizationMicroservice.Controllers
             SignInManager<ApplicationUser> signInManager,
              IIdentityServerInteractionService interaction,
             IEmailSender emailSender, ApplicationDbContext context,
-            ILogger<AccountController> logger)
+            ILogger<AccountController> logger, RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _logger = logger;
             _dbContext = context;
+            _roleManager = roleManager;
             _account = new AccountService(interaction, httpContextAccessor);
         }
 
@@ -559,6 +561,29 @@ namespace AuthrizationMicroservice.Controllers
             }
             
             
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<string> AddUserRole(string name)
+        {
+            try
+            {
+                var res = _dbContext.Roles.Where(x => x.Name == name).FirstOrDefault();
+
+                if (res == null)
+                {
+                   var res1 =  await _roleManager.CreateAsync(new IdentityRole {Name = name });
+                    return "true";
+                }
+                return "false";
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+
         }
 
         [HttpGet]

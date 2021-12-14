@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewData["Title"] = "AdminDashboardHomePage";
+    Layout = "~/Views/Shared/PartialDashboardLayout.cshtml";
+}
+
+<link href="~/StyleSheet/DashboardPanel.css" rel="stylesheet" />
+<div class="container-xl">
+    <div class="row">
+        @{
+            Html.RenderPartial("PartialLeftMenu");
+        }
+        <div class="col-md-10 menuMargin" style="margin-top:30px;">
+            <div class="card" style="margin-top:10px">
+                <h4 style="text-align:center;padding:15px">Number of hours to be billed</h4>
+                <h1 style="text-align:center">51</h1>
+            </div>
+            <div class="card" style="margin-top:20px;">
+                <h3 style="padding:20px">Notifications</h3>
+                <div class="list-group list-group-flush">
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h6 class="mb-1">Subtitle1</h6>
+                            <small>3.9.2012</small>
+                        </div>
+                        <p class="mb-1">Lorem ipsum dolor sit amet,consectetur adipisicing elit,sed do eiusmod tempor.</p>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h6 class="mb-1">Subtitle2</h6>
+                            <small class="text-muted">3.5.2019</small>
+                        </div>
+                        <p class="mb-1">Lorem ipsum dolor sit amet,consectetur adipisicing elit,sed do eiusmod tempor.</p>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h6 class="mb-1">Subtitle3</h6>
+                            <small class="text-muted">5.10.2021</small>
+                        </div>
+                        <p class="mb-1">Lorem ipsum dolor sit amet,consectetur adipisicing elit,sed do eiusmod tempor.</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

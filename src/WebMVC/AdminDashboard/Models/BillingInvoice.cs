@@ -13,7 +13,7 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.Models
         [Required(ErrorMessage = "Please select Invoice")]
         public string invoice { get; set; }
         public List<SelectListItem> invoiceList { get; set; }
-
+        public int unbilledHours { get; set; }
         [Display(Name = "projectWise")]
         [Required(ErrorMessage = "Please select Project Name")]
         public string selectedProject { get; set; }

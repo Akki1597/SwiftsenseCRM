@@ -1,0 +1,67 @@
+﻿@model List<InvoiceMicroServices.WebMVC.AdminDashboard.Models.ProjectDetails>
+@{
+    ViewData["Title"] = "ProjectList";
+}
+
+<div class="container-xl">
+    <div class="row">
+        @*@{Html.RenderPartial("PartialDeleteModalPopUp");}*@
+
+        @{
+            Html.RenderPartial("PartialLeftMenu");
+        }
+        <div class="col-md-10 menuMargin" style="margin-top:30px;">
+            <div class="card" style="min-height:220px;margin-top:10px;padding-left:10px;padding-right:10px">
+                <div class="row">
+                    <div class="col-sm-11 col-12">
+                        <h4 style="margin:20px 0px 40px 20px;color:gray;">Active Project List</h4>
+                    </div>
+                    <div class="col-sm-1 col-12">
+                        <button type="button" class="btn btnColor btn-sm" onclick="location.href='@Url.Action("GetClientListDetails", "CRMDetails",new {selectedCstatus = 1 })'" style="margin-top:30px;text-align:right">
+                            <i class="fa fa-angle-double-left" aria-hidden="true"></i>&nbsp;Back
+                        </button>
+                    </div>
+                </div>
+                <table class="table table-bordered table-sm">
+                    <thead>
+                        <tr>
+                            <th>S.No.</th>
+                            <th>Project Name</th>
+                            <th>Project Code</th>
+                            <th>Project Id</th>
+                            <th>Project State</th>
+                            @*<th hidden>Invoice generated</th>*@
+                            <th>No of unbilled hours</th>
+                           @* <th>Generate Invoice</th>*@
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.Count > 0)
+                        {
+                            int i = 0;
+                            @foreach (var data in Model)
+                            {
+                                <tr>
+                                    <td>@(i = i + 1)</td>
+                                    <td>@data.name</td>
+                                    <td>@data.pCode</td>
+                                    <td>@data.projectId</td>
+                                    <td>@data.status</td>
+                                    @*<td hidden>@data.clientId</td>*@
+                                    <td>@data.unbilledHours</td>
+                                    @*<td><button class="btn btn-sm btn-primary" id="btnGenerate" onclick="location.href='@Url.Action("billingmonth","Billing",new { projectId= data.projectId})'">Generate</button></td>*@
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="7">No Record Found</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

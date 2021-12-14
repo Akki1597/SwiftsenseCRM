@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewData["Title"] = "TimeSheet";
+    Layout = "~/Views/Shared/PartialDashboardLayout.cshtml";
+}
+<div class="container-xl">
+    <div class="row">
+        @{
+            Html.RenderPartial("_PartialEmployeeLeftMenu");
+        }
+        <div class="col-md-10 menuMargin" style="margin-top:30px;">
+            <form role="form" class="needs-validation" method="Get" enctype="multipart/form-data" novalidate>
+                <div class="card" style="margin-top:10px;">
+                    <h3 style="margin:20px 0px 20px 20px;color:gray;">Project</h3>
+                    <div class="form-row" style="padding-left:20px;padding-right:20px">
+                        <div class="col-sm-6">
+                            <div class="list-group list-group-flush">
+                                <div class="list-group-item list-group-item-action">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <span class="mb-1">HDSHF 225488</span>
+                                        <span class="mb-1" style="text-align:center"><small>Client name</small></span>
+                                        <button type="button" class="mb-1 btn btn-sm btnColor" onclick="location.href='@Url.Action("ViewTimeSheetDemo", "TimeSheet")'">View</button>
+                                    </div>
+                                </div>
+                                <div class="list-group-item list-group-item-action">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <span class="mb-1">HDSHF 225488</span>
+                                        <span class="mb-1" style="text-align:center"><small>Client name</small></span>
+                                        <button class="mb-1 btn btn-sm btnColor" onclick="location.href='@Url.Action("ViewTimeSheetDemo", "TimeSheet")'">View</button>
+                                    </div>
+                                </div>
+                                <div class="list-group-item list-group-item-action">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <span class="mb-1">HDSHF 225488</span>
+                                        <span class="mb-1" style="text-align:center"><small>Client name</small></span>
+                                        <button class="mb-1 btn btn-sm btnColor" onclick="location.href='@Url.Action("ViewTimeSheet", "TimeSheet")'">View</button>
+                                    </div>
+                                </div>
+                                <div class="list-group-item list-group-item-action">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <span class="mb-1">HDSHF 225488</span>
+                                        <span class="mb-1" style="text-align:center"><small>Client name</small></span>
+                                        <button class="mb-1 btn btn-sm btnColor" onclick="location.href='@Url.Action("ViewTimeSheet", "TimeSheet")'">View</button>
+                                    </div>
+                                </div>
+                                <div class="list-group-item list-group-item-action">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <span class="mb-1">HDSHF 225488</span>
+                                        <span class="mb-1" style="text-align:center"><small>Client name</small></span>
+                                        <button class="mb-1 btn btn-sm btnColor" onclick="location.href='@Url.Action("ViewTimeSheet", "TimeSheet")'">View</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

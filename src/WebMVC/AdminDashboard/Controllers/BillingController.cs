@@ -43,7 +43,7 @@ namespace AdminDashboard.Controllers
             };
 
             List<ClientDetails> clist = await GetCLientlist();
-
+            model.unbilledHours = await _billingInfo.GetUnbilledHours();
             model.invoiceListClientWise = new List<SelectListItem>();
             model.invoiceListClientWise.Add(new SelectListItem { Text = "Select Client Name", Value = "", Selected = true });
             for (int i = 0; i < clist.Count; i++)
@@ -111,41 +111,41 @@ namespace AdminDashboard.Controllers
             var res = await _billingInfo.GetInvoiceList(id);
             return res;
         }
-        public IActionResult billingmonth(int clientId)
+        public IActionResult billingmonth(string projectId)
         {
             billingIndexViewModel model = new billingIndexViewModel();
-            model.clientId = clientId;
+            //model.clientId = clientId;
+            model.projectId = projectId;
             model.yearList = new List<SelectListItem>
             {
                 new SelectListItem {Text = "Select Year",Value=""},
-                new SelectListItem {Text = "2020", Value = "1"},
-                new SelectListItem {Text = "2021", Value = "2"},
-                new SelectListItem {Text = "2022", Value = "3"},
-                new SelectListItem {Text = "2023", Value = "4"},
-                new SelectListItem {Text = "2024", Value = "5"},
-                new SelectListItem {Text = "2025", Value = "6"},
-                new SelectListItem {Text = "2026", Value = "7"},
-                new SelectListItem {Text = "2027", Value = "8"},
-                new SelectListItem {Text = "2028", Value = "9"},
-                new SelectListItem {Text = "2029", Value = "10"},
-                new SelectListItem {Text = "2030", Value = "11"}
+                new SelectListItem {Text = "2021", Value = "2021"},
+                new SelectListItem {Text = "2022", Value = "2022"},
+                new SelectListItem {Text = "2023", Value = "2023"},
+                new SelectListItem {Text = "2024", Value = "2024"},
+                new SelectListItem {Text = "2025", Value = "2025"},
+                new SelectListItem {Text = "2026", Value = "2026"},
+                new SelectListItem {Text = "2027", Value = "2027"},
+                new SelectListItem {Text = "2028", Value = "2028"},
+                new SelectListItem {Text = "2029", Value = "2029"},
+                new SelectListItem {Text = "2030", Value = "2030"}
 
             };
             model.monthList = new List<SelectListItem>
             {
                 new SelectListItem {Text = "Select Month",Value=""},
-                new SelectListItem {Text = "January", Value = "2"},
-                new SelectListItem {Text = "February", Value = "3"},
-                new SelectListItem {Text = "March", Value = "4"},
-                new SelectListItem {Text = "April", Value = "5"},
-                new SelectListItem {Text = "May", Value = "6"},
-                new SelectListItem {Text = "June", Value = "7"},
-                new SelectListItem {Text = "July", Value = "8"},
-                new SelectListItem {Text = "August", Value = "9"},
-                new SelectListItem {Text = "September", Value = "10"},
-                new SelectListItem {Text = "October", Value = "11"},
-                new SelectListItem {Text = "November", Value = "12"},
-                new SelectListItem {Text = "December", Value = "13"}
+                new SelectListItem {Text = "January", Value = "January"},
+                new SelectListItem {Text = "February", Value = "February"},
+                new SelectListItem {Text = "March", Value = "March"},
+                new SelectListItem {Text = "April", Value = "April"},
+                new SelectListItem {Text = "May", Value = "May"},
+                new SelectListItem {Text = "June", Value = "June"},
+                new SelectListItem {Text = "July", Value = "July"},
+                new SelectListItem {Text = "August", Value = "August"},
+                new SelectListItem {Text = "September", Value = "September"},
+                new SelectListItem {Text = "October", Value = "October"},
+                new SelectListItem {Text = "November", Value = "November"},
+                new SelectListItem {Text = "December", Value = "December"}
             };
             return View(model);
         }
@@ -156,14 +156,14 @@ namespace AdminDashboard.Controllers
 
             TempData["selectedMonth"] = req.selectedMonth;
             TempData["selectedYear"] = req.selectedYear;
-            TempData["clientId"] = req.clientId;
-
+            TempData["projectId"] = req.projectId;
+            
             return RedirectToAction("Rateperhr");
         }
 
         public async Task<IActionResult> Rateperhr()
         {
-            var clientId = TempData["clientId"];
+            var projectId = TempData["projectId"];
 
             billingRate model = new billingRate();
 
@@ -172,16 +172,16 @@ namespace AdminDashboard.Controllers
                 new SelectListItem {Text = "Currency Type",Value=""},
                 new SelectListItem {Text = "USD", Value = "1",Selected = true},
 
-                };
-            var cdetails = await GetClientDetails(Convert.ToInt32(clientId));
+            };
+
+            //var cdetails = await GetClientDetails(Convert.ToInt32(clientId));
 
             var selectedMonth = TempData["selectedMonth"].ToString();
             var selectedYear = TempData["selectedYear"].ToString();
 
-
             TempData.Keep();
 
-            var res = await GetEmplist(cdetails.projectId);
+            var res = await GetEmplist(projectId.ToString());
             model.Employees = new List<EmployeeDetail>();
             foreach (var item in res)
             {
@@ -189,7 +189,6 @@ namespace AdminDashboard.Controllers
                 rate.employeeName = item.firstName + item.lastName;
                 rate.NoofHours = item.totalhr;
                 rate.RatePerHr = item.ratePerHr;
-
                 model.Employees.Add(rate);
             }
             return View(model);
@@ -228,6 +227,7 @@ namespace AdminDashboard.Controllers
         {
             var s = JsonConvert.SerializeObject(item);
             TempData["billingrate"] = s;
+
             TempData.Keep();
             return RedirectToAction("InvoicePreview", "Billing");
         }
@@ -235,38 +235,75 @@ namespace AdminDashboard.Controllers
         public async Task<ActionResult> InvoicePreview()
         {
             billinginfo model = new billinginfo();
+
+            model.billingMonth = TempData["selectedMonth"].ToString();
+            model.billingYear = TempData["selectedYear"].ToString();
             model.invoiceCount = await GetLastInvoiceNo();
 
             if (TempData["billingrate"] is string s)
             {
                 model.billingRate = JsonConvert.DeserializeObject<billingRate>(s);
             }
-            var clientId = TempData["clientId"];
+            var projectId = TempData["projectId"];
             TempData.Keep();
-            model.clientDetails = await GetClientDetails(Convert.ToInt32(clientId));
+
             HttpContext.Session.SetString("CompanyId", "sw751");
             var companyId = HttpContext.Session.GetString("CompanyId");
             model.companydetails = await GetCompanyDetails(companyId);
-            model.projectDetails = await GetProjectDetails(model.clientDetails.projectId);
+            model.projectDetails = await GetProjectDetails(projectId.ToString());
+            model.clientDetails = await GetClientDetails(model.projectDetails.clientId);
+            return View(model);
+        }
+
+        public async Task<IActionResult> ViewInvoice(string invoiceNumber)
+        {
+            billinginfo model = new billinginfo();
+            var res = await _billingInfo.GetInvoiceDetails(invoiceNumber);
+            model.invoiceCount = res.invoiceNo;
+            model.invoiceDate = res.date;
+            model.totalhrs = res.totalHours;
+            model.totalAmount = res.totalAmount;
+
+            model.companydetails = await GetCompanyDetails(res.companyId);
+            model.projectDetails = await GetProjectDetails(res.projectId);
+            var rate = await GetBillingRate(res.projectId);
+           
+            for(int i=0;i<rate.Count;i++)
+            {
+                EmployeeDetail employeeDetail = new EmployeeDetail()
+                {
+                    employeeName = rate[i].employeeName,
+                    NoofHours = rate[i].NoofHours,
+                    RatePerHr = rate[i].RatePerHr
+                };
+                model.billingRate.Employees.Add(employeeDetail);
+            }
+            model.clientDetails = await GetClientDetails(res.clientId);
             return View(model);
         }
 
         [HttpPost]
-        public async Task<ActionResult> InvoicePreview(billinginfo req)
+        public async Task<ActionResult> InvoicePreview(EducationalDetails req)
         {
             InvoiceDetails invoice = new InvoiceDetails()
             {
                 invoiceNo = req.invoiceCount,
                 date = req.invoiceDate,
                 billingMonth = req.billingMonth,
+                billingYear = req.billingYear,
                 clientName = req.clientDetails.name,
                 projectId = req.projectDetails.projectId,
                 projectName = req.projectDetails.name,
                 totalAmount = req.totalAmount,
                 totalHours = req.totalhrs,
-
+                clientId = req.clientDetails.id,
+                companyId = req.companydetails.companyId,
+                billingRate = (TempData["billingrate"] is string s) ? JsonConvert.DeserializeObject<billingRate>(s) : null,
+            
             };
+
             var res = await _billingInfo.SaveInvoiceDetails(invoice);
+
             if (res == true)
             {
                 return RedirectToAction("Billing");
@@ -279,45 +316,52 @@ namespace AdminDashboard.Controllers
         }
 
         public async Task<List<EmployeeDetails>> GetEmplist(string pId)
-        {
-            List<EmployeeDetails> employeeDetails = new List<EmployeeDetails>();
-            employeeDetails = await _employeesvc.GetEmplistDetails(pId);
-            return employeeDetails;
+{
+    List<EmployeeDetails> employeeDetails = new List<EmployeeDetails>();
+    employeeDetails = await _employeesvc.GetEmplistDetails(pId);
+    return employeeDetails;
 
-        }
+}
 
-        public async Task<CompanyIndexViewModel> GetCompanyDetails(string companyId)
-        {
-            var info = await _companyInfosvc.GetCompanyInfo(companyId);
-            return info;
+    public async Task<CompanyIndexViewModel> GetCompanyDetails(string companyId)
+    {
+    var info = await _companyInfosvc.GetCompanyInfo(companyId);
+    return info;
 
-        }
+    }
 
-        public async Task<ClientDetails> GetClientDetails(int? clinetId)
-        {
-            var info = await _clientInfosvc.GetClientInfo(clinetId);
-            return info;
+    public async Task<ClientDetails> GetClientDetails(int? clinetId)
+    {
+    var info = await _clientInfosvc.GetClientInfo(clinetId);
+    return info;
 
-        }
+    }
 
-        public async Task<ProjectDetails> GetProjectDetails(string pId)
-        {
-            var info = await _projectInfosvc.GetProjectInfo(pId);
-            return info;
+    public async Task<List<ResBillingRate>> GetBillingRate(string projectId)
+    {
+        var info = await _billingInfo.GetBillingRate(projectId);
+        return info;
 
-        }
+    }
+
+    public async Task<ProjectDetails> GetProjectDetails(string pId)
+    {
+    var info = await _projectInfosvc.GetProjectInfo(pId);
+    return info;
+
+    }
 
 
-        public async Task<List<ClientDetails>> GetCLientlist()
-        {
-            var res = await _clientInfosvc.Getclientlist("1");
-            return res;
+    public async Task<List<ClientDetails>> GetCLientlist()
+    {
+    var res = await _clientInfosvc.Getclientlist("1");
+    return res;
 
-        }
-        public async Task<string> GetLastInvoiceNo()
-        {
-            var res = await _billingInfo.GetInvoiceCount();
-            return res.ToString();
-        }
+    }
+    public async Task<string> GetLastInvoiceNo()
+    {
+    var res = await _billingInfo.GetInvoiceCount();
+    return res.ToString();
+    }
     }
 }

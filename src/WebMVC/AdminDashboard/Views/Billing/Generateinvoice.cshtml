@@ -30,7 +30,7 @@
                             <th>Project Code</th>
                             <th>Project Id</th>
                             <th>Project State</th>
-                            @*<th>Invoice generated</th>*@
+                            @*<th hidden>Invoice generated</th>*@
                             <th>No of unbilled hours</th>
                             <th>Generate Invoice</th>
                         </tr>
@@ -41,16 +41,25 @@
                             int i = 0;
                             @foreach (var data in Model)
                             {
-                                <tr>
-                                    <td>@(i = i + 1)</td>
-                                    <td>@data.name</td>
-                                    <td>@data.pCode</td>
-                                    <td>@data.projectId</td>
-                                    <td>@data.status</td>
-                                    @*<td>@data.</td>*@
-                                    <td>@data.unbilledHours</td>
-                                    <td><button class="btn btn-sm btn-primary" id="btnGenerate" onclick="location.href='@Url.Action("billingmonth","Billing",new { clientId= data.clientId})'">Generate</button></td>
-                                </tr>
+                        <tr>
+                            <td>@(i = i + 1)</td>
+                            <td>@data.name</td>
+                            <td>@data.pCode</td>
+                            <td>@data.projectId</td>
+                            <td>@data.status</td>
+                            @*<td hidden>@data.clientId</td>*@
+                            <td>@data.unbilledHours</td>
+                            @if (Convert.ToInt32(data.unbilledHours) > 0)
+                            {
+                                <td><button class="btn btn-sm btn-primary" id="btnGenerate" onclick="location.href='@Url.Action("billingmonth","Billing",new { projectId= data.projectId})'">Generate</button></td>
+
+                            }
+                            else
+                            {
+                                <td class="text-primary">Generated</td>
+
+                            }
+                        </tr>
                             }
                         }
                         else

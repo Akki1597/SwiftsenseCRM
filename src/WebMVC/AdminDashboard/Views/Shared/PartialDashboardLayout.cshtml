@@ -77,8 +77,8 @@
                     $('#delete').click(function () {
                         var deletionId = $('#deletionId').val();
                         var usertypeId = $('#userTypeId').val();
-                      
-                        if (usertypeId != 0) {
+
+                        if (usertypeId != undefined) {
                             $.post('@Url.Action("Delete", "UserManagement")', {userId: deletionId }, function (data) {
                                 // do something after calling delete action method
                                 // this alert box just an example
@@ -89,7 +89,7 @@
                                 }, 1500);
 
                                 $('#exampleModalCenter').modal('hide');
-                                alert(data);
+                                
                                 if (data != null && data == "user") {
                                     debugger;
                                     location.href = '@Url.Action("ViewUserList", "UserManagement")?userTypeId=' + usertypeId;
@@ -100,7 +100,7 @@
                             $.post('@Url.Action("Delete", "Home")', { id: deletionId }, function (data) {
                             // do something after calling delete action method
                             // this alert box just an example
-                           
+                                
                             $('#deletionSuccess').modal('show');
                             setTimeout(function () {
                                 $('#deletionSuccess').modal('hide');

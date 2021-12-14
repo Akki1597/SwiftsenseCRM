@@ -12,7 +12,7 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.Models
         [Display(Name = "Project Id")]
         [Required(ErrorMessage = "Please enter your Project Id")]
         public string projectId { get; set; }
-
+        public int id { get; set; }
         [Display(Name = "Client Name")]
         [Required(ErrorMessage = "Please select client")]
         public int clientId { get; set; }

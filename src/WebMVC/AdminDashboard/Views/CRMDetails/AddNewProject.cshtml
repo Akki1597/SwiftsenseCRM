@@ -43,35 +43,35 @@
                             <div class="form-group">
                                 <label asp-for="projectId" class="control-label"></label>
                                 <input asp-for="projectId" type="text" placeholder="Enter Project Id" class="form-control" />
-                                <span asp-validation-for="clientId" class="text-danger"></span>
+                                <span asp-validation-for="projectId" class="text-danger"></span>
                             </div>
                         </div>
-                        <div class="col-sm-7">
+                        @*<div class="col-sm-7">
                             <div class="form-group">
                                 <label asp-for="status" class="control-label"></label>
                                 <input asp-for="status" type="text" placeholder="Enter Project State" class="form-control" />
                                 <span asp-validation-for="status" class="text-danger"></span>
                             </div>
-                        </div>
+                        </div>*@
                         @*<div class="col-sm-7">
                                 <div class="form-group">
                                     <label asp-for="projectType" class="control-label"></label>
                                     <input asp-for="projectType" type="text" placeholder="Enter Project Type" class="form-control" />
                                 </div>
                             </div>*@
-                        @*<div class="col-sm-7">
-                                <div class="form-group">
-                                    <label asp-for="unbilledHours" class="control-label"></label>
-                                    <input asp-for="unbilledHours" type="number" placeholder="Enter No of unbilled hours" class="form-control" />
-                                    <span asp-validation-for="unbilledHours" class="text-danger"></span>
-                                </div>
-                            </div>*@
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="unbilledHours" class="control-label"></label>
+                                <input asp-for="unbilledHours" type="number" placeholder="Enter No of unbilled hours" class="form-control" />
+                                <span asp-validation-for="unbilledHours" class="text-danger"></span>
+                            </div>
+                        </div>
                     </div>
                     <div class="row" style="padding-left:20px;padding-bottom:15px">
                         <div class="col-sm-3">
                             <button type="submit" class="btn btn-success">Save</button>
                             @*<button type="submit" class="btn btnColor">Update</button>
-                                <button type="submit" class="btn btn-danger">Delete</button>*@
+                            <button type="submit" class="btn btn-danger">Delete</button>*@
                         </div>
                         <div class="col-sm-9">
                         </div>

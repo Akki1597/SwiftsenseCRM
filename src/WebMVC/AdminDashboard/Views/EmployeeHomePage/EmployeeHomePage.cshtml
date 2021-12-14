@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewData["Title"] = "EmployeeHomePage";
+    Layout = "~/Views/Shared/PartialDashboardLayout.cshtml";
+}
+
+<link href="~/StyleSheet/DashboardPanel.css" rel="stylesheet" />
+<div class="container-xl">
+    <div class="row">
+        @{
+            Html.RenderPartial("_PartialEmployeeLeftMenu");
+        }
+        <div class="col-md-10 menuMargin" style="margin-top:30px;">
+            <div class="card" style="margin-top:20px;">
+                <h3 style="padding:20px">Notifications</h3>
+                <div class="list-group list-group-flush">
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h6 class="mb-1">Subtitle1</h6>
+                            <small>3.9.2012</small>
+                        </div>
+                        <small class="mb-1">Lorem ipsum dolor sit amet,consectetur adipisicing elit,sed do eiusmod tempor.</small>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h6 class="mb-1">Subtitle2</h6>
+                            <small class="text-muted">3.5.2019</small>
+                        </div>
+                        <small class="mb-1">Lorem ipsum dolor sit amet,consectetur adipisicing elit,sed do eiusmod tempor.</small>
+                    </a>
+                </div>
+            </div>
+                <form role="form" class="needs-validation" method="Get" enctype="multipart/form-data" novalidate>
+                    <div class="card" style="margin-top:10px;">
+                        <h4 style="margin:20px 0px 20px 20px;color:gray;text-align:center">User Tokens</h4>
+                        <div class="form-row" style="padding-left:20px;padding-right:20px">
+                            <div class="col-sm-12">
+                                <div class="list-group list-group-flush">
+                                    <div class="list-group-item list-group-item-action">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <span class="mb-1">T12345&nbsp;&nbsp;&nbsp;<small>3.9.2012 , 4:30pm</small></span>
+                                            <button type="button" class="mb-1 btn btn-sm btnColor" onclick="location.href='@Url.Action("ViewUserToken", "UserManagement")'">View</button>
+                                        </div>
+                                    </div>
+                                    <div class="list-group-item list-group-item-action">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <span class="mb-1">T12345&nbsp;&nbsp;&nbsp;<small>3.9.2012 , 4:30pm</small></span>
+                                            <button class="mb-1 btn btn-sm btnColor">View</button>
+                                        </div>
+                                    </div>
+                                    <div class="list-group-item list-group-item-action">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <span class="mb-1">T12345&nbsp;&nbsp;&nbsp;<small>3.9.2012 , 4:30pm</small></span>
+                                            <button class="mb-1 btn btn-sm btnColor">View</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
+        </div>
+    </div>
+</div>

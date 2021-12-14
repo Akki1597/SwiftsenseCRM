@@ -19,6 +19,11 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.Models
         [Required(ErrorMessage = "Please enter your Address")]
         public string address { get; set; }
 
+        [Display(Name = "Country Code")]
+        [Required(ErrorMessage = "Please enter your Country Code")]
+        [RegularExpression(@"/^(\+?\d{1,3}|\d{1,4})$/", ErrorMessage = "Please enter your Country Code")]
+        public string countryCode { get; set; }
+
         [Display(Name = "Phone")]
         [Required(ErrorMessage = "Please enter your phone")]
         [RegularExpression(@"\d{10}", ErrorMessage = "Please enter 10 digit Mobile No.")]

@@ -1,0 +1,127 @@
+﻿@model InvoiceMicroServices.WebMVC.AdminDashboard.EmpModels.PersonalDetails
+
+@{
+    ViewData["Title"] = "PersonalDetails";
+    Layout = "~/Views/Shared/PartialDashboardLayout.cshtml";
+
+}
+
+<div class="container-xl">
+    <div class="row">
+        @{
+            Html.RenderPartial("_PartialEmployeeLeftMenu");
+        }
+        <div class="col-md-10 menuMargin" style="margin-top:30px">
+            <form role="form" class="needs-validation" asp-action="PersonalDetails" asp-controller="PersonalDetails" novalidate>
+                <div class="card" style="margin-top:10px">
+                    <div class="row">
+                        <div class="col-sm-10 col-12">
+                            <h4 style="margin:20px 0px 20px 20px;color:gray;">Personal Details</h4>
+                        </div>
+                    </div>
+                    <div class="form-row" style="padding-left:20px">
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="fName" class="control-label"></label>
+                                <input asp-for="fName" type="text" placeholder="Enter Your First Name" class="form-control" />
+                                <span asp-validation-for="fName" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="lName" class="control-label"></label>
+                                <input asp-for="lName" type="text" placeholder="Enter Your Last Name" class="form-control" />
+                                <span asp-validation-for="lName" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="gender" class="control-label">Gender</label>
+                                <select asp-for="gender" asp-items="@Model.genderList" class="form-control"></select>
+                                <span asp-validation-for="gender" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="phone" class="control-label"></label>
+                                <input asp-for="phone" type="number" placeholder="Enter Your Mobile Number" class="form-control" />
+                                <span asp-validation-for="phone" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="email" class="control-label"></label>
+                                <input asp-for="email" type="email" placeholder="Enter Your Email Address" class="form-control" />
+                                <span asp-validation-for="email" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="state" class="control-label"></label>
+                                <input asp-for="state" type="text" placeholder="Enter Your State" class="form-control" />
+                                <span asp-validation-for="state" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="dob" class="control-label"></label>
+                                <input asp-for="dob" type="text" placeholder="Enter Your Date of birth" class="form-control" />
+                                <span asp-validation-for="dob" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="motherTongue" class="control-label"></label>
+                                <input asp-for="motherTongue" type="text" placeholder="Enter Your Mother Tongue" class="form-control" />
+                                <span asp-validation-for="motherTongue" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="alternatePhone" class="control-label"></label>
+                                <input asp-for="alternatePhone" type="number" placeholder="Enter Your Emergency Contact Number" class="form-control" />
+                                <span asp-validation-for="alternatePhone" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="resume" class="control-label"></label>
+                                <input asp-for="resume" type="file" class="form-control" />
+                                <span asp-validation-for="resume" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="aadhaar" class="control-label"></label>
+                                <input asp-for="aadhaar" type="file" class="form-control" />
+                                <span asp-validation-for="aadhaar" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="pan" class="control-label"></label>
+                                <input asp-for="pan" type="file" class="form-control" />
+                                <span asp-validation-for="pan" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="passport" class="control-label"></label>
+                                <input asp-for="passport" type="file" class="form-control" />
+                                <span asp-validation-for="passport" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="padding-left:20px;padding-bottom:15px">
+                        <div class="col-sm-3">
+                            <input type="submit" class="btn btnColor" value="Submit" />
+                        </div>
+
+                        <div class="col-sm-9">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

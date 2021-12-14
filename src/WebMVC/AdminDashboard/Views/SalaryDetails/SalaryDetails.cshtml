@@ -1,0 +1,94 @@
+﻿@model InvoiceMicroServices.WebMVC.AdminDashboard.EmpModels.SalaryDetails
+
+@{
+    ViewData["Title"] = "SalaryDetails";
+    Layout = "~/Views/Shared/PartialDashboardLayout.cshtml";
+}
+
+<div class="container-xl">
+    <div class="row">
+        @{
+            Html.RenderPartial("_PartialEmployeeLeftMenu");
+        }
+        <div class="col-md-10 menuMargin" style="margin-top:30px">
+            <form role="form" class="needs-validation" asp-action="SalaryDetails" asp-controller="SalaryDetails" novalidate>
+                <div class="card" style="margin-top:10px">
+                    <div class="row">
+                        <div class="col-sm-10 col-12">
+                            <h4 style="margin:20px 0px 20px 20px;color:gray;">Salary Details</h4>
+                        </div>
+                    </div>
+                    <div class="form-row" style="padding-left:20px">
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="basic" class="control-label"></label>
+                                <input asp-for="basic" type="text" placeholder="Enter Your Basic Salary" class="form-control" />
+                                <span asp-validation-for="basic" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="travelAllowance" class="control-label"></label>
+                                <input asp-for="travelAllowance" type="text" placeholder="Enter Your Travel Allowance" class="form-control" />
+                                <span asp-validation-for="travelAllowance" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="esiDeduction" class="control-label"></label>
+                                <input asp-for="esiDeduction" type="text" placeholder="Enter ESI Deduction" class="form-control" />
+                                <span asp-validation-for="esiDeduction" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="pfEmployee" class="control-label"></label>
+                                <input asp-for="pfEmployee" type="text" placeholder="Enter PF Employee" class="form-control" />
+                                <span asp-validation-for="pfEmployee" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="netInHandSalary" class="control-label"></label>
+                                <input asp-for="netInHandSalary" type="text" placeholder="Enter Your Net In Hand Salary" class="form-control" />
+                                <span asp-validation-for="netInHandSalary" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="comments" class="control-label"></label>
+                                <textarea asp-for="comments" class="form-control"></textarea>
+                                <span asp-validation-for="comments" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-10 col-12">
+                                        <h2 style="margin:20px 0px 20px 20px;color:black;">
+                                            Download Salary Slip
+                                        </h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="month" class="control-label"></label>
+                                <input class="form-control" type="month" asp-for="month" placeholder="Enter Month" value="24/2021" asp-format="{0:yyyy-MM}" />
+                                <span asp-validation-for="month" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="padding-left:20px;padding-bottom:15px">
+                        <div class="col-sm-3">
+                            <input type="submit" class="btn btnColor" value="Download" />
+                        </div>
+                        <div class="col-sm-9">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

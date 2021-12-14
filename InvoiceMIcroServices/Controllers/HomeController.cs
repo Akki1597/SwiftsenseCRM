@@ -31,7 +31,7 @@ namespace InvoiceMIcroServices.Controllers
             if(!string.IsNullOrEmpty(id.ToString()))
             {
                
-                var res = _context.clientDetails.Find(Convert.ToInt32(id));
+                var res = _context.clientDetails.Where(x => x.id.ToString() == id.ToString()).FirstOrDefault();
                 if(res != null){
                     _context.clientDetails.Remove(res);
                     _context.SaveChanges();

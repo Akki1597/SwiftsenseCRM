@@ -1,0 +1,75 @@
+﻿@model InvoiceMicroServices.WebMVC.AdminDashboard.EmpModels.AddBankDetails
+
+@{
+    ViewData["Title"] = "AddNewBankDetails";
+    Layout = "~/Views/Shared/PartialDashboardLayout.cshtml";
+}
+
+<div class="container-xl">
+    <div class="row">
+        @{
+            Html.RenderPartial("_PartialEmployeeLeftMenu");
+        }
+        <div class="col-md-10 menuMargin" style="margin-top:30px">
+            <form role="form" class="needs-validation" asp-action="AddNewBankDetails" asp-controller="BankDetails" novalidate>
+                <div class="card" style="margin-top:10px">
+                    <div class="row">
+                        <div class="col-sm-11 col-12">
+                            <h4 style="margin:20px 0px 20px 20px;color:gray;">Add Bank Details</h4>
+                        </div>
+                        <div class="col-sm-1 col-12">
+                            <button type="button" class="btn btnColor btn-sm" onclick="location.href='@Url.Action("BankDetails", "BankDetails")'" style="margin-top:30px;text-align:right">
+                                <i class="fa fa-angle-double-left" aria-hidden="true"></i>&nbsp;Back
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-row" style="padding-left:20px">
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="name" class="control-label"></label>
+                                <input asp-for="name" type="text" placeholder="Enter Your Bank Details" class="form-control" />
+                                <span asp-validation-for="name" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="accountNumber" class="control-label"></label>
+                                <input asp-for="accountNumber" type="text" placeholder="Enter Your Account Number" class="form-control" />
+                                <span asp-validation-for="accountNumber" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="bankName" class="control-label"></label>
+                                <input asp-for="bankName" type="text" placeholder="Enter Bank Name" class="form-control" />
+                                <span asp-validation-for="bankName" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="ifsc" class="control-label"></label>
+                                <input asp-for="ifsc" type="text" placeholder="Enter IFSC Code" class="form-control" />
+                                <span asp-validation-for="ifsc" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="comments" class="control-label"></label>
+                                <textarea asp-for="comments" class="form-control"></textarea>
+                                <span asp-validation-for="comments" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="padding-left:20px;padding-bottom:15px">
+                        <div class="col-sm-3">
+                            <input type="submit" class="btn btnColor" value="Submit" />
+                        </div>
+                        <div class="col-sm-9">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

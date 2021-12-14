@@ -53,10 +53,10 @@
                                     <td>@(i = i + 1)</td>
                                     <td>@data.name</td>
                                     <td>@data.address</td>
-                                    <td>@data.phone</td>
+                                    <td>@data.phoneNo</td>
                                     <td>@data.email</td>
                                     @*<td>@data.project</td>*@
-                                    <td><button class="btn btn-sm btn-primary">View</button></td>
+                                    <td><button class="btn btn-sm btn-primary" onclick="location.href='@Url.Action("GetProjectListClientWise", "CRMDetails",new { clientId= data.id })'">View</button></td>
                                     <td>@data.unbilledHours</td>
                                     <td><button class="btn btn-sm btn-success" onclick="location.href='@Url.Action("EditClientListDetails", "CRMDetails",new { clientId= data.id })'">Edit</button></td>
                                     <td>

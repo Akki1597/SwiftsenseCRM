@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace InvoiceMicroServices.WebMVC.AdminDashboard.Models
 {
-    public class billinginfo
+    public class EducationalDetails
     {
         public CompanyIndexViewModel companydetails { get; set; } = new CompanyIndexViewModel();
         public ClientDetails clientDetails { get; set; } = new ClientDetails();
@@ -18,5 +18,6 @@ namespace InvoiceMicroServices.WebMVC.AdminDashboard.Models
         public string invoiceDate { get; set; }
         public int ? totalhrs {get;set;}
         public string billingMonth { get; set; }
+        public string billingYear { get; set; }
     }
 }

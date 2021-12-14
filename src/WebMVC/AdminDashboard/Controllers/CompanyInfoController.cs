@@ -25,7 +25,7 @@ namespace AdminDashboard.Controllers
         {
             //int itemsPage = 10;
 
-            var info = await _companyInfosvc.GetCompanyInfo("sw751");
+            //var info = await _companyInfosvc.GetCompanyInfo("sw751");
             //var vm = new CompanyIndexViewModel()
             //{
               
@@ -40,7 +40,8 @@ namespace AdminDashboard.Controllers
             //};
             //vm.paginationInfo.next = (vm.paginationInfo.actualPage == vm.paginationInfo.totalpages - 1) ? "is-disabled" : "";
             //vm.paginationInfo.previous = (vm.paginationInfo.actualPage == 0) ? "is-disabled" : "";
-            return View(info);
+           // return View(info);
+            return View();
         }
 
         public async Task<IActionResult> SaveCompanyDetails(CompanyIndexViewModel req)
@@ -58,6 +59,11 @@ namespace AdminDashboard.Controllers
                 throw ex;
             }
             
+        }
+
+        public IActionResult ViewCompanyInfo()
+        {
+            return View();
         }
       
         public IActionResult About()

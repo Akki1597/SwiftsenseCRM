@@ -1,0 +1,177 @@
+﻿@model InvoiceMicroServices.WebMVC.AdminDashboard.Models.EditClientList
+
+@{
+    ViewData["Title"] = "EditClientDetails";
+}
+<style>
+    .rowAligns {
+        border: none;
+        padding-left: 40px;
+        font-size: 15px;
+        color: #131414;
+        margin-bottom: 5px;
+    }
+</style>
+<div class="container-xl">
+    <div class="row">
+        @{
+            Html.RenderPartial("PartialLeftMenu");
+        }
+        <div class="col-md-10 menuMargin" style="margin-top:30px;">
+            <form role="form" class="needs-validation" method="post" asp-action="Saveclientdetails" asp-controller="CRMDetails" enctype="multipart/form-data" novalidate>
+                <div class="card" style="margin-top:20px;">
+                    <div class="row">
+                        <div class="col-sm-11 col-12">
+                            <h4 style="margin:20px 0px 40px 20px;color:gray;">Edit Client Details</h4>
+                        </div>
+                    </div>
+                    <div class="form-row" style="padding-left:20px">
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="clientName" class="control-label"></label>
+                                <input asp-for="clientName" type="text" placeholder="Enter Client Name" class="form-control" />
+                                <span asp-validation-for="clientName" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="address" class="control-label"></label>
+                                <input asp-for="address" type="text" placeholder="Enter Address" class="form-control" />
+                                <span asp-validation-for="address" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label asp-for="countryCode" class="control-label"></label>
+                                        <input asp-for="countryCode" type="text" placeholder="+91" class="form-control" />
+                                        <span asp-validation-for="countryCode" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-9">
+                                    <div class="form-group">
+                                        <label asp-for="phone" class="control-label"></label>
+                                        <input asp-for="phone" type="text" placeholder="Enter Phone Number" class="form-control" />
+                                        <span asp-validation-for="phone" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label asp-for="email" class="control-label"></label>
+                                <input asp-for="email" type="email" placeholder="Enter Email Address" class="form-control" />
+                                <span asp-validation-for="email" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-sm-10 col-12">
+                                    <h4 style="margin:20px 0px 20px 20px;color:gray;">Project</h4>
+                                </div>
+                                <div class="col-sm-2 col-12">
+                                    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("AddProjectDetails", "CRMDetails")'" style="margin-top:30px;text-align:right">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Add New
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card" style="margin:10px;border-radius:40px">
+
+                                <div class="row rowAligns">
+                                    <div class="col-md-4">
+                                        @Html.Label("Project")
+                                    </div>
+                                    <div class="col-md-1">
+                                    </div>
+                                    <div class="col-md-7">
+                                        Active(Status)
+                                    </div>
+                                </div>
+                                <div class="form-row" style="padding-left:20px;padding-right:20px">
+                                    <div class="col-sm-12">
+                                        <div class="list-group list-group-flush">
+                                            <div class="list-group-item list-group-item-action">
+                                                <div class="d-flex w-100 justify-content-between">
+                                                    <div class="md-1">
+                                                        <span>
+                                                            @Html.Label("Project Id:")
+                                                        </span>
+                                                        <span>PID</span>
+                                                    </div>
+                                                    <div class="md-1">
+                                                        <span>
+                                                            @Html.Label("Project Code:")
+                                                        </span>
+                                                        <span>PID</span>
+                                                    </div>
+                                                    <div class="md-1">
+                                                        <button type="button" onclick="location.href='@Url.Action("EditProjectDetails", "CRMDetails")'" class="btn-sm btnColor">Edit</button>
+                                                        <button type="button" class="btn-sm btn-danger">Delete</button>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="card" style="margin:10px;border-radius:40px">
+
+                                <div class="row rowAligns">
+                                    <div class="col-md-4">
+                                        @Html.Label("Project")
+                                    </div>
+                                    <div class="col-md-1">
+                                    </div>
+                                    <div class="col-md-7">
+                                        Active(Status)
+                                    </div>
+                                </div>
+                                <div class="form-row" style="padding-left:20px;padding-right:20px">
+                                    <div class="col-sm-12">
+                                        <div class="list-group list-group-flush">
+                                            <div class="list-group-item list-group-item-action">
+                                                <div class="d-flex w-100 justify-content-between">
+                                                    <div class="md-1">
+                                                        <span>
+                                                            @Html.Label("Project Id:")
+                                                        </span>
+                                                        <span>PID</span>
+                                                    </div>
+                                                    <div class="md-1">
+                                                        <span>
+                                                            @Html.Label("Project Code:")
+                                                        </span>
+                                                        <span>PID</span>
+                                                    </div>
+                                                    <div class="md-1">
+                                                        <button type="button" onclick="location.href='@Url.Action("EditProjectDetails", "CRMDetails")'" class="btn-sm btnColor">Edit</button>
+                                                        <button type="button" class="btn-sm btn-danger">Delete</button>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                       
+                        
+                    </div>
+                    <div class="row" style="padding-left:20px;padding-bottom:15px">
+                        <div class="col-sm-9">
+                            <button type="submit" class="btn btn-primary">Update</button>
+                            <button type="submit" class="btn btn-primary">Cancel</button>
+                        </div>
+                        <div class="col-sm-3">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

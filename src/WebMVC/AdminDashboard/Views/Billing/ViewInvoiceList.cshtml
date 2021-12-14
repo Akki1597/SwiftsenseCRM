@@ -58,7 +58,9 @@
                                     <td>@item.projectId</td>
                                     <td>@item.totalHours</td>
                                     <td>@item.totalAmount</td>
-                                    <td><button class="btn btn-sm btn-primary">View</button></td>
+                                    <td>
+                                        @Html.ActionLink("View", "ViewInvoice", "Billing", new { invoiceNumber = item.invoiceNo }, new { @class = "btn btn-sm btn-primary" })
+                                    </td>
                                     @*<td><button class="btn btn-sm btn-success">Edit</button></td>*@
                                     <td>
                                         @Html.ActionLink("Delete", "Delete", new { id = item.invoiceNo }, new { @class = "btn btn-sm btn-danger element", @data_toggle = "modal", @data_target = "#exampleModalCenter", @data_id = item.invoiceNo })
